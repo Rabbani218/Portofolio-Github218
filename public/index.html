@@ -13,8 +13,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/portfolio.css">
     <link rel="stylesheet" href="./css/light-theme.css">
-    <!-- jsPDF for client-side CV generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+        <!-- jsPDF for client-side CV generation -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+        <!-- Structured data for person profile -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Muhammad Abdurrahman Rabbani",
+            "jobTitle": "Data Analyst, Full-stack Developer, AI Engineer",
+            "url": "https://portfolio-rabbani06-main.vercel.app/",
+            "image": "https://portfolio-rabbani06-main.vercel.app/images/P1.png",
+            "sameAs": [
+                "https://github.com/Rabbani218",
+                "https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346"
+            ]
+        }
+        </script>
 
 </head>
 <body class="light-theme">
@@ -61,7 +76,7 @@
             </div>
             <div class="hero-right" aria-hidden="false">
                 <figure>
-                    <img class="profile-img" src="/images/P1.png" alt="Profile photo of Muhammad Abdurrahman Rabbani">
+                    <img class="profile-img" src="/images/P1.png" alt="Profile photo of Muhammad Abdurrahman Rabbani" loading="lazy" decoding="async">
                     <figcaption class="muted-small">Rabbani — Data Analyst · Full‑stack · AI Engineer</figcaption>
                 </figure>
             </div>
@@ -143,7 +158,8 @@
                     <input id="projects-minstars" type="number" min="0" value="0" />
                 </div>
 
-                <div id="projects-grid" class="projects-grid">
+                <h3 id="projects-heading" class="visually-hidden">Project Listings</h3>
+                <div id="projects-grid" class="projects-grid" role="list" aria-labelledby="projects-heading" aria-live="polite">
                     <div class="stat-card">Loading projects from GitHub... <span class="japanese-accent" aria-hidden="true">GitHubからプロジェクトを読み込み中...</span></div>
                 </div>
             </div>
@@ -153,10 +169,10 @@
             <h2 class="section-title">Tech Stack</h2>
             <div class="stack-strip">
                 <div class="stack-card">
-                    <img src="https://skillicons.dev/icons?i=python,pytorch,tensorflow,scikitlearn,fastapi,flask,go,nodejs,express,nestjs&theme=dark" alt="AI & Back-end Stack"/>
+                    <img src="https://skillicons.dev/icons?i=python,pytorch,tensorflow,scikitlearn,fastapi,flask,go,nodejs,express,nestjs&theme=dark" alt="AI & Back-end Stack" loading="lazy" decoding="async"/>
                 </div>
                 <div class="stack-card">
-                    <img src="https://skillicons.dev/icons?i=react,nextjs,typescript,javascript,tailwind,mongodb,redis,docker,aws,gcp,linux&theme=dark" alt="Front-end & DevOps Stack"/>
+                    <img src="https://skillicons.dev/icons?i=react,nextjs,typescript,javascript,tailwind,mongodb,redis,docker,aws,gcp,linux&theme=dark" alt="Front-end & DevOps Stack" loading="lazy" decoding="async"/>
                 </div>
             </div>
         </section>

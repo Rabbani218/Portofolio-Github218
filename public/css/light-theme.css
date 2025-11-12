@@ -489,6 +489,22 @@
             z-index: 1100;
         }
 
+/* Utility: Hide visually but keep accessible for screen readers */
+.visually-hidden {
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+}
+.snapshot-card p { font-size:0.85rem; color:var(--text-light); }
+
+/* Dark theme harmonization */
+body.dark-theme .snapshot-card { background: var(--secondary-color); color: #e6edf7; box-shadow: 0 6px 18px rgba(0,0,0,0.35); }
+body.dark-theme .snapshot-card p { color: #cfe0ff; }
+body.dark-theme .stack-card { background: var(--secondary-color); border-color: rgba(255,255,255,0.08); box-shadow: 0 10px 24px rgba(0,0,0,0.45); }
+
+
 /* When the page is explicitly in the light theme, override any global dark backgrounds
    (portfolio.css applies a global gradient to html,body with !important). These rules
    make the effective background deterministic so accessibility tools can compute contrast. */
