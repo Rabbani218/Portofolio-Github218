@@ -1,0 +1,29 @@
+Muhammad Abdurrahman Rabbani
+Informatics Student | Aspiring Data Analyst & Entrepreneur
+
+Contact
+Email: Rabbani.office1806@gmail.com
+Phone: +62 813-8992-2040
+Location: Depok, West Java, Indonesia
+
+Summary
+Informatics undergraduate combining technical engineering skills with business experience. Focused on data-driven decisions and delivering production-ready outcomes.
+
+Skills
+- Data Science, Python, pandas, scikit-learn
+- MySQL database design
+- Web development (HTML/CSS/JavaScript)
+- Microsoft 365 Copilot, VS Code
+
+Experience & Projects
+- CEO & Project Lead, Colorweave (2025): Led team of 5, BMC, e-commerce launch on Shopee
+- Database Designer (2025): MySQL schema for web e-commerce (academic)
+
+Education
+- Universitas Bina Sarana Informatika — Bachelor's in Informatics (2024 – 2028 expected)
+
+Certifications
+- Data Science Foundation — Jobstreet by Seek (2025)
+- Microsoft 365 Copilot Foundation (2025)
+
+Note: Replace this plain text file with a properly formatted PDF or DOCX for ATS uploads.

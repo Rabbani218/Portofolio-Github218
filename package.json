@@ -1,0 +1,14 @@
+{
+  "name": "rabbani-cv-gen",
+  "version": "1.0.0",
+  "description": "Generate a PDF CV from plain text for the portfolio",
+  "main": "generate_cv.js",
+  "scripts": {
+    "generate-cv": "node generate_cv.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "pdfkit": "^0.13.0"
+  }
+}

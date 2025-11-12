@@ -1,0 +1,60 @@
+/* Dark neon redesign for a more professional, modern look */
+:root{
+  --bg-1: #0b0f17;
+  --bg-2: #071025;
+  --card: rgba(10,14,24,0.6);
+  --glass: rgba(255,255,255,0.03);
+  --muted: #cbd5e1;
+  --accent: #ff5ca8; /* pink */
+  --accent-2: #00d4ff; /* cyan */
+  --neon: #7effc4;
+  --radius: 14px;
+  --glass-border: rgba(255,255,255,0.04);
+}
+
+html,body{ background: linear-gradient(180deg,var(--bg-1),var(--bg-2)) !important; color:var(--muted) !important; }
+
+/* Layout for hero: left content, right code card */
+.hero{ display:grid; grid-template-columns: 1fr 460px; gap:2.5rem; align-items:center; padding:4rem 6vw !important; min-height:85vh !important; }
+.hero .profile-frame{ display:flex; justify-content:center; }
+.hero .profile-img{ width:260px; height:260px; border-radius:12px; object-fit:cover; box-shadow: 0 20px 60px rgba(0,0,0,0.6); border: 2px solid rgba(255,255,255,0.04); }
+
+.hero-text h1{ font-size:3rem; line-height:1.02; color: #ffffff; margin-bottom:0.4rem; }
+.hero-text p{ color: rgba(255,255,255,0.78); }
+
+/* Code card */
+.code-card{ background: linear-gradient(180deg, rgba(8,10,20,0.9), rgba(3,6,12,0.9)); border-radius:12px; padding:1.4rem; border:1px solid rgba(255,255,255,0.04); box-shadow: 0 18px 60px rgba(0,0,0,0.6); font-family: 'Fira Code', 'Source Code Pro', monospace; color:#dbeafe; }
+.code-card .winbar{ display:flex; gap:8px; align-items:center; margin-bottom:12px; }
+.winbar .dot{ width:10px; height:10px; border-radius:50%; box-shadow:0 2px 6px rgba(0,0,0,0.5); }
+.winbar .dot.red{ background:#ff5f56; }
+.winbar .dot.yellow{ background:#ffbd2e; }
+.winbar .dot.green{ background:#28c840; }
+.code{ font-size:0.92rem; line-height:1.6; color:#ffde7a; }
+.code .kw{ color: #7effc4; }
+.code .str{ color:#ff9ac6; }
+.code .fn{ color:#a5d8ff; }
+
+/* Section titles with Japanese subtitles */
+.section-title{ color: #e6eef8 !important; font-size:2.2rem !important; margin-bottom:1.6rem !important; }
+.section-sub{ display:block; color: rgba(255,255,255,0.45); font-size:0.9rem; margin-top:0.25rem; }
+
+/* Projects grid in neon cards */
+#projects-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:1.25rem; }
+.project-card{ background: linear-gradient(180deg, rgba(8,12,24,0.6), rgba(4,6,10,0.5)); padding:1rem; border-radius:12px; border:1px solid rgba(255,255,255,0.04); box-shadow: 0 8px 40px rgba(2,8,23,0.6); }
+.project-card h3{ color:var(--neon); margin:0 0 0.35rem 0; }
+.project-desc{ color: rgba(255,255,255,0.75); }
+.project-actions a{ background: linear-gradient(90deg, var(--accent), var(--accent-2)); color:#031024; padding:8px 12px; border-radius:10px; text-decoration:none; font-weight:700; }
+
+/* Skills badges dark variant */
+#skills-grid{ display:flex; gap:0.6rem; flex-wrap:wrap; }
+.skill-badge{ background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04); padding:8px 12px; border-radius:999px; color:var(--muted); font-weight:700; }
+
+/* Nav tweaks */
+header{ background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)) !important; border-bottom:1px solid rgba(255,255,255,0.02) !important; }
+header a{ color: #cfe8ff !important; }
+
+/* Small responsive */
+@media (max-width:1000px){ .hero{ grid-template-columns: 1fr; padding:3rem 4vw; } .code-card{ order:-1; margin-bottom:1.2rem; } }
+
+/* Focus states */
+a:focus{ outline: 3px solid rgba(0,208,255,0.12); outline-offset:3px; }
