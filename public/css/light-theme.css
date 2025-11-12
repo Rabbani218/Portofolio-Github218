@@ -556,7 +556,21 @@ body.dark-theme .theme-toggle{ color: #cfe8ff; }
 .gallery-item figcaption { margin-top:0.6rem; font-size:0.85rem; color:var(--text-light); }
 .gallery-item:hover { transform: translateY(-6px); box-shadow: 0 14px 30px rgba(15,23,42,0.12); }
 
+/* Snapshot (experience summary) */
+#snapshot .snapshot-grid { display:grid; gap:1.4rem; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
+.snapshot-card { background:#fff; border-radius:var(--border-radius); padding:1.1rem 1.25rem; box-shadow:var(--shadow); }
+.snapshot-card h3 { margin-top:0; font-size:1.05rem; color:var(--primary-color); }
+.snapshot-card p { font-size:0.85rem; color:var(--text-light); }
+
+/* Stack strip (skills) */
+.stack-strip { display:flex; flex-wrap:wrap; justify-content:center; gap:1.2rem; max-width:960px; margin:0 auto; }
+.stack-card { background:#121212; padding:14px 16px; border-radius:14px; box-shadow:0 8px 20px rgba(15,23,42,0.25); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; }
+.stack-card img { display:block; max-width:100%; height:auto; }
+.stack-card:hover { transform:translateY(-4px); box-shadow:0 12px 28px rgba(15,23,42,0.35); }
+
 @media (max-width: 768px) {
     .gallery-item img { height: 100px; }
     .hero-right { order: -1; }
+    #snapshot .snapshot-grid { grid-template-columns:1fr; }
+    .stack-strip { flex-direction:column; }
 }
