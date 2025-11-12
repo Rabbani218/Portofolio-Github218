@@ -172,6 +172,155 @@
     }
   }
 
+  // Build a tailored, formatted CV PDF using jsPDF and small layout rules
+  async function generateTailoredCvPdf(url, options = {}) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('Could not fetch resume file');
+      const baseText = await res.text();
+      const { jsPDF } = window.jspdf || {};
+      if (!jsPDF) throw new Error('jsPDF not available');
+
+      const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+      const margin = 40;
+      const pageWidth = doc.internal.pageSize.getWidth() - margin * 2;
+      let y = margin;
+
+      // Simple parser: use headings from the text file
+      const lines = baseText.split(/\r?\n/).map(l => l.trim());
+      // Header: first two non-empty lines are name and subtitle
+      const nonEmpty = lines.filter(l => l);
+      const name = nonEmpty[0] || 'Name';
+      const subtitle = nonEmpty[1] || options.targetRole || '';
+
+      // Header
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(20);
+      doc.text(name, margin, y);
+      y += 26;
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(11);
+      doc.setTextColor('#444');
+      doc.text(subtitle, margin, y);
+      y += 18;
+
+      // Contact line: attempt to find Contact section
+      const contactIndex = lines.findIndex(l => /^Contact$/i.test(l));
+      if (contactIndex >= 0) {
+        const contactLines = [];
+        for (let i = contactIndex + 1; i < lines.length && lines[i]; i++) contactLines.push(lines[i]);
+        if (contactLines.length) {
+          doc.setTextColor('#000');
+          doc.setFontSize(10);
+          doc.text(contactLines.join(' · '), margin, y);
+          y += 16;
+        }
+      }
+
+      y += 6;
+
+      // Add a tailored summary based on selected role and other options
+      const role = options.targetRole || document.getElementById('cv-target-role')?.value || '';
+      const salary = options.salary || document.getElementById('cv-salary')?.value || '';
+      const hours = options.hours || document.getElementById('cv-hours')?.value || '';
+      const healthExp = options.healthExp || document.getElementById('cv-health-experience')?.value || '';
+
+      const tailoredSummary = [];
+      tailoredSummary.push(`Target role: ${role.replace(/_/g, ' ')}`);
+      if (salary) tailoredSummary.push(`Previous salary: ${salary}`);
+      if (hours) tailoredSummary.push(`Typical workday: ${hours}h`);
+      if (healthExp && healthExp !== 'no') tailoredSummary.push('Experience with health apps');
+
+      // Summary section
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(12);
+      doc.setTextColor('#0b3d91');
+      doc.text('Summary', margin, y);
+      y += 16;
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(11);
+      doc.setTextColor('#222');
+      const summaryText = tailoredSummary.join(' · ') || 'See full profile and projects at GitHub.';
+      const summaryLines = doc.splitTextToSize(summaryText, pageWidth);
+      summaryLines.forEach(ln => { doc.text(ln, margin, y); y += 14; });
+
+      y += 6;
+
+      // Skills: try to read from skills grid in DOM, fallback to text file Skills section
+      let skills = [];
+      try {
+        const sg = document.getElementById('skills-grid');
+        if (sg) {
+          const badges = Array.from(sg.querySelectorAll('.skill-badge')).map(b => b.firstChild && b.firstChild.nodeValue ? b.firstChild.nodeValue.trim() : b.textContent.trim());
+          skills = badges.filter(Boolean);
+        }
+      } catch (e) { /* ignore */ }
+
+      if (!skills.length) {
+        const skillsIdx = lines.findIndex(l => /^Skills$/i.test(l));
+        if (skillsIdx >= 0) {
+          for (let i = skillsIdx + 1; i < lines.length && lines[i]; i++) {
+            const s = lines[i].replace(/^[-•\*]\s*/, '');
+            skills.push(s);
+          }
+        }
+      }
+
+      if (skills.length) {
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(12);
+        doc.setTextColor('#0b3d91');
+        doc.text('Skills', margin, y);
+        y += 16;
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(10);
+        const skLine = skills.join(' · ');
+        const skLines = doc.splitTextToSize(skLine, pageWidth);
+        skLines.forEach(ln => { doc.text(ln, margin, y); y += 12; });
+      }
+
+      y += 8;
+
+      // Experience: try to pull Experience & Projects section from text file
+      const expIndex = lines.findIndex(l => /^(Experience|Experience & Projects|Projects)$/i.test(l));
+      if (expIndex >= 0) {
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(12);
+        doc.setTextColor('#0b3d91');
+        doc.text('Experience', margin, y);
+        y += 16;
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(10);
+        for (let i = expIndex + 1; i < lines.length && lines[i]; i++) {
+          const line = lines[i];
+          if (y > doc.internal.pageSize.getHeight() - margin - 40) { doc.addPage(); y = margin; }
+          if (line.startsWith('-')) {
+            const text = line.replace(/^[-]\s*/, '');
+            const wrapped = doc.splitTextToSize('• ' + text, pageWidth);
+            wrapped.forEach(ln => { doc.text(ln, margin, y); y += 12; });
+          } else {
+            const wrapped = doc.splitTextToSize(line, pageWidth);
+            wrapped.forEach(ln => { doc.text(ln, margin, y); y += 12; });
+          }
+          y += 2;
+        }
+      }
+
+      // Footer note
+      doc.setFontSize(9);
+      doc.setTextColor('#666');
+      const footY = doc.internal.pageSize.getHeight() - margin + 10;
+      doc.text('Generated from portfolio site — tailor as needed for ATS (convert to DOCX for some ATS systems).', margin, footY - 10);
+
+      // Save
+      const filename = (options.filename) ? options.filename : 'Rabbani_Tailored_CV.pdf';
+      doc.save(filename);
+    } catch (e) {
+      console.error('Tailored CV generation failed:', e);
+      alert('Failed to generate tailored CV: ' + (e && e.message));
+    }
+  }
+
   async function init() {
     if (projectsGrid) projectsGrid.innerHTML = '<div class="stat-card">Fetching projects & languages from GitHub...</div>';
     if (skillsGrid) skillsGrid.innerHTML = '<div class="stat-card">Analyzing skills based on GitHub activity...</div>';
@@ -230,6 +379,56 @@
         });
       }
     } catch (e) { /* ignore */ }
+
+    // Mobile nav toggle (moved from inline HTML script)
+    try {
+      const navToggle = document.getElementById('navToggle');
+      if (navToggle) {
+        navToggle.addEventListener('click', function () {
+          const navLinks = document.getElementById('navLinks');
+          if (navLinks) navLinks.classList.toggle('active');
+        });
+      }
+    } catch (e) { /* ignore */ }
+
+    // Smooth scrolling for internal anchors
+    try {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (ev) {
+          const targetId = this.getAttribute('href');
+          if (!targetId || targetId === '#') return; // ignore
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            ev.preventDefault();
+            window.scrollTo({ top: targetElement.offsetTop - 72, behavior: 'smooth' });
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks) navLinks.classList.remove('active');
+          }
+        });
+      });
+    } catch (e) { /* ignore */ }
+
+    // Tailored CV generator: wire form -> PDF
+    try {
+      const tailoredBtn = document.getElementById('generateTailoredCv');
+      if (tailoredBtn) {
+        tailoredBtn.addEventListener('click', async (ev) => {
+          ev.preventDefault();
+          tailoredBtn.disabled = true;
+          tailoredBtn.textContent = 'Generating...';
+          const options = {
+            targetRole: document.getElementById('cv-target-role')?.value,
+            salary: document.getElementById('cv-salary')?.value,
+            hours: document.getElementById('cv-hours')?.value,
+            healthExp: document.getElementById('cv-health-experience')?.value,
+            filename: 'Rabbani_Tailored_CV.pdf'
+          };
+          await generateTailoredCvPdf(RESUME_TXT_PATH, options);
+          tailoredBtn.disabled = false;
+          tailoredBtn.textContent = 'カスタム履歴書を生成 (PDF)';
+        });
+      }
+    } catch (e) { console.error(e); }
 
     // Helpful hint about token usage
     console.info('If you hit GitHub rate limits, you can set a personal access token in the browser:');

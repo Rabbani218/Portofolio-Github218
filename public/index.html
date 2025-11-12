@@ -46,6 +46,7 @@
                 <div class="hero-actions">
                     <a class="btn-primary contact-btn" href="#projects">プロジェクトを見る</a>
                     <a id="downloadCv" class="btn-secondary contact-btn" href="/assets/Rabbani_CV_2025.pdf" download>履歴書をダウンロード</a>
+                    <button id="downloadCvPdf" class="btn-secondary contact-btn">Generate CV (PDF)</button>
                     <a class="btn-accent contact-btn" href="https://github.com/Rabbani218" target="_blank" rel="noopener">GitHub</a>
                 </div>
             </div>
@@ -218,36 +219,6 @@
         <div class="footer-inner">© Muhammad Abdurrahman Rabbani — プロジェクトは <a href="https://github.com/Rabbani218" target="_blank">GitHub</a> から同期されています。</div>
     </footer>
 
-    <script>
-        // Mobile navigation toggle
-        document.getElementById('navToggle').addEventListener('click', function() {
-            document.getElementById('navLinks').classList.toggle('active');
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    document.getElementById('navLinks').classList.remove('active');
-                }
-            });
-        });
-
-        // CV Generation placeholder
-        document.getElementById('generateTailoredCv').addEventListener('click', function() {
-            alert('カスタム履歴書生成機能は現在開発中です。The custom CV generation feature is currently under development.');
-        });
-    </script>
+    <script src="./js/portfolio.js" defer></script>
 </body>
 </html>

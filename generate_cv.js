@@ -11,88 +11,101 @@ if(!fs.existsSync(inputPath)){
 }
 
 const content = fs.readFileSync(inputPath, 'utf8');
-
-// Create PDF document with better layout
+// Create PDF document with ATS-friendly, reverse-chronological layout
 const doc = new PDFDocument({size: 'A4', margin: 50});
 const writeStream = fs.createWriteStream(outputPath);
 doc.pipe(writeStream);
 
-// Helper: draw a section heading
-function sectionHeading(text){
-  doc.moveDown(0.6);
-  doc.font('Helvetica-Bold').fontSize(13).fillColor('#0b3d91').text(text, {continued: false});
-  doc.moveDown(0.3);
-  doc.fillColor('black').font('Helvetica').fontSize(11);
+// Utility: write heading
+function writeHeading(text) {
+  doc.moveDown(0.4);
+  doc.font('Helvetica-Bold').fontSize(12).fillColor('#111827').text(text);
+  doc.moveDown(0.15);
+  doc.font('Helvetica').fontSize(10).fillColor('black');
 }
 
-// Parse content into sections using known headings
-const lines = content.split(/\r?\n/);
-const headings = ['Contact','Summary','Skills','Experience & Projects','Experience','Projects','Education','Certifications','Note'];
+// Parse the plain text into simple sections
+const lines = content.split(/\r?\n/).map(l => l.replace(/\r/g, '').trim());
+const sections = {};
+let cursor = 'header';
+sections[cursor] = [];
+const known = ['Contact','Summary','Skills','Experience & Projects','Experience','Projects','Education','Certifications','Note'];
+for (const l of lines) {
+  if (!l) { sections[cursor].push(''); continue; }
+  if (known.includes(l)) { cursor = l; sections[cursor] = []; continue; }
+  sections[cursor].push(l);
+}
 
-let sections = {};
-let current = 'header';
-sections[current] = [];
+// Header
+const header = sections['header'] || [];
+const name = header[0] || 'Name';
+const subtitle = header[1] || '';
+doc.font('Helvetica-Bold').fontSize(18).text(name);
+if (subtitle) { doc.font('Helvetica').fontSize(10).fillColor('#374151').text(subtitle); }
+doc.moveDown(0.2);
 
-for(let raw of lines){
-  const line = raw.replace(/\r/g, '').trim();
-  if(line === ''){
-    // blank line - skip but keep separation
-    if(sections[current].length && sections[current][sections[current].length-1] !== ''){
-      sections[current].push('');
-    }
-    continue;
+// Contact line (compact)
+if (sections['Contact']){
+  const contact = sections['Contact'].filter(Boolean).join(' · ');
+  if (contact) {
+    doc.font('Helvetica').fontSize(9).fillColor('#111827').text(contact);
+    doc.moveDown(0.4);
   }
-
-  // detect heading exactly equal to known heading
-  if(headings.includes(line)){
-    current = line;
-    sections[current] = [];
-    continue;
-  }
-
-  sections[current].push(line);
 }
 
-// Header: name and subtitle
-const headerLines = sections['header'] || [];
-const name = headerLines[0] || 'Name';
-const subtitle = headerLines[1] || '';
-
-doc.font('Helvetica-Bold').fontSize(20).text(name);
-if(subtitle) doc.font('Helvetica').fontSize(11).fillColor('gray').text(subtitle);
-doc.moveDown(0.5);
-
-// If contact section exists, print contact info on same line if possible
-if(sections['Contact']){
-  const contact = sections['Contact'];
-  // join contact lines with bullets
-  const contactStr = contact.filter(Boolean).join(' · ');
-  doc.font('Helvetica').fontSize(10).fillColor('black').text(contactStr);
-  doc.moveDown(0.6);
+// Summary (tailored brief)
+if (sections['Summary'] && sections['Summary'].length) {
+  writeHeading('Summary');
+  const summaryText = sections['Summary'].join(' ');
+  doc.font('Helvetica').fontSize(10).text(summaryText, { width: 500, lineGap: 2 });
 }
 
-// Write other sections in order
-const order = ['Summary','Skills','Experience & Projects','Education','Certifications','Note'];
+// Skills (inline comma list for ATS)
+if (sections['Skills'] && sections['Skills'].length) {
+  writeHeading('Skills');
+  const skills = sections['Skills'].join(', ').replace(/[-•\*]\s*/g, '');
+  doc.font('Helvetica').fontSize(10).text(skills, { width: 500, lineGap: 2 });
+}
 
-order.forEach(sec => {
-  if(!sections[sec]) return;
-  sectionHeading(sec);
-  const lines = sections[sec];
-  // For bullet lists (lines starting with '-') render as bullets
-  lines.forEach(l => {
-    if(!l) { doc.moveDown(0.3); return; }
-    if(l.startsWith('-')){
-      const text = l.replace(/^-\s*/, '');
-      // bullet
-      doc.list([text], {bulletRadius: 2});
-    } else if(l.match(/^\-\s*/)){
-      doc.list([l.replace(/^-\s*/, '')]);
+// Experience & Projects - render as reverse chronological: look for dash items
+const expSrc = sections['Experience & Projects'] || sections['Experience'] || sections['Projects'] || [];
+if (expSrc.length) {
+  writeHeading('Experience');
+  // Each line starting with '-' is an item; group contiguous items
+  let buffer = [];
+  for (let i = 0; i < expSrc.length; i++) {
+    const line = expSrc[i];
+    if (!line) { continue; }
+    if (line.startsWith('-')) {
+      const text = line.replace(/^[-]\s*/, '');
+      // Bold the project/role prefix if it looks like "Role, Project (Year)"
+      doc.font('Helvetica-Bold').fontSize(10).text(text.split(':')[0]);
+      doc.moveDown(0.08);
+      doc.font('Helvetica').fontSize(10).text(text);
+      doc.moveDown(0.2);
     } else {
-      doc.font('Helvetica').fontSize(11).text(l, {lineGap: 3});
+      // plain line
+      doc.font('Helvetica').fontSize(10).text(line);
+      doc.moveDown(0.12);
     }
-    doc.moveDown(0.1);
+  }
+}
+
+// Education
+if (sections['Education'] && sections['Education'].length) {
+  writeHeading('Education');
+  sections['Education'].forEach(l => {
+    if (!l) return;
+    doc.font('Helvetica').fontSize(10).text(l);
+    doc.moveDown(0.08);
   });
-});
+}
+
+// Certifications
+if (sections['Certifications'] && sections['Certifications'].length) {
+  writeHeading('Certifications');
+  sections['Certifications'].forEach(l => { if (l) doc.font('Helvetica').fontSize(10).text(l); });
+}
 
 doc.end();
 

@@ -19,6 +19,18 @@ Local development / verify
 
    This runs `generate_cv.js` and outputs `public/assets/Rabbani_CV_2025.pdf`.
 
+   Alternatively, on Windows PowerShell you can run the script directly:
+
+```powershell
+node "c:\Users\DELL\OneDrive\Documents\Project Github\Portofolio-Github218\generate_cv.js"
+```
+
+3. Client-side (in-browser) CV generation:
+
+- Open `public/index.html` in a browser (or serve the `public/` folder).
+- Use the hero "Generate CV (PDF)" button to download a quick PDF built in the browser via jsPDF.
+- Or go to the "Generate a Tailored CV" section, fill the fields (target role, salary, hours, etc.) and click the generate button to receive a tailored PDF.
+
 3. Serve the `public/` folder to view the site (choose one):
 
    # Option A: PowerShell + Python (needs Python 3)
