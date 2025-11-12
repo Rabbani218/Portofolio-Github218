@@ -63,7 +63,7 @@ if (sections['Summary'] && sections['Summary'].length) {
 // Skills (inline comma list for ATS)
 if (sections['Skills'] && sections['Skills'].length) {
   writeHeading('Skills');
-  const skills = sections['Skills'].join(', ').replace(/[-•\*]\s*/g, '');
+  const skills = sections['Skills'].join(', ').replace(/[-•*]\s*/g, '');
   doc.font('Helvetica').fontSize(10).text(skills, { width: 500, lineGap: 2 });
 }
 
@@ -72,7 +72,6 @@ const expSrc = sections['Experience & Projects'] || sections['Experience'] || se
 if (expSrc.length) {
   writeHeading('Experience');
   // Each line starting with '-' is an item; group contiguous items
-  let buffer = [];
   for (let i = 0; i < expSrc.length; i++) {
     const line = expSrc[i];
     if (!line) { continue; }

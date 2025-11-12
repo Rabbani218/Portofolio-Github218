@@ -260,7 +260,7 @@
         const skillsIdx = lines.findIndex(l => /^Skills$/i.test(l));
         if (skillsIdx >= 0) {
           for (let i = skillsIdx + 1; i < lines.length && lines[i]; i++) {
-            const s = lines[i].replace(/^[-•\*]\s*/, '');
+            const s = lines[i].replace(/^[-•*]\s*/, '');
             skills.push(s);
           }
         }
@@ -359,6 +359,42 @@
       }
     } catch (e) { /* ignore */ }
 
+    // Theme initialization: respect URL param (force_theme), saved preference, or system preference
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const forcedTheme = urlParams.get('force_theme') || urlParams.get('theme'); // support ?force_theme=light
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const body = document.body;
+      function applyTheme(t) {
+        if (!body) return;
+        body.classList.toggle('dark-theme', t === 'dark');
+        body.classList.toggle('light-theme', t === 'light');
+        const tt = document.getElementById('themeToggle');
+        if (tt) {
+          tt.setAttribute('aria-pressed', t === 'dark' ? 'true' : 'false');
+          tt.textContent = t === 'dark' ? '☀️' : '🌙';
+        }
+      }
+      // Order of precedence: URL param -> saved localStorage -> system preference -> light
+      const initial = forcedTheme || saved || (prefersDark ? 'dark' : 'light');
+      applyTheme(initial);
+      if (forcedTheme) {
+        try { localStorage.setItem('theme', forcedTheme); } catch (e) { /* ignore */ }
+      }
+
+      // Theme toggle handler
+      const themeBtn = document.getElementById('themeToggle');
+      if (themeBtn) {
+        themeBtn.addEventListener('click', function () {
+          const isDark = document.body.classList.contains('dark-theme');
+          const next = isDark ? 'light' : 'dark';
+          applyTheme(next);
+          try { localStorage.setItem('theme', next); } catch (e) { /* ignore */ }
+        });
+      }
+    } catch (e) { /* ignore theme setup errors */ }
+
     const repos = await fetchRepos();
     if (!repos) {
       if (projectsGrid) showError(projectsGrid, 'Could not fetch GitHub data. You may be offline or rate-limited.');
@@ -389,7 +425,7 @@
           if (navLinks) {
             const isActive = navLinks.classList.toggle('active');
             // update aria-expanded on the toggle button
-            try { navToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false'); } catch (e) {}
+            try { navToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false'); } catch (e) { /* ignore setAttribute errors */ }
           }
         });
       }
@@ -435,8 +471,8 @@
     } catch (e) { console.error(e); }
 
     // Helpful hint about token usage
-    console.info('If you hit GitHub rate limits, you can set a personal access token in the browser:');
-    console.info("localStorage.setItem('github_token','YOUR_TOKEN') ; then reload the page.");
+  console.info('If you hit GitHub rate limits, you can set a personal access token in the browser:');
+  console.info('localStorage.setItem(\'github_token\',\'YOUR_TOKEN\') ; then reload the page.');
   }
 
   // Initialize when DOM ready

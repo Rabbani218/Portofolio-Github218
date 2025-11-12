@@ -4,7 +4,7 @@
             --accent-color: #0ea5a4; /* teal */
             --accent-2: #ff7aa2; /* soft pink */
             --accent-light: #e6f6f5;
-            --text-light: #6b7280;
+            --text-light: #374151; /* darker for improved contrast */
             --bg-light: #fbfdff;
             --border-radius: 10px;
             --shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
@@ -17,7 +17,6 @@
             color: var(--secondary-color);
             background-color: var(--bg-light);
         }
-
         .japanese-text {
             font-family: 'Noto Sans JP', sans-serif;
         }
@@ -138,6 +137,18 @@
             margin-bottom: 2rem;
         }
 
+        .muted-small {
+            color: var(--text-light);
+        }
+
+        .about-card, .about-card ul li {
+            color: var(--text-light);
+        }
+
+        .cv-form label, .cv-form .muted-small {
+            color: var(--text-light);
+        }
+
         .hero-actions { display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:0.6rem; }
 
         .btn-primary, .btn-secondary, .btn-accent {
@@ -166,12 +177,12 @@
         }
 
         .btn-accent {
-            background-color: var(--accent-color);
+            background-color: var(--primary-color);
             color: white;
         }
 
         .btn-accent:hover {
-            background-color: #c53030;
+            background-color: #072a5a; /* slightly darker primary for hover */
             transform: translateY(-2px);
         }
 
@@ -453,4 +464,71 @@
             .projects-controls {
                 justify-content: center;
             }
+        }
+
+        /* Accessibility helpers */
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        .skip-link:focus {
+            left: 1rem;
+            top: 1rem;
+            width: auto;
+            height: auto;
+            padding: 0.5rem 0.75rem;
+            background: white;
+            color: var(--primary-color);
+            border-radius: 6px;
+            box-shadow: var(--shadow);
+            z-index: 1100;
+        }
+
+/* When the page is explicitly in the light theme, override any global dark backgrounds
+   (portfolio.css applies a global gradient to html,body with !important). These rules
+   make the effective background deterministic so accessibility tools can compute contrast. */
+html.light-theme, body.light-theme {
+    background: var(--bg-light) !important;
+    background-image: none !important;
+    color: var(--secondary-color) !important;
+}
+
+/* Make primary CTA slightly more prominent on the light theme */
+body.light-theme .btn-primary {
+    padding: 0.85rem 1.4rem;
+    font-size: 1rem;
+    box-shadow: 0 10px 24px rgba(11,61,145,0.12);
+}
+
+/* Ensure section descriptions have a stable text/background pairing */
+body.light-theme .section-description {
+    background: transparent;
+    color: var(--text-light);
+}
+
+/* Theme toggle button styling */
+.theme-toggle{
+    background: transparent;
+    border: 0;
+    font-size: 1.05rem;
+    cursor: pointer;
+    color: var(--primary-color);
+    padding: 6px 8px;
+    border-radius: 6px;
+    transition: var(--transition);
+}
+.theme-toggle[aria-pressed="true"]{ background: var(--accent-light); box-shadow: 0 6px 14px rgba(11,61,145,0.04); }
+
+/* Dark-theme specific look for the toggle (when body has dark-theme) */
+body.dark-theme .theme-toggle{ color: #cfe8ff; }
+
+        /* Clear focus styles for keyboard users (high contrast outline) */
+        a:focus, button:focus, input:focus, select:focus {
+            outline: 3px solid rgba(14,165,164,0.22);
+            outline-offset: 3px;
         }

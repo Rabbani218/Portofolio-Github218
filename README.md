@@ -66,3 +66,24 @@ Workflow summary:
 You can change the branch that triggers the workflow by editing the `on.push.branches` field in the workflow file.
 
 If you'd like, I can also prepare a workflow variant that only runs on `workflow_dispatch` (manual) or creates a PR with the generated PDF instead of automatically deploying — tell me which you prefer.
+
+Automated QA & accessibility note
+---------------------------------
+
+To keep automated accessibility and visual checks deterministic, the QA scripts in this repo force the light theme when they run. This avoids gradient-based "bgGradient" inconclusive results during contrast computations and yields consistent screenshots for reviewers.
+
+- To run the targeted axe accessibility check (forces light theme):
+
+```powershell
+node run-axe-targeted.js
+```
+
+- To run the visual QA runner (captures screenshots in light theme):
+
+```powershell
+node run-visual-qa.js
+```
+
+Both scripts set `localStorage.theme = 'light'` before the page loads and/or use `?force_theme=light` in the URL to ensure the page loads in light mode. If you want to test dark mode instead, pass `?force_theme=dark` to the page URL or remove the forced setting in the scripts.
+
+Reports are written under `tmp/axe` and `tmp/screenshots` respectively (e.g. `tmp/axe/axe-results-targeted.json`).

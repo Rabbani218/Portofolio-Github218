@@ -17,7 +17,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
 
 </head>
-<body>
+<body class="light-theme">
+    <a class="skip-link" href="#maincontent">Skip to main content</a>
     <header class="site-header">
         <nav class="nav-inner" role="navigation" aria-label="Main navigation">
             <a class="brand" href="#home">
@@ -31,191 +32,257 @@
                 <a class="contact-btn btn-nav" href="#cv-tailor">CV Generator</a>
                 <a class="contact-btn btn-nav" href="#contact">Contact</a>
             </div>
-            <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation" aria-controls="navLinks" aria-expanded="false">☰</button>
+            <!-- Theme toggle (switches between light and dark theme) -->
+            <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle color theme">🌙</button>
+            <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation" aria-controls="navLinks" aria-expanded="false">☰</button>      
         </nav>
     </header>
 
-    <main>
-        <section id="home" class="hero">
+    <main id="maincontent" role="main">
+        <section id="home" class="hero" aria-labelledby="page-title">
             <div class="hero-left">
-                <h1>Muhammad Abdurrahman Rabbani</h1>
-                <p class="lead">データ分析・フルスタック開発・AIエンジニアリング</p>
+                <p class="eyebrow">Hi, I'm</p>
+                <h1 id="page-title">Muhammad Abdurrahman Rabbani</h1>
                 <p class="lead">Data Analyst · Full‑stack Developer · AI Engineer</p>
-                <p class="muted">データ駆動型の製品とシステムを構築します。データ分析、ウェブエンジニアリング、機械学習を組み合わせて、スケーラブルなソリューションを提供します。</p>
-                <p class="muted">I build data-driven products and systems. I combine data analysis, web engineering and machine learning to deliver scalable solutions.</p>
-                <div class="hero-actions">
-                    <a class="btn-primary contact-btn" href="#projects">プロジェクトを見る</a>
-                    <a id="downloadCv" class="btn-secondary contact-btn" href="/assets/Rabbani_CV_2025.pdf" download>履歴書をダウンロード</a>
-                    <button id="downloadCvPdf" class="btn-secondary contact-btn">Generate CV (PDF)</button>
-                    <a class="btn-accent contact-btn" href="https://github.com/Rabbani218" target="_blank" rel="noopener">GitHub</a>
+
+                <p class="muted">I design and ship data-driven products that combine analysis, reliable backend services and practical ML to deliver measurable business outcomes. I focus on clean data pipelines, reproducible experiments and production-ready code.</p>
+
+                <ul class="quick-info" aria-hidden="false">
+                    <li><strong>Location:</strong> Jakarta, Indonesia (Open to remote / international)</li>
+                    <li><strong>Availability:</strong> Immediate</li>
+                    <li><strong>Languages:</strong> English, Japanese (Beginner) <span class="japanese-accent" aria-hidden="true">日本語</span></li>
+                </ul>
+
+                <div class="about-grid">
+                    <div class="about-card">
+                        <h3>What I do <span class="japanese-accent" aria-hidden="true">私の専門分野</span></h3>
+                        <ul>
+                            <li>Data analysis and clear insight delivery (Python, pandas, SQL)</li>
+                            <li>Design and implement backend services and APIs (Node.js, Express, Docker)</li>
+                            <li>Prototype and integrate ML models for practical tasks (scikit-learn, simple pipelines)</li>
+                            <li>Automate reports and dashboards for decision making</li>
+                        </ul>
+                    </div>
+
+                    <div class="about-card">
+                        <h3>Impact & Results <span class="japanese-accent" aria-hidden="true">実績と成果</span></h3>
+                        <ul>
+                            <li>Led campus e-commerce “Colorweave” from planning to live sales channel</li>
+                            <li>Designed MySQL schemas and performance-focused queries</li>
+                            <li>Delivered data-driven reports used for product and marketing decisions</li>
+                        </ul>
+                    </div>
+
+                    <div class="about-card contact-card">
+                        <h3>Hire / Collaborate <span class="japanese-accent" aria-hidden="true">採用・協業</span></h3>
+                        <p class="muted-small">Open to internships, freelance projects, and research collaborations at the intersection of data and software.</p>
+                        <p>
+                            <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com">Email</a>
+                            <a class="contact-btn btn-secondary" href="https://github.com/Rabbani218" target="_blank" rel="noopener">GitHub</a>
+                            <a class="contact-btn btn-accent" href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" target="_blank" rel="noopener">LinkedIn</a>
+                        </p>
+                    </div>
+                </div>
+            <h2 id="snapshot-title" class="section-title">Experience Snapshot</h2>
+            <p class="section-description">A quick summary HR teams appreciate — concise, quantifiable and relevant to international roles.</p>
+            <div class="snapshot-grid">
+                <div class="snapshot-card">
+                    <h3>Data & Analytics</h3>
+                    <p>Designed ETL pipelines, automated dashboards and A/B analysis to improve conversion by measurable margins.</p>
+                </div>
+                <div class="snapshot-card">
+                    <h3>Full‑stack</h3>
+                    <p>Built APIs, services and web interfaces using Node.js, Express and React-based front-ends; deployed with Docker.</p>
+                </div>
+                <div class="snapshot-card">
+                    <h3>AI & Production</h3>
+                    <p>Prototyped models, validated performance, and integrated them into production using lightweight model-serving approaches.</p>
                 </div>
             </div>
-            <div class="hero-right">
-                <div class="japanese-corner"></div>
-                <img class="profile-img" src="/images/P1.png" alt="Rabbani">
-                <div class="japanese-corner bottom-right"></div>
-            </div>
         </section>
-
-        <section id="about">
-            <h2 class="section-title">私について</h2>
-            <h2 class="section-title">About</h2>
-            <p class="section-description">データを意思決定に変換し、本番環境で使用可能なソフトウェアを提供することに焦点を当てています。データ分析、バックエンドエンジニアリング、実用的なAIモデル統合を組み合わせて、実際の問題を解決します。</p>
-            <p class="section-description">I am focused on turning data into decisions and shipping production-ready software. My work blends data analysis, backend engineering, and practical AI model integration to solve real problems.</p>
+        <section id="about"></section>
+            <h2 class="section-title">About <span class="japanese-accent" aria-hidden="true">私について</span></h2>
+            <p class="section-description">I focus on turning data into decisions and shipping production-ready software. My work blends data analysis, backend engineering, and practical AI model integration to solve real problems. <span class="japanese-accent" aria-hidden="true">データを意思決定に変え、実運用可能なソフトウェアを提供します。</span></p>
 
             <div class="about-grid">
-                <div class="about-card">
-                    <h3>私の専門分野</h3>
-                    <h3>What I do</h3>
-                    <ul>
-                        <li>データ分析と明確な洞察の提供（Python、pandas、SQL）</li>
-                        <li>バックエンドサービスとAPIの設計と実装（Node.js、Express、Docker）</li>
-                        <li>実用的なタスクのためのMLモデルのプロトタイプと統合（scikit-learn、シンプルなパイプライン）</li>
-                        <li>意思決定のためのレポートとダッシュボードの自動化</li>
-                    </ul>
-                </div>
+            <div class="about-card">
+                <h3>What I do <span class="japanese-accent" aria-hidden="true">私の専門分野</span></h3>
+                <ul>
+                <li>Data analysis and clear insight delivery (Python, pandas, SQL) <span class="japanese-accent" aria-hidden="true">データ分析と明確な洞察の提供</span></li>
+                <li>Design and implement backend services and APIs (Node.js, Express, Docker) <span class="japanese-accent" aria-hidden="true">バックエンドサービスとAPIの設計と実装</span></li>
+                <li>Prototype and integrate ML models for practical tasks (scikit-learn, simple pipelines) <span class="japanese-accent" aria-hidden="true">実用的なMLモデルのプロトタイプと統合</span></li>
+                <li>Automate reports and dashboards for decision making <span class="japanese-accent" aria-hidden="true">レポートとダッシュボードの自動化</span></li>
+                </ul>
+            </div>
 
-                <div class="about-card">
-                    <h3>実績と成果</h3>
-                    <h3>Impact & Results</h3>
-                    <ul>
-                        <li>キャンパス内Eコマース「Colorweave」の立ち上げ（計画からライブ販売チャネルまで）を主導</li>
-                        <li>MySQLスキーマとパフォーマンス重視のクエリを設計</li>
-                        <li>製品とマーケティングの意思決定に使用されるデータ駆動型レポートを提供</li>
-                    </ul>
-                </div>
+            <div class="about-card">
+                <h3>Impact & Results <span class="japanese-accent" aria-hidden="true">実績と成果</span></h3>
+                <ul>
+                <li>Led the campus e‑commerce "Colorweave" from planning to live sales channel <span class="japanese-accent" aria-hidden="true">キャンパス内Eコマース「Colorweave」の立ち上げ</span></li>
+                <li>Designed MySQL schemas and performance-focused queries <span class="japanese-accent" aria-hidden="true">MySQLスキーマとパフォーマンス重視のクエリの設計</span></li>
+                <li>Delivered data-driven reports used for product and marketing decisions <span class="japanese-accent" aria-hidden="true">製品とマーケティングの意思決定に使われるデータ駆動型レポート</span></li>
+                </ul>
+            </div>
 
-                <div class="about-card contact-card">
-                    <h3>採用・協業</h3>
-                    <h3>Hire / Collaborate</h3>
-                    <p class="muted-small">データとソフトウェアが交差するインターンシップ、フリーランスプロジェクト、研究協力に積極的です。</p>
-                    <p>
-                        <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com">メール</a>
-                        <a class="contact-btn btn-secondary" href="https://github.com/Rabbani218" target="_blank" rel="noopener">GitHub</a>
-                        <a class="contact-btn btn-accent" href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" target="_blank" rel="noopener">LinkedIn</a>
-                    </p>
-                </div>
+            <div class="about-card contact-card">
+                <h3>Hire / Collaborate <span class="japanese-accent" aria-hidden="true">採用・協業</span></h3>
+                <p class="muted-small">Open to internships, freelance projects, and research collaborations at the intersection of data and software. <span class="japanese-accent" aria-hidden="true">データとソフトウェアの交差点でのインターン・フリーランス・研究協力を歓迎します。</span></p>
+                <p>
+                <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com">Email <span class="japanese-accent" aria-hidden="true">メール</span></a>
+                <a class="contact-btn btn-secondary" href="https://github.com/Rabbani218" target="_blank" rel="noopener">GitHub <span class="japanese-accent" aria-hidden="true">ギットハブ</span></a>
+                <a class="contact-btn btn-accent" href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" target="_blank" rel="noopener">LinkedIn <span class="japanese-accent" aria-hidden="true">リンクトイン</span></a>
+                </p>
+            </div>
             </div>
         </section>
-
         <section id="projects">
             <div class="section-inner">
-                <h2 class="section-title">プロジェクト</h2>
-                <h2 class="section-title">Projects</h2>
-                <p class="section-description">GitHubから取得した公開リポジトリ。採用担当者が見る内容を調整するにはフィルターを使用してください。</p>
+                <h2 class="section-title">Projects <span class="japanese-accent" aria-hidden="true">プロジェクト</span></h2>
+                <p class="section-description">Public repositories fetched from GitHub. Use filters to tailor what recruiters see. <span class="japanese-accent" aria-hidden="true">採用担当者が見る内容を調整するにはフィルターを使用してください。</span></p>
 
                 <div class="projects-controls">
-                    <label class="muted-small">言語</label>
+                    <label class="muted-small">Language <span class="japanese-accent" aria-hidden="true">言語</span></label>
                     <select id="projects-filter" aria-label="Filter by language">
-                        <option value="all">すべて</option>
+                        <option value="all">All <span class="japanese-accent" aria-hidden="true">すべて</span></option>
                     </select>
-                    <label class="muted-small">並び替え</label>
+
+                    <label class="muted-small">Sort <span class="japanese-accent" aria-hidden="true">並び替え</span></label>
                     <select id="projects-sort" aria-label="Sort projects">
-                        <option value="updated">最近更新</option>
-                        <option value="stars">スター数</option>
-                        <option value="name">名前</option>
+                        <option value="updated">Recently updated <span class="japanese-accent" aria-hidden="true">最近更新</span></option>
+                        <option value="stars">Stars <span class="japanese-accent" aria-hidden="true">スター数</span></option>
+                        <option value="name">Name <span class="japanese-accent" aria-hidden="true">名前</span></option>
                     </select>
-                    <label class="muted-small">最小スター数</label>
+
+                    <label class="muted-small" for="projects-minstars">Min stars <span class="japanese-accent" aria-hidden="true">最小スター数</span></label>
                     <input id="projects-minstars" type="number" min="0" value="0" />
                 </div>
 
                 <div id="projects-grid" class="projects-grid">
-                    <div class="stat-card">GitHubからプロジェクトを読み込み中...</div>
+                    <div class="stat-card">Loading projects from GitHub... <span class="japanese-accent" aria-hidden="true">GitHubからプロジェクトを読み込み中...</span></div>
                 </div>
             </div>
         </section>
 
         <section id="skills">
-            <h2 class="section-title">スキル</h2>
-            <h2 class="section-title">Skills</h2>
-            <p class="section-description">主要な言語とツール（GitHubリポジトリから集計）。</p>
-            <div id="skills-grid" class="skills-grid">
-                <div class="skill-category">
-                    <h3>プログラミング言語</h3>
-                    <ul>
-                        <li>Python</li>
-                        <li>JavaScript</li>
-                        <li>SQL</li>
-                        <li>HTML/CSS</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>フレームワーク & ライブラリ</h3>
-                    <ul>
-                        <li>Node.js</li>
-                        <li>Express</li>
-                        <li>pandas</li>
-                        <li>scikit-learn</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>ツール & 技術</h3>
-                    <ul>
-                        <li>Git</li>
-                        <li>Docker</li>
-                        <li>MySQL</li>
-                        <li>REST APIs</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>データ分析</h3>
-                    <ul>
-                        <li>データ可視化</li>
-                        <li>統計分析</li>
-                        <li>ETLプロセス</li>
-                        <li>ダッシュボード作成</li>
-                    </ul>
-                </div>
+            <h2 class="section-title">Skills <span class="japanese-accent" aria-hidden="true">スキル</span></h2>
+            <p class="section-description">Primary languages and tools (aggregated from GitHub repositories). <span class="japanese-accent" aria-hidden="true">主要な言語とツール（GitHubリポジトリから集計）。</span></p>
+
+            <!-- Icons-only skills grid (uses Font Awesome brands already loaded in the page) -->
+            <div id="skills-grid" class="skills-grid icons-only" role="list" aria-label="Skills icons">
+            <div class="skill-icon" role="listitem" aria-label="Python">
+                <i class="fab fa-python" aria-hidden="true"></i>
+                <span class="visually-hidden">Python</span>
+            </div>
+
+            <div class="skill-icon" role="listitem" aria-label="JavaScript">
+                <i class="fab fa-js-square" aria-hidden="true"></i>
+                <span class="visually-hidden">JavaScript</span>
+            </div>
+
+            <div class="skill-icon" role="listitem" aria-label="TypeScript">
+                <i class="fab fa-js" aria-hidden="true"></i>
+                <span class="visually-hidden">TypeScript</span>
+            </div>
+
+            <div class="skill-icon" role="listitem" aria-label="Node.js">
+                <i class="fab fa-node-js" aria-hidden="true"></i>
+                <span class="visually-hidden">Node.js</span>
+            </div>
+
+            <div class="skill-icon" role="listitem" aria-label="React">
+                <i class="fab fa-react" aria-hidden="true"></i>
+                <span class="visually-hidden">React</span>
+            </div>
+
+            <div class="skill-icon" role="listitem" aria-label="Docker">
+                <i class="fab fa-docker" aria-hidden="true"></i>
+                <span class="visually-hidden">Docker</span>
+            </div>
+
+            <div class="skill-icon" role="listitem" aria-label="Git">
+                <i class="fab fa-git-alt" aria-hidden="true"></i>
+                <span class="visually-hidden">Git</span>
+            </div>
+
+            <div class="skill-icon" role="listitem" aria-label="MySQL / Database">
+                <i class="fas fa-database" aria-hidden="true"></i>
+                <span class="visually-hidden">Database</span>
+            </div>
+
+            <div class="skill-icon" role="listitem" aria-label="AWS">
+                <i class="fab fa-aws" aria-hidden="true"></i>
+                <span class="visually-hidden">AWS</span>
+            </div>
+
+            <div class="skill-icon" role="listitem" aria-label="Linux">
+                <i class="fab fa-linux" aria-hidden="true"></i>
+                <span class="visually-hidden">Linux</span>
+            </div>
+
+            <div class="skill-icon" role="listitem" aria-label="HTML5">
+                <i class="fab fa-html5" aria-hidden="true"></i>
+                <span class="visually-hidden">HTML5</span>
+            </div>
+
+            <div class="skill-icon" role="listitem" aria-label="CSS3">
+                <i class="fab fa-css3-alt" aria-hidden="true"></i>
+                <span class="visually-hidden">CSS3</span>
+            </div>
             </div>
         </section>
 
         <section id="cv-tailor">
-            <h2 class="section-title">カスタム履歴書生成</h2>
-            <h2 class="section-title">Generate a Tailored CV</h2>
-            <p class="section-description">対象職種に合わせた人事向けの履歴書を作成します。プロジェクトとスキルは自動的に含まれます。</p>
+            <h2 class="section-title">Generate a Tailored CV <span class="japanese-accent" aria-hidden="true">カスタム履歴書生成</span></h2>
+            <p class="section-description">Create a recruiter-focused CV tailored to the target role. Projects and skills will be included automatically. <span class="japanese-accent" aria-hidden="true">対象職種に合わせた人事向けの履歴書を作成します。プロジェクトとスキルは自動的に含まれます。</span></p>
+
             <div class="cv-form">
-                <label>対象職種
-                    <select id="cv-target-role">
-                        <option value="general">総合 / オールラウンド開発者</option>
-                        <option value="ai_avatar">AIアバター開発者</option>
-                        <option value="data_scientist">データサイエンティスト / MLエンジニア</option>
-                        <option value="fullstack">フルスタック開発者</option>
-                    </select>
-                </label>
-                <label>前職の給与（推定）
-                    <input id="cv-salary" type="text" placeholder="例: 6,000,000円 / 1,200米ドル"/>
-                </label>
-                <label>1日の推定労働時間
-                    <input id="cv-hours" type="number" min="1" max="12" value="8"/>
-                </label>
-                <label>健康アプリの経験はありますか？
-                    <select id="cv-health-experience">
-                        <option value="no">いいえ</option>
-                        <option value="yes">はい</option>
-                    </select>
-                </label>
-                <label>デモ / ビデオ / リポジトリへのリンク
-                    <input id="cv-demos" type="text" placeholder="https://... , https://..."/>
-                </label>
-                <label>コードエディター
-                    <input id="cv-editor" type="text" placeholder="VSCode (無料), WebStorm (有料), ..."/>
-                </label>
-                <div>
-                    <button id="generateTailoredCv" class="btn-primary">カスタム履歴書を生成 (PDF)</button>
-                    <span class="muted-small">PDFはブラウザで生成されます — サーバーへのアップロードはありません。</span>
-                </div>
+            <label>Target role
+                <select id="cv-target-role">
+                <option value="general">General / Full‑stack</option>
+                <option value="ai_avatar">AI Avatar Developer</option>
+                <option value="data_scientist">Data Scientist / ML Engineer</option>
+                <option value="fullstack">Full‑stack Developer</option>
+                </select>
+            </label>
+
+            <label>Previous salary (estimate)
+                <input id="cv-salary" type="text" placeholder="e.g. 6,000,000 JPY / 1,200 USD"/>
+            </label>
+
+            <label>Estimated daily working hours
+                <input id="cv-hours" type="number" min="1" max="12" value="8"/>
+            </label>
+
+            <label>Experience with health apps?
+                <select id="cv-health-experience">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+                </select>
+            </label>
+
+            <label>Demos / video / repository links
+                <input id="cv-demos" type="text" placeholder="https://... , https://..."/>
+            </label>
+
+            <label>Code editor
+                <input id="cv-editor" type="text" placeholder="VSCode, WebStorm, ..."/>
+            </label>
+
+            <div>
+                <button id="generateTailoredCv" class="btn-primary">Generate tailored CV (PDF)</button>
+                <span class="muted-small">PDF is generated in the browser — nothing is uploaded to a server. <span class="japanese-accent" aria-hidden="true">PDFはブラウザで生成されます — サーバーへのアップロードはありません。</span></span>
+            </div>
             </div>
         </section>
 
         <section id="contact">
-            <h2 class="section-title">連絡先</h2>
-            <h2 class="section-title">Contact</h2>
-            <p class="section-description">ご興味をお持ちですか？メールまたはGitHub / LinkedInでご連絡ください。</p>
-            <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com">メールを送信</a>
+            <h2 class="section-title">Contact <span class="japanese-accent" aria-hidden="true">連絡先</span></h2>
+            <p class="section-description">Interested? Reach out by email or via GitHub / LinkedIn. <span class="japanese-accent" aria-hidden="true">ご興味をお持ちですか？メールまたはGitHub / LinkedInでご連絡ください。</span></p>
+            <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com">Send an email</a>
         </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer" role="contentinfo">
         <div class="footer-inner">© Muhammad Abdurrahman Rabbani — プロジェクトは <a href="https://github.com/Rabbani218" target="_blank">GitHub</a> から同期されています。</div>
     </footer>
 

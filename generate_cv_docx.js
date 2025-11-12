@@ -1,9 +1,8 @@
 const fs = require('fs');
 const path = require('path');
-const { Document, Packer, Paragraph, TextRun } = require('docx');
 
 const inputPath = path.join(__dirname, 'public', 'assets', 'Rabbani_CV_2025.txt');
-const outputPath = path.join(__dirname, 'public', 'assets', 'Rabbani_CV_2025.docx');
+const outputPath = path.join(__dirname, 'public', 'assets', 'Rabbani_CV_2025.rtf');
 
 if (!fs.existsSync(inputPath)) {
   console.error('Input text CV not found at', inputPath);
@@ -13,21 +12,22 @@ if (!fs.existsSync(inputPath)) {
 const content = fs.readFileSync(inputPath, 'utf8');
 const lines = content.split(/\r?\n/).map(l => l.trim());
 
-// Build a simple Word document: header (name), subtitle, sections
-const doc = new Document({ creator: 'Rabbani', description: 'Generated CV', title: 'Rabbani CV' });
-const children = [];
+// Simple RTF generator — broadly compatible with Word and ATS that accept RTF/DOC
+function rtfEscape(s) {
+  return s.replace(/\\/g, '\\\\').replace(/\{/g, '\\{').replace(/\}/g, '\\}');
+}
 
-// collect header (first two non-empty lines)
+let rtf = '{\\rtf1\\ansi\\deff0\n';
+
+// Header
 const nonEmpty = lines.filter(l => l);
 const name = nonEmpty[0] || 'Name';
 const subtitle = nonEmpty[1] || '';
 
-children.push(new Paragraph({
-  children: [ new TextRun({ text: name, bold: true, size: 36 }) ]
-}));
-if (subtitle) children.push(new Paragraph({ children: [ new TextRun({ text: subtitle, italics: true, size: 20 }) ] }));
+rtf += '\\b ' + rtfEscape(name) + ' \\b0\\line\n';
+if (subtitle) rtf += rtfEscape(subtitle) + '\\line\\line\n';
 
-// Parse by headings
+// parse known sections
 const known = ['Contact','Summary','Skills','Experience & Projects','Experience','Projects','Education','Certifications','Note'];
 let cursor = 'header';
 const sections = { header: [] };
@@ -37,32 +37,28 @@ for (const l of lines) {
   sections[cursor].push(l);
 }
 
-function addSection(title, arr) {
+function addSectionRTF(title, arr) {
   if (!arr || !arr.length) return;
-  children.push(new Paragraph({ children: [ new TextRun({ text: title, bold: true, size: 24 }) ] }));
+  rtf += '\\b ' + rtfEscape(title) + ' \\b0\\line\n';
   arr.forEach(line => {
     if (!line) return;
-    // bullet lines starting with -
     if (line.startsWith('-')) {
-      children.push(new Paragraph({ text: line.replace(/^[-]\s*/, ''), bullet: { level: 0 } }));
+      rtf += '\\tab\\bullet\\tab ' + rtfEscape(line.replace(/^[-]\s*/, '')) + '\\line\n';
     } else {
-      children.push(new Paragraph({ text: line }));
+      rtf += rtfEscape(line) + '\\line\n';
     }
   });
+  rtf += '\\line\n';
 }
 
-addSection('Contact', sections['Contact']);
-addSection('Summary', sections['Summary']);
-addSection('Skills', sections['Skills']);
-addSection('Experience', sections['Experience & Projects'] || sections['Experience'] || sections['Projects']);
-addSection('Education', sections['Education']);
-addSection('Certifications', sections['Certifications']);
+addSectionRTF('Contact', sections['Contact']);
+addSectionRTF('Summary', sections['Summary']);
+addSectionRTF('Skills', sections['Skills']);
+addSectionRTF('Experience', sections['Experience & Projects'] || sections['Experience'] || sections['Projects']);
+addSectionRTF('Education', sections['Education']);
+addSectionRTF('Certifications', sections['Certifications']);
 
-const docWithSections = new Document({ creator: 'Rabbani', description: 'Generated CV', title: 'Rabbani CV', sections: [{ children }] });
+rtf += '}\n';
 
-Packer.toBuffer(docWithSections).then(buffer => {
-  fs.writeFileSync(outputPath, buffer);
-  console.log('DOCX generated at', outputPath);
-}).catch(err => {
-  console.error('Failed to generate DOCX:', err);
-});
+fs.writeFileSync(outputPath, rtf, 'utf8');
+console.log('RTF generated at', outputPath);

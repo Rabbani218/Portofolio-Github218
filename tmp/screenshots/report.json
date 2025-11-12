@@ -1,0 +1,59 @@
+{
+  "url": "http://localhost:3001",
+  "generatedAt": "2025-11-12T15:27:32.636Z",
+  "results": [
+    {
+      "viewport": {
+        "name": "desktop",
+        "width": 1280,
+        "height": 800
+      },
+      "screenshot": "C:\\Users\\DELL\\OneDrive\\Documents\\Project Github\\Portofolio-Github218\\tmp\\screenshots\\desktop-1280x800.png",
+      "status": 200
+    },
+    {
+      "viewport": {
+        "name": "tablet",
+        "width": 768,
+        "height": 1024
+      },
+      "screenshot": "C:\\Users\\DELL\\OneDrive\\Documents\\Project Github\\Portofolio-Github218\\tmp\\screenshots\\tablet-768x1024.png",
+      "status": 200
+    },
+    {
+      "viewport": {
+        "name": "mobile",
+        "width": 375,
+        "height": 812
+      },
+      "screenshot": "C:\\Users\\DELL\\OneDrive\\Documents\\Project Github\\Portofolio-Github218\\tmp\\screenshots\\mobile-375x812.png",
+      "status": 200
+    }
+  ],
+  "logs": [
+    {
+      "type": "console",
+      "text": "If you hit GitHub rate limits, you can set a personal access token in the browser:"
+    },
+    {
+      "type": "console",
+      "text": "localStorage.setItem('github_token','YOUR_TOKEN') ; then reload the page."
+    },
+    {
+      "type": "console",
+      "text": "If you hit GitHub rate limits, you can set a personal access token in the browser:"
+    },
+    {
+      "type": "console",
+      "text": "localStorage.setItem('github_token','YOUR_TOKEN') ; then reload the page."
+    },
+    {
+      "type": "console",
+      "text": "If you hit GitHub rate limits, you can set a personal access token in the browser:"
+    },
+    {
+      "type": "console",
+      "text": "localStorage.setItem('github_token','YOUR_TOKEN') ; then reload the page."
+    }
+  ]
+}

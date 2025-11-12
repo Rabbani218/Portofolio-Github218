@@ -6,12 +6,21 @@
   "scripts": {
     "generate-cv": "node generate_cv.js",
     "generate-docx": "node generate_cv_docx.js",
-    "build:resume": "node generate_cv.js"
+    "build:resume": "node generate_cv.js",
+    "lint": "eslint . --ext .js,public/js --max-warnings=0",
+    "visual-qa": "node run-visual-qa.js",
+    "lighthouse": "node run-lighthouse.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "pdfkit": "^0.13.0",
-    "docx": "^8.3.0"
+    "docx": "^8.3.0",
+    "pdfkit": "^0.13.0"
+  },
+  "devDependencies": {
+    "mime": "^4.1.0",
+    "puppeteer": "^24.29.1",
+    "eslint": "^8.50.0",
+    "axe-core": "^4.6.3"
   }
 }
