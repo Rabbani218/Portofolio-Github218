@@ -386,7 +386,11 @@
       if (navToggle) {
         navToggle.addEventListener('click', function () {
           const navLinks = document.getElementById('navLinks');
-          if (navLinks) navLinks.classList.toggle('active');
+          if (navLinks) {
+            const isActive = navLinks.classList.toggle('active');
+            // update aria-expanded on the toggle button
+            try { navToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false'); } catch (e) {}
+          }
         });
       }
     } catch (e) { /* ignore */ }
