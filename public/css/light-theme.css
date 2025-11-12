@@ -1,8 +1,50 @@
-:root{ --bg:#f8fafc; --card:#ffffff; --muted:#475569; --accent:#2563eb; --accent-2:#06b6d4; --text:#071023 }
-body{background:var(--bg);color:var(--text)}
-.site-header{background:linear-gradient(180deg,rgba(255,255,255,0.8),transparent);border-bottom:1px solid rgba(2,6,23,0.04)}
-.nav-links a{color:var(--text)}
-.project-card{background:var(--card);border:1px solid rgba(2,6,23,0.04)}
-.project-body p{color:var(--muted)}
-.skill-badge{background:rgba(2,6,23,0.03);color:var(--text)}
-.btn-primary{color:#fff}
+/* Light theme overrides for the portfolio (class: theme-light on <html>) */
+:root.theme-light{
+  --bg-1: #f3f6fb;
+  --bg-2: #ffffff;
+  --card: #ffffff;
+  --glass: rgba(2,6,23,0.03);
+  --muted: #334155;
+  --accent: #0078d4;
+  --accent-2: #00b7c3;
+  --neon: #0078d4;
+}
+
+html.theme-light, html.theme-light body{
+  background: linear-gradient(180deg,var(--bg-1),var(--bg-2)) !important;
+  color: var(--muted) !important;
+}
+
+/* Make header light */
+html.theme-light .site-header{
+  background: rgba(255,255,255,0.95) !important;
+  border-bottom: 1px solid rgba(2,6,23,0.05) !important;
+}
+
+/* Card backgrounds */
+html.theme-light .project-card,
+html.theme-light .stat-card,
+html.theme-light .cyber-card{ background: #ffffff; color: var(--muted); border: 1px solid rgba(2,6,23,0.04); box-shadow: 0 6px 24px rgba(2,6,23,0.04); }
+
+/* Hero adjustments */
+html.theme-light .hero{ background: transparent; }
+html.theme-light .code-card{ background: linear-gradient(180deg,#f9fbff,#ffffff); color:#0b2540; border:1px solid rgba(2,6,23,0.04); }
+
+/* Buttons for light theme */
+html.theme-light .btn-primary{ background: linear-gradient(135deg, var(--accent), var(--accent-2)) !important; color:#fff !important; }
+html.theme-light .btn-secondary{ background: linear-gradient(135deg,#e2e8f0,#cbd5e1) !important; color:#06210a !important; }
+
+/* Skill badges */
+html.theme-light .skill-badge{ background: rgba(2,6,23,0.03); color:var(--muted); border:1px solid rgba(2,6,23,0.04); }
+
+/* Small muted text */
+html.theme-light .small-muted{ color: rgba(51,65,85,0.7); }
+
+/* Brand logo invert if needed */
+html.theme-light .brand-logo{ filter: none; }
+
+/* Ensure links readable */
+html.theme-light a{ color: var(--accent) !important; }
+
+/* Responsive tweaks preserved from main stylesheet */
+@media (max-width: 900px){ html.theme-light .nav-links{ display:none; } html.theme-light .nav-toggle{ display:block; } }

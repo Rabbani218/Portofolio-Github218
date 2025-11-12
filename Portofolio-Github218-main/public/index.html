@@ -363,18 +363,7 @@
 
         // audio removed: portfolio is intentionally silent for professionalism
 
-        // Automatic Theme Transition
-        document.addEventListener('DOMContentLoaded', () => {
-            let themeState = 0;
-            setInterval(() => {
-                themeState = themeState === 0 ? 1 : 0;
-            }, 8000);
-        });
-
-        // Image fallback handler
-        profileImg.onerror = function() {
-            this.src = 'assets/images/fallback.jpg';
-        };
+        // Image fallback handler already set inside guarded profileImg block above.
 
         // Testimonial slider (guarded if none present)
         const testimonials = document.querySelectorAll('.testimonial-card');
@@ -396,13 +385,7 @@
 
         // audio removed: toggleMusic and autoplay handlers removed
 
-        // Background Color Transition
-        let colorState = 0;
-        setInterval(() => {
-            const colors = ['#ffffff', '#f8fbff'];
-            document.body.style.backgroundColor = colors[colorState];
-            colorState = (colorState + 1) % colors.length;
-        }, 10000);
+        // Background color transitions removed to keep layout stable and ATS-friendly.
 
         // Layout Optimization
         window.addEventListener('load', () => {
