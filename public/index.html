@@ -355,89 +355,105 @@
                 </div>
             </div>
         </section>
-        <section id="projects" class="projects-section"></section>
-            <div class="section-inner">
-                <div class="projects-header">
+        <section id="projects" class="projects-section">
+            <div class="section-inner" style="max-width:1100px;margin:0 auto;">
+                <header class="projects-header" style="margin-bottom:12px;">
                     <h2 class="section-title">Projects <span class="japanese-accent" aria-hidden="true">プロジェクト</span></h2>
-                    <p class="section-description">
-                        Public repositories fetched from GitHub. Use filters to tailor what recruiters see.
-                        <span class="japanese-accent" aria-hidden="true">採用担当者が見る内容を調整するにはフィルターを使用してください。</span>
+                    <p class="section-description" style="margin-top:6px;max-width:820px;">
+                        Public repositories fetched from GitHub. Use the filters below to tailor which projects are shown to recruiters.
                     </p>
-                </div>
+                </header>
 
-                <!-- Filters grouped in a compact, accessible form -->
-                <form id="projects-controls" class="projects-controls" aria-label="Project filters">
-                    <div class="controls-grid">
-                        <label>
-                            <span class="muted-small">Language <span class="japanese-accent" aria-hidden="true">言語</span></span>
+                <!-- Filters: compact and responsive -->
+                <form id="projects-controls" class="projects-controls" aria-label="Project filters" style="margin-top:14px;">
+                    <div class="controls-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;align-items:end;">
+                        <label style="display:flex;flex-direction:column;">
+                            <span class="muted-small">Language</span>
                             <select id="projects-filter" aria-label="Filter by language">
-                                <option value="all">All <span class="japanese-accent" aria-hidden="true">すべて</span></option>
+                                <option value="all">All</option>
                             </select>
                         </label>
 
-                        <label>
-                            <span class="muted-small">Sort <span class="japanese-accent" aria-hidden="true">並び替え</span></span>
+                        <label style="display:flex;flex-direction:column;">
+                            <span class="muted-small">Sort</span>
                             <select id="projects-sort" aria-label="Sort projects">
-                                <option value="updated">Recently updated <span class="japanese-accent" aria-hidden="true">最近更新</span></option>
-                                <option value="stars">Stars <span class="japanese-accent" aria-hidden="true">スター数</span></option>
-                                <option value="name">Name <span class="japanese-accent" aria-hidden="true">名前</span></option>
+                                <option value="updated">Recently updated</option>
+                                <option value="stars">Stars</option>
+                                <option value="name">Name</option>
                             </select>
                         </label>
 
-                        <label>
-                            <span class="muted-small">Min stars <span class="japanese-accent" aria-hidden="true">最小スター数</span></span>
+                        <label style="display:flex;flex-direction:column;">
+                            <span class="muted-small">Min stars</span>
                             <input id="projects-minstars" type="number" min="0" value="0" aria-label="Minimum stars" />
                         </label>
 
-                        <label>
+                        <label style="display:flex;flex-direction:column;">
                             <span class="muted-small">Search</span>
-                            <input id="projects-search" type="search" placeholder="Search project name or description" aria-label="Search projects" />
+                            <input id="projects-search" type="search" placeholder="Search name or description" aria-label="Search projects" />
                         </label>
 
-                        <div class="controls-actions">
+                        <div class="controls-actions" style="display:flex;gap:8px;justify-self:end;">
                             <button type="button" id="projects-apply" class="btn-primary">Apply</button>
                             <button type="button" id="projects-reset" class="btn-secondary">Reset</button>
                         </div>
                     </div>
                 </form>
 
-                <!-- Live region with loading / empty states -->
-                <h3 id="projects-heading" class="visually-hidden">Project Listings</h3>
-                <div id="projects-grid" class="projects-grid" role="list" aria-labelledby="projects-heading" aria-live="polite" aria-busy="true">
-                    <div class="projects-loading stat-card" role="status">
+                <!-- Projects: loading / grid / empty -->
+                <h3 id="projects-heading" class="visually-hidden">Project listings</h3>
+
+                <div id="projects-grid" class="projects-grid" role="list" aria-labelledby="projects-heading" aria-live="polite" aria-busy="true" style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;">
+                    <div class="projects-loading stat-card" role="status" style="padding:14px;border-radius:10px;background:var(--card-bg,#fff);box-shadow:0 6px 18px rgba(8,15,30,0.04);">
                         <span class="spinner" aria-hidden="true">⏳</span>
-                        Loading projects from GitHub... <span class="japanese-accent" aria-hidden="true">GitHubからプロジェクトを読み込み中...</span>
+                        Loading projects from GitHub...
                     </div>
                 </div>
 
-                <div id="projects-empty" class="stat-card visually-hidden" role="status">
+                <div id="projects-empty" class="stat-card visually-hidden" role="status" style="margin-top:12px;padding:14px;border-radius:10px;background:var(--card-bg,#fff);box-shadow:0 6px 18px rgba(8,15,30,0.04);">
                     No projects match the selected filters. Try clearing filters or broaden your search.
-                    <span class="japanese-accent" aria-hidden="true">選択したフィルターに一致するプロジェクトはありません。フィルターをクリアするか検索を広げてください。</span>
                 </div>
 
-                <!-- Template used by JS to render each project card consistently -->
+                <!-- Project card template -->
                 <template id="project-card-template">
-                    <article class="project-card" role="listitem">
-                        <header class="project-card-header">
-                            <h4 class="project-title">Project name</h4>
-                            <div class="project-meta muted-small">
-                                <span class="project-lang">Language</span> •
-                                <time class="project-updated" datetime="">Updated</time> •
-                                <span class="project-stars" aria-hidden="true">★0</span>
+                    <article class="project-card" role="listitem" style="display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:10px;background:var(--card-bg,#fff);box-shadow:0 6px 18px rgba(8,15,30,0.04);">
+                        <header style="display:flex;justify-content:space-between;align-items:start;gap:12px;">
+                            <div style="flex:1;">
+                                <h3 class="project-title" style="margin:0 0 6px 0;font-size:1.05rem;">Project name</h3>
+                                <div class="project-meta muted-small" style="color:var(--muted-color,#6b7280);font-size:0.9rem;">
+                                    <span class="project-lang">Language</span>
+                                    <span aria-hidden="true"> • </span>
+                                    <time class="project-updated" datetime="">Updated</time>
+                                </div>
+                            </div>
+
+                            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+                                <div class="project-stars" aria-hidden="true" style="font-weight:700;color:#fbbf24;">★0</div>
+                                <a class="view-code" href="#" target="_blank" rel="noopener" style="font-size:0.9rem;color:#0f61c3;text-decoration:underline;">View code</a>
                             </div>
                         </header>
 
-                        <p class="project-description muted">Short project description — concise and recruiter-focused. This should be trimmed to one or two sentences.</p>
+                        <p class="project-description muted" style="margin:0;color:var(--muted-color,#65728a);font-size:0.95rem;">
+                            Short project description — concise and recruiter-focused (1–2 lines).
+                        </p>
 
-                        <footer class="project-card-footer">
-                            <a class="view-code" href="#" target="_blank" rel="noopener">View Code</a>
-                            <div class="project-badges muted-small" aria-hidden="true">
-                                <span class="badge forks">Forks 0</span>
-                                <span class="badge topics">Topics</span>
+                        <footer style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;">
+                            <div class="project-badges muted-small" aria-hidden="true" style="display:flex;gap:6px;flex-wrap:wrap;">
+                                <span class="badge forks" style="background:#f1f5f9;padding:6px 8px;border-radius:999px;">Forks 0</span>
+                                <span class="badge topics" style="background:#f1f5f9;padding:6px 8px;border-radius:999px;">Topics</span>
+                            </div>
+                            <div style="display:flex;gap:8px;">
+                                <a class="btn-secondary" href="#" target="_blank" rel="noopener" style="padding:8px 10px;border-radius:8px;text-decoration:none;">Open</a>
+                                <a class="btn-accent" href="#" target="_blank" rel="noopener" style="padding:8px 10px;border-radius:8px;text-decoration:none;">Demo</a>
                             </div>
                         </footer>
                     </article>
                 </template>
+
+                <!-- Optional: simple pagination / load more placeholder -->
+                <div id="projects-controls-bottom" style="margin-top:18px;display:flex;justify-content:center;gap:10px;">
+                    <button id="projects-load-more" type="button" class="btn-secondary" style="display:none;">Load more</button>
+                </div>
             </div>
         </section>
 
@@ -452,88 +468,333 @@
                 </div>
             </div>
         </section>
-        <section id="cv-tailor" class="cv-tailor section">
-            <div class="section-inner">
-                <h2 class="section-title">Generate CV <span class="japanese-accent" aria-hidden="true">カスタム履歴書生成</span></h2>
-                <p class="section-description">
-                    Create a recruiter-focused CV tailored to the target role. Projects and skills will be included automatically.
-                    <span class="japanese-accent" aria-hidden="true">対象職種に合わせた人事向けの履歴書を作成します。プロジェクトとスキルは自動的に含まれます。</span>
+        <section id="cv-tailor" class="cv-tailor section" aria-labelledby="cv-title">
+            <div class="section-inner" style="max-width:1100px;margin:0 auto;">
+                <h2 id="cv-title" class="section-title" style="margin-bottom:6px;">Generate Professional CV</h2>
+                <p class="section-description" style="margin-top:0;margin-bottom:14px;max-width:820px;">
+                    Build a clean, recruiter-ready CV in the browser. Use the form to tailor role, highlight skills and experiences, preview the result, then download a PDF. Nothing is uploaded to a server.
                 </p>
 
-                <form id="cv-form" class="cv-form" aria-label="CV generator">
-                    <div class="cv-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;">
-                        <label class="input-group">
-                            <span class="label-text">Target role</span>
-                            <select id="cv-target-role" aria-label="Target role">
-                                <option value="general">General / Full‑stack</option>
-                                <option value="ai_avatar">AI Avatar Developer</option>
-                                <option value="data_scientist">Data Scientist / ML Engineer</option>
-                                <option value="fullstack">Full‑stack Developer</option>
-                            </select>
+                <div class="cv-layout" style="display:grid;grid-template-columns:1fr 420px;gap:18px;align-items:start;">
+                    <!-- Form column -->
+                    <form id="cv-form" class="cv-form" aria-label="CV generator form" style="background:var(--card-bg,#fff);padding:16px;border-radius:12px;box-shadow:0 8px 24px rgba(8,15,30,0.05);display:flex;flex-direction:column;gap:12px;">
+                        <!-- Basic info -->
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;">
+                            <label style="display:flex;flex-direction:column;">
+                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Full name</span>
+                                <input id="cv-name" name="name" type="text" placeholder="Muhammad Abdurrahman Rabbani" required style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
+                            </label>
+
+                            <label style="display:flex;flex-direction:column;"></label>
+                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Professional title</span>
+                                <input id="cv-title-input" name="title" type="text" placeholder="Data Analyst · Full‑stack · AI Engineer" style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
+                            </label>
+
+                            <label style="display:flex;flex-direction:column;">
+                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Location</span>
+                                <input id="cv-location" name="location" type="text" placeholder="Jakarta, ID (Remote available)" style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
+                            </label>
+
+                            <label style="display:flex;flex-direction:column;">
+                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Email</span>
+                                <input id="cv-email" name="email" type="email" placeholder="you@example.com" style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
+                            </label>
+
+                            <label style="display:flex;flex-direction:column;">
+                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Phone</span>
+                                <input id="cv-phone" name="phone" type="text" placeholder="+62 812 3456 7890" style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
+                            </label>
+                        </div>
+
+                        <!-- Links & summary -->
+                        <div style="display:grid;grid-template-columns:1fr;gap:10px;">
+                            <label style="display:flex;flex-direction:column;">
+                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Links (GitHub, LinkedIn, Portfolio)</span>
+                                <input id="cv-links" name="links" type="text" placeholder="https://github.com/..., https://linkedin.com/..." style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
+                            </label>
+
+                            <label style="display:flex;flex-direction:column;">
+                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Professional summary</span>
+                                <textarea id="cv-summary" name="summary" rows="4" placeholder="Two-to-three sentence summary focused on impact, strengths and target role." style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;resize:vertical;"></textarea>
+                            </label>
+                        </div>
+
+                        <!-- Skills -->
+                        <div style="display:grid;grid-template-columns:1fr;gap:8px;">
+                            <label style="display:flex;flex-direction:column;">
+                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Key skills (comma separated)</span>
+                                <input id="cv-skills" type="text" placeholder="Python, SQL, Machine Learning, REST APIs, Docker" style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
+                                <small class="muted-small" style="color:var(--muted-color,#6b7280);margin-top:6px;">Skills will be rendered as badges in the CV.</small>
+                            </label>
+                        </div>
+
+                        <!-- Experience (repeatable container) -->
+                        <div style="display:flex;flex-direction:column;gap:8px;">
+                            <div style="display:flex;justify-content:space-between;align-items:center;">
+                                <strong style="font-size:0.98rem;">Experience</strong>
+                                <div style="display:flex;gap:8px;">
+                                    <button id="cv-add-experience" type="button" class="btn-secondary" style="padding:8px 10px;border-radius:8px;">+ Add</button>
+                                    <button id="cv-clear-experience" type="button" class="btn-secondary" style="padding:8px 10px;border-radius:8px;">Clear</button>
+                                </div>
+                            </div>
+
+                            <div id="cv-experience-list" style="display:grid;gap:8px;">
+                                <!-- Single experience item (template will be cloned by JS) -->
+                                <div class="cv-exp-item" style="display:grid;grid-template-columns:1fr 160px;gap:8px;align-items:start;padding:10px;border-radius:8px;border:1px solid #eef2f7;">
+                                    <div style="display:flex;flex-direction:column;gap:6px;">
+                                        <input name="exp-title" class="exp-title" type="text" placeholder="Role — Company (e.g. Data Analyst — XYZ Corp)" style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;">
+                                        <textarea name="exp-desc" class="exp-desc" rows="3" placeholder="Concise bullet points of outcomes and impact (one line per bullet recommended)." style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;resize:vertical;"></textarea>
+                                    </div>
+                                    <div style="display:flex;flex-direction:column;gap:6px;">
+                                        <input name="exp-dates" class="exp-dates" type="text" placeholder="Jan 2022 – Present" style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;">
+                                        <button type="button" class="cv-remove-exp btn-secondary" style="padding:8px;border-radius:6px;align-self:end;">Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Education (repeatable) -->
+                        <div style="display:flex;flex-direction:column;gap:8px;">
+                            <div style="display:flex;justify-content:space-between;align-items:center;">
+                                <strong style="font-size:0.98rem;">Education</strong>
+                                <div style="display:flex;gap:8px;">
+                                    <button id="cv-add-education" type="button" class="btn-secondary" style="padding:8px 10px;border-radius:8px;">+ Add</button>
+                                    <button id="cv-clear-education" type="button" class="btn-secondary" style="padding:8px 10px;border-radius:8px;">Clear</button>
+                                </div>
+                            </div>
+
+                            <div id="cv-education-list" style="display:grid;gap:8px;">
+                                <div class="cv-edu-item" style="display:grid;grid-template-columns:1fr 160px;gap:8px;align-items:start;padding:10px;border-radius:8px;border:1px solid #eef2f7;">
+                                    <div style="display:flex;flex-direction:column;gap:6px;">
+                                        <input name="edu-title" class="edu-title" type="text" placeholder="Degree — Institution (e.g. B.Sc. Informatics — Universitas ...)" style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;">
+                                        <input name="edu-highlights" class="edu-highlights" type="text" placeholder="Short highlight / relevant coursework" style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;">
+                                    </div>
+                                    <div style="display:flex;flex-direction:column;gap:6px;">
+                                        <input name="edu-dates" class="edu-dates" type="text" placeholder="Jan 2019 – Nov 2023" style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;">
+                                        <button type="button" class="cv-remove-edu btn-secondary" style="padding:8px;border-radius:6px;align-self:end;">Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional preferences -->
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;align-items:end;">
+                            <label style="display:flex;flex-direction:column;">
+                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Target role</span>
+                                <select id="cv-target-role" aria-label="Target role" style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
+                                    <option value="general">General</option>
+                                    <option value="data_scientist">Data Scientist / ML Engineer</option>
+                                    <option value="fullstack">Full‑stack Developer</option>
+                                    <option value="ai_engineer">AI Engineer / Research</option>
+                                </select>
+                            </label>
+
+                            <label style="display:flex;flex-direction:column;">
+                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Expected salary</span>
+                                <input id="cv-salary" type="text" placeholder="e.g. 6,000,000 JPY / 1,200 USD" style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
+                            </label>
+
+                            <label style="display:flex;flex-direction:column;">
+                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Daily hours</span>
+                                <input id="cv-hours" type="number" min="1" max="12" step="1" value="8" style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
+                            </label>
+
+                            <label style="display:flex;flex-direction:column;">
+                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Health app experience</span>
+                                <select id="cv-health-experience" style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </label>
+                        </div>
+
+                        <label style="display:flex;flex-direction:column;">
+                            <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Project / demo links</span>
+                            <input id="cv-demos" type="text" placeholder="https://..., separate with commas" style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
                         </label>
 
-                        <label class="input-group">
-                            <span class="label-text">Previous salary (estimate)</span>
-                            <input id="cv-salary" type="text" placeholder="e.g. 6,000,000 JPY / 1,200 USD" aria-label="Previous salary (estimate)" />
-                        </label>
+                        <!-- Actions -->
+                        <div style="display:flex;gap:10px;align-items:center;justify-content:flex-start;margin-top:6px;">
+                            <button id="cv-preview-btn" type="button" class="btn-primary" style="padding:10px 14px;border-radius:10px;">Preview</button>
+                            <button id="generateTailoredCv" class="btn-accent" type="button" style="padding:10px 14px;border-radius:10px;">Generate PDF</button>
+                            <button id="cv-reset" type="reset" class="btn-secondary" style="padding:10px 14px;border-radius:10px;">Reset</button>
+                            <small class="muted-small" style="margin-left:8px;color:var(--muted-color,#6b7280);">PDF created in-browser. No upload.</small>
+                        </div>
+                    </form>
 
-                        <label class="input-group">
-                            <span class="label-text">Estimated daily working hours</span>
-                            <input id="cv-hours" type="number" min="1" max="12" step="1" value="8" aria-label="Estimated daily working hours" />
-                        </label>
+                    <!-- Preview column -->
+                    <aside aria-label="CV preview" style="position:relative;">
+                        <div id="cv-preview" style="background:white;border-radius:10px;padding:18px;border:1px solid #e6e9ef;box-shadow:0 8px 24px rgba(8,15,30,0.04);min-height:360px;overflow:auto;">
+                            <!-- Printable CV layout (will be populated by JS) -->
+                            <div id="cv-preview-content" style="font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#0f172a;">
+                                <header style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1px solid #eef2f7;padding-bottom:10px;margin-bottom:12px;">
+                                    <div>
+                                        <h3 id="preview-name" style="margin:0;font-size:1.05rem;font-weight:800;">Muhammad Abdurrahman Rabbani</h3>
+                                        <div id="preview-title" style="color:#334155;margin-top:4px;font-weight:600;">Data Analyst · Full‑stack · AI Engineer</div>
+                                    </div>
+                                    <div style="text-align:right;color:#475569;font-size:0.9rem;">
+                                        <div id="preview-location">Jakarta, ID</div>
+                                        <div id="preview-contact" style="margin-top:6px;">
+                                            <div id="preview-email">you@example.com</div>
+                                            <div id="preview-links" style="margin-top:4px;">github.com/username • linkedin.com/in/username</div>
+                                        </div>
+                                    </div>
+                                </header>
 
-                        <label class="input-group">
-                            <span class="label-text">Experience with health apps?</span>
-                            <select id="cv-health-experience" aria-label="Experience with health apps">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option>
-                            </select>
-                        </label>
+                                <section id="preview-summary" style="margin-bottom:10px;color:#374151;font-size:0.95rem;">
+                                    <strong style="display:block;margin-bottom:6px;">Summary</strong>
+                                    <div id="preview-summary-text">Two-to-three sentence summary focused on impact and strengths.</div>
+                                </section>
 
-                        <label class="input-group full-width" style="grid-column:1/-1;">
-                            <span class="label-text">Demos / video / repository links</span>
-                            <input id="cv-demos" type="text" placeholder="https://... , https://..." aria-label="Demos or repository links" />
-                        </label>
+                                <section id="preview-skills" style="margin-bottom:10px;">
+                                    <strong style="display:block;margin-bottom:8px;">Core skills</strong>
+                                    <div id="preview-skills-list" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+                                </section>
 
-                        <label class="input-group">
-                            <span class="label-text">Code editor</span>
-                            <input id="cv-editor" type="text" placeholder="VSCode, WebStorm, ..." aria-label="Preferred code editor" />
-                        </label>
+                                <section id="preview-experience" style="margin-bottom:10px;">
+                                    <strong style="display:block;margin-bottom:8px;">Experience</strong>
+                                    <div id="preview-experience-list"></div>
+                                </section>
+
+                                <section id="preview-education" style="margin-bottom:10px;">
+                                    <strong style="display:block;margin-bottom:8px;">Education</strong>
+                                    <div id="preview-education-list"></div>
+                                </section>
+
+                                <section id="preview-projects" style="margin-bottom:6px;">
+                                    <strong style="display:block;margin-bottom:8px;">Selected projects & links</strong>
+                                    <div id="preview-projects-list" style="color:#475569;font-size:0.95rem;"></div>
+                                </section>
+
+                                <footer style="border-top:1px dashed #eef2f7;padding-top:10px;margin-top:12px;color:#6b7280;font-size:0.9rem;">
+                                    Generated with portfolio tool — tailored for recruiters.
+                                </footer>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+
+                <!-- Templates (hidden) -->
+                <template id="cv-exp-template">
+                    <div class="cv-exp-item" style="display:grid;grid-template-columns:1fr 160px;gap:8px;align-items:start;padding:10px;border-radius:8px;border:1px solid #eef2f7;">
+                        <div style="display:flex;flex-direction:column;gap:6px;">
+                            <input name="exp-title" class="exp-title" type="text" placeholder="Role — Company" style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;">
+                            <textarea name="exp-desc" class="exp-desc" rows="3" placeholder="Concise responsibilities and outcomes." style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;resize:vertical;"></textarea>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:6px;">
+                            <input name="exp-dates" class="exp-dates" type="text" placeholder="Dates" style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;">
+                            <button type="button" class="cv-remove-exp btn-secondary" style="padding:8px;border-radius:6px;align-self:end;">Remove</button>
+                        </div>
                     </div>
+                </template>
 
-                    <div class="cv-actions" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:12px;">
-                        <button id="generateTailoredCv" class="btn-primary" type="button">Generate CV (PDF)</button>
-                        <p class="muted-small" style="margin:0;">
-                            PDF is generated in the browser — nothing is uploaded to a server.
-                            <span class="japanese-accent" aria-hidden="true">PDFはブラウザで生成されます — サーバーへのアップロードはありません。</span>
-                        </p>
+                <template id="cv-edu-template">
+                    <div class="cv-edu-item" style="display:grid;grid-template-columns:1fr 160px;gap:8px;align-items:start;padding:10px;border-radius:8px;border:1px solid #eef2f7;">
+                        <div style="display:flex;flex-direction:column;gap:6px;">
+                            <input name="edu-title" class="edu-title" type="text" placeholder="Degree — Institution" style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;">
+                            <input name="edu-highlights" class="edu-highlights" type="text" placeholder="Highlight / coursework" style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;">
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:6px;">
+                            <input name="edu-dates" class="edu-dates" type="text" placeholder="Dates" style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;">
+                            <button type="button" class="cv-remove-edu btn-secondary" style="padding:8px;border-radius:6px;align-self:end;">Remove</button>
+                        </div>
                     </div>
-                </form>
+                </template>
             </div>
-        </section>
+        </section></div>
 
         <section id="contact">
             <h2 class="section-title">Contact <span class="japanese-accent" aria-hidden="true">連絡先</span></h2>
             <p class="section-description">Interested? Reach out by email or via GitHub / LinkedIn. <span class="japanese-accent" aria-hidden="true">ご興味をお持ちですか？メールまたはGitHub / LinkedInでご連絡ください。</span></p>
 
-            <div class="contact-actions" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;">
-                <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com" aria-label="Send email to Rabbani">
-                    <i class="fa-solid fa-envelope" aria-hidden="true" style="margin-right:8px;"></i>
+            <div style="max-width:1100px;margin:12px auto 0;display:grid;grid-template-columns:1fr 420px;gap:18px;align-items:start;">
+            <!-- Left column: contact cards + centered action buttons -->
+            <div>
+                <div style="display:grid;gap:12px;">
+                <div style="background:var(--card-bg,#fff);padding:14px;border-radius:12px;box-shadow:0 8px 24px rgba(8,15,30,0.06);">
+                    <strong style="display:block;margin-bottom:6px;">Quick contact</strong>
+                    <p class="muted" style="margin:0 0 10px 0;">Prefer a short note? Use the quick message form or one-click links below.</p>
+
+                    <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+                    <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com" aria-label="Send email to Rabbani" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:linear-gradient(90deg,#0ea5a4,#60a5fa);color:white;text-decoration:none;max-width:320px;">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                        Rabbani.office1806@gmail.com
+                    </a>
+
+                    <a class="contact-btn btn-secondary" href="https://github.com/Rabbani218" target="_blank" rel="noopener" aria-label="View Rabbani on GitHub" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:#0f172a;color:white;text-decoration:none;max-width:320px;">
+                        <i class="fa-brands fa-github" aria-hidden="true"></i>
+                        github.com/Rabbani218
+                    </a>
+
+                    <a class="contact-btn btn-accent" href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" target="_blank" rel="noopener" aria-label="View Rabbani on LinkedIn" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:linear-gradient(90deg,#0ea5a4,#06b6d4);color:white;text-decoration:none;max-width:320px;">
+                        <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+                        LinkedIn profile
+                    </a>
+                    </div>
+                </div>
+
+                <div style="background:linear-gradient(90deg,#06b6d4,#3b82f6);color:white;padding:12px;border-radius:12px;box-shadow:0 8px 24px rgba(8,15,30,0.06);">
+                    <strong style="display:block;font-size:1.02rem;">Availability</strong>
+                    <div style="margin-top:6px;">Open to internships, freelance and full‑time roles. Remote OK — timezone flexible.</div>
+                </div>
+                </div>
+
+                <!-- Centered action buttons for quick access -->
+                <div style="display:flex;justify-content:center;gap:12px;margin-top:16px;flex-wrap:wrap;">
+                <a class="btn-primary" href="mailto:Rabbani.office1806@gmail.com" style="display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,#0ea5a4,#60a5fa);color:white;text-decoration:none;box-shadow:0 6px 18px rgba(14,165,164,0.12);">
+                    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                     Email
                 </a>
 
-                <a class="contact-btn btn-secondary" href="https://github.com/Rabbani218" target="_blank" rel="noopener" aria-label="View Rabbani on GitHub">
-                    <i class="fa-brands fa-github" aria-hidden="true" style="margin-right:8px;"></i>
+                <a class="btn-secondary" href="https://github.com/Rabbani218" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:#0f172a;color:white;text-decoration:none;box-shadow:0 6px 18px rgba(15,23,42,0.06);">
+                    <i class="fa-brands fa-github" aria-hidden="true"></i>
                     GitHub
                 </a>
 
-                <a class="contact-btn btn-accent" href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" target="_blank" rel="noopener" aria-label="View Rabbani on LinkedIn">
-                    <i class="fa-brands fa-linkedin" aria-hidden="true" style="margin-right:8px;"></i>
+                <a class="btn-accent" href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,#0ea5a4,#06b6d4);color:white;text-decoration:none;">
+                    <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
                     LinkedIn
                 </a>
+                </div>
+            </div>
+
+            <!-- Right column: compact contact form -->
+            <aside>
+                <form id="contact-form" class="contact-form" aria-label="Quick contact form" action="mailto:Rabbani.office1806@gmail.com" method="post" enctype="text/plain" style="background:var(--card-bg,#fff);padding:14px;border-radius:12px;box-shadow:0 8px 24px rgba(8,15,30,0.06);display:flex;flex-direction:column;gap:10px;">
+                <strong>Send a quick message</strong>
+
+                <label style="display:flex;flex-direction:column;gap:6px;">
+                    <span class="muted-small">Your name</span>
+                    <input name="name" type="text" placeholder="Jane Doe" required style="padding:8px 10px;border-radius:8px;border:1px solid #e6e9ef;font-size:0.95rem;">
+                </label>
+
+                <label style="display:flex;flex-direction:column;gap:6px;">
+                    <span class="muted-small">Your email</span>
+                    <input name="email" type="email" placeholder="you@example.com" required style="padding:8px 10px;border-radius:8px;border:1px solid #e6e9ef;font-size:0.95rem;">
+                </label>
+
+                <label style="display:flex;flex-direction:column;gap:6px;">
+                    <span class="muted-small">Message</span>
+                    <textarea name="message" rows="5" placeholder="Brief note about role / project / inquiry" required style="padding:8px 10px;border-radius:8px;border:1px solid #e6e9ef;font-size:0.95rem;resize:vertical;"></textarea>
+                </label>
+
+                <div style="display:flex;justify-content:flex-end;gap:8px;">
+                    <button type="submit" class="btn-primary" style="padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,#0ea5a4,#60a5fa);color:white;border:none;cursor:pointer;">
+                    Send message
+                    </button>
+                    <button type="reset" class="btn-secondary" style="padding:10px 14px;border-radius:10px;background:#f3f4f6;border:none;cursor:pointer;color:#0f172a;">
+                    Reset
+                    </button>
+                </div>
+
+                <p class="muted-small" style="margin:0;color:var(--muted-color,#6b7280);font-size:0.86rem;">
+                    Note: The form uses your email client (mailto). For attachments or detailed proposals, please use direct GitHub / LinkedIn links above.
+                </p>
+                </form>
+            </aside>
             </div>
         </section>
-    </main>
+        </main></p></div>
 
     <footer class="site-footer" role="contentinfo">
         <div class="footer-inner"></div>
@@ -544,7 +805,7 @@
             <span class="muted-small" style="margin:0 12px;">— © Muhammad Abdurrahman Rabbani</span>
             <div class="footer-images" aria-hidden="true" style="display:inline-flex;gap:8px;align-items:center;">
                 <img src="/images/sans.png" alt="Sans image" width="40" height="40" style="display:block;">
-                <img src="/images/sprite1.gif" alt="Animated sprite" width="40" height="40" style="display:block;">
+                <img src="/images/Sprite1.gif" alt="Animated sprite" width="40" height="40" style="display:block;">
             </div>
             <div style="display:block;margin-top:6px;color:var(--muted-color,#666);font-size:0.9rem;">
                 Proyek disinkronkan dari <a href="https://github.com/Rabbani218" target="_blank" rel="noopener">GitHub</a>.
