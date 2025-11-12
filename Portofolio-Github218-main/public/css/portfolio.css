@@ -58,3 +58,12 @@ header a{ color: #cfe8ff !important; }
 
 /* Focus states */
 a:focus{ outline: 3px solid rgba(0,208,255,0.12); outline-offset:3px; }
+
+/* Header / Nav styles (moved from inline) */
+.site-header{ position:sticky; top:0; z-index:999; backdrop-filter: blur(6px); background: linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); border-bottom:1px solid rgba(255,255,255,0.02); }
+.nav-inner{ max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:0.6rem 1rem; }
+.brand{ display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--muted); font-weight:700; }
+.nav-links{ display:flex; gap:12px; align-items:center; }
+.nav-toggle{ display:none; background:transparent; border:0; font-size:1.2rem; color:var(--muted); }
+
+@media (max-width:900px){ .nav-links{ display:none; } .nav-toggle{ display:block; } }
