@@ -32,6 +32,15 @@
             --display: 2.6rem;
         }
 
+        /* --- custom cursor --- */
+        * {
+          cursor: url('/images/DT1.png') 10 0, auto;
+        }
+
+        a, button, [role="button"], input[type="button"], input[type="submit"], select, textarea {
+          cursor: url('/images/DT1.png') 10 0, auto;
+        }
+
         @media (prefers-reduced-motion: reduce){
             :root { --transition: 0ms; --transition-fast: 0ms; }
         }
@@ -329,8 +338,8 @@
             --text-dark: #e2e8f0;
             --text-light: #cbd5e1;
             --muted: #94a3b8;
-            color: #e6eefc;
-            background: radial-gradient(1200px 600px at 10% 10%, rgba(14,165,164,0.06), transparent), #071028;
+            color: #e6eefc !important;
+            background: radial-gradient(1200px 600px at 10% 10%, rgba(14,165,164,0.06), transparent), #071028 !important;
         }
         body.dark-theme .site-header{ background: linear-gradient(180deg, rgba(3,6,12,0.6), rgba(3,6,12,0.85)); border-bottom:1px solid rgba(255,255,255,0.02); box-shadow:0 6px 18px rgba(0,0,0,0.6); }
         body.dark-theme .nav-links a{ color: #cfe8ff !important; }
