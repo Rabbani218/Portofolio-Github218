@@ -94,12 +94,20 @@ class CVPDFGenerator {
             yPosition += 3;
         }
 
+        // ===== KEY ACHIEVEMENTS =====
+        yPosition = this.renderAchievementsSection(pdf, margin, yPosition, contentWidth, pageHeight);
+        yPosition += 3;
+
         // ===== CORE SKILLS =====
         yPosition = this.renderSkillsSection(pdf, margin, yPosition, contentWidth);
         yPosition += 3;
 
         // ===== EXPERIENCE =====
         yPosition = this.renderExperienceSection(pdf, margin, yPosition, contentWidth, pageHeight);
+        yPosition += 3;
+
+        // ===== PROJECTS =====
+        yPosition = this.renderProjectsSection(pdf, margin, yPosition, contentWidth, pageHeight);
         yPosition += 3;
 
         // ===== EDUCATION =====
@@ -112,6 +120,10 @@ class CVPDFGenerator {
 
         // ===== LANGUAGES & ADDITIONAL INFO =====
         yPosition = this.renderLanguagesSection(pdf, margin, yPosition, contentWidth, pageHeight);
+        yPosition += 3;
+
+        // ===== HIRING SNAPSHOT =====
+        yPosition = this.renderPreferencesSection(pdf, margin, yPosition, contentWidth, pageHeight);
 
         // ===== FOOTER =====
         this.renderFooter(pdf, pageHeight);
@@ -145,8 +157,16 @@ class CVPDFGenerator {
             yPosition += 2;
         }
 
+        // Achievements
+        yPosition = this.renderAchievementsSection(pdf, margin, yPosition, contentWidth, pageHeight);
+        yPosition += 2;
+
         // Experience
         yPosition = this.renderExperienceSectionClassic(pdf, margin, yPosition, contentWidth, pageHeight);
+        yPosition += 2;
+
+        // Projects
+        yPosition = this.renderProjectsSection(pdf, margin, yPosition, contentWidth, pageHeight);
         yPosition += 2;
 
         // Education
@@ -155,6 +175,10 @@ class CVPDFGenerator {
 
         // Skills
         yPosition = this.renderSkillsSectionClassic(pdf, margin, yPosition, contentWidth, pageHeight);
+        yPosition += 2;
+
+        // Preferences snapshot
+        yPosition = this.renderPreferencesSection(pdf, margin, yPosition, contentWidth, pageHeight);
 
         this.renderFooter(pdf, pageHeight);
     }
@@ -177,8 +201,16 @@ class CVPDFGenerator {
         this.renderHeaderMinimal(pdf, margin, yPosition);
         yPosition += 16;
 
+        // Achievements
+        yPosition = this.renderAchievementsSection(pdf, margin, yPosition, contentWidth, pageHeight);
+        yPosition += 2;
+
         // Experience first (no summary)
         yPosition = this.renderExperienceMinimal(pdf, margin, yPosition, contentWidth, pageHeight);
+        yPosition += 2;
+
+        // Projects
+        yPosition = this.renderProjectsSection(pdf, margin, yPosition, contentWidth, pageHeight);
         yPosition += 2;
 
         // Education
@@ -187,6 +219,10 @@ class CVPDFGenerator {
 
         // Skills
         yPosition = this.renderSkillsMinimal(pdf, margin, yPosition, contentWidth, pageHeight);
+        yPosition += 2;
+
+        // Preferences snapshot
+        yPosition = this.renderPreferencesSection(pdf, margin, yPosition, contentWidth, pageHeight);
 
         this.renderFooter(pdf, pageHeight);
     }
@@ -248,8 +284,26 @@ class CVPDFGenerator {
                                     mainContentWidth, 8, pageHeight);
         }
 
+        yPos += 4;
+
+        // Achievements
+        yPos = this.renderAchievementsSection(pdf, mainMargin, yPos, mainContentWidth, pageHeight);
+        yPos += 2;
+
         // Experience
-        yPos = this.renderExperienceSection(pdf, mainMargin, yPos + 2, mainContentWidth, pageHeight);
+        yPos = this.renderExperienceSection(pdf, mainMargin, yPos, mainContentWidth, pageHeight);
+        yPos += 2;
+
+        // Projects
+        yPos = this.renderProjectsSection(pdf, mainMargin, yPos, mainContentWidth, pageHeight);
+        yPos += 2;
+
+        // Skills summary
+        yPos = this.renderSkillsSection(pdf, mainMargin, yPos, mainContentWidth, pageHeight);
+        yPos += 2;
+
+        // Preferences snapshot
+        yPos = this.renderPreferencesSection(pdf, mainMargin, yPos, mainContentWidth, pageHeight);
 
         this.renderFooter(pdf, pageHeight);
     }
@@ -378,6 +432,175 @@ class CVPDFGenerator {
         });
 
         return y + 6 + (lines.length * 4);
+    }
+
+    renderAchievementsSection(pdf, x, y, width, pageHeight) {
+        if (!Array.isArray(this.cvData.achievements) || this.cvData.achievements.length === 0) {
+            return y;
+        }
+
+        let yPos = y;
+
+        if (yPos > pageHeight - 25) {
+            pdf.addPage();
+            yPos = 15;
+        }
+
+        pdf.setFont('Helvetica', 'bold');
+        pdf.setFontSize(10);
+        pdf.setTextColor(this.colors.primary);
+        pdf.text('KEY ACHIEVEMENTS', x, yPos);
+
+        pdf.setDrawColor(this.colors.accent);
+        pdf.setLineWidth(0.3);
+        pdf.line(x, yPos + 1, x + 30, yPos + 1);
+
+        yPos += 7;
+
+        pdf.setFont('Helvetica', 'normal');
+        pdf.setFontSize(9);
+        pdf.setTextColor(this.colors.dark);
+
+        this.cvData.achievements.slice(0, 5).forEach((item) => {
+            if (yPos > pageHeight - 12) {
+                pdf.addPage();
+                yPos = 15;
+            }
+
+            const text = typeof item === 'string' ? item : item.text;
+            const lines = pdf.splitTextToSize(`• ${text}`, width - 2);
+            lines.forEach((line) => {
+                pdf.text(line, x + 1, yPos);
+                yPos += 4;
+            });
+        });
+
+        return yPos;
+    }
+
+    renderProjectsSection(pdf, x, y, width, pageHeight) {
+        if (!Array.isArray(this.cvData.projects) || this.cvData.projects.length === 0) {
+            return y;
+        }
+
+        let yPos = y;
+
+        if (yPos > pageHeight - 30) {
+            pdf.addPage();
+            yPos = 15;
+        }
+
+        pdf.setFont('Helvetica', 'bold');
+        pdf.setFontSize(10);
+        pdf.setTextColor(this.colors.primary);
+        pdf.text('SELECTED PROJECTS', x, yPos);
+
+        pdf.setDrawColor(this.colors.accent);
+        pdf.setLineWidth(0.3);
+        pdf.line(x, yPos + 1, x + 30, yPos + 1);
+
+        yPos += 7;
+
+        const projects = this.cvData.projects.slice(0, 3);
+
+        projects.forEach((project) => {
+            if (yPos > pageHeight - 25) {
+                pdf.addPage();
+                yPos = 15;
+            }
+
+            pdf.setFont('Helvetica', 'bold');
+            pdf.setFontSize(9);
+            pdf.setTextColor(this.colors.dark);
+            pdf.text(project.title, x, yPos);
+            yPos += 4;
+
+            if (project.technologies && project.technologies.length > 0) {
+                pdf.setFont('Helvetica', 'normal');
+                pdf.setFontSize(8);
+                pdf.setTextColor(this.colors.muted);
+                const techLine = project.technologies.join(' • ');
+                pdf.text(techLine, x, yPos);
+                yPos += 4;
+            }
+
+            if (project.description) {
+                pdf.setFont('Helvetica', 'normal');
+                pdf.setFontSize(9);
+                pdf.setTextColor(this.colors.dark);
+                const lines = pdf.splitTextToSize(project.description, width - 2);
+                lines.forEach((line) => {
+                    pdf.text(line, x, yPos);
+                    yPos += 4;
+                });
+            }
+
+            if (project.link) {
+                pdf.setFont('Helvetica', 'normal');
+                pdf.setFontSize(8);
+                pdf.setTextColor(this.colors.primary);
+                pdf.textWithLink(this.cleanLink(project.link), x, yPos, { url: project.link });
+                yPos += 5;
+            } else {
+                yPos += 3;
+            }
+        });
+
+        return yPos;
+    }
+
+    renderPreferencesSection(pdf, x, y, width, pageHeight) {
+        const pref = this.cvData.preferences;
+        if (!pref) {
+            return y;
+        }
+
+        const items = [];
+        if (pref.targetRole) items.push(`Target role: ${pref.targetRole}`);
+        if (pref.salaryExpectation) items.push(`Compensation: ${pref.salaryExpectation}`);
+        if (pref.availability) items.push(`Availability: ${pref.availability}`);
+        if (pref.workMode) items.push(`Work mode: ${pref.workMode}`);
+        if (pref.noticeperiod) items.push(`Notice period: ${pref.noticeperiod}`);
+        if (pref.timezone) items.push(`Timezone: ${pref.timezone}`);
+        if (pref.relocation) items.push(`Relocation: ${pref.relocation}`);
+        if (pref.dailyHours) items.push(`Daily hours: ${pref.dailyHours}h`);
+
+        if (items.length === 0) {
+            return y;
+        }
+
+        let yPos = y;
+
+        if (yPos > pageHeight - 25) {
+            pdf.addPage();
+            yPos = 15;
+        }
+
+        pdf.setFont('Helvetica', 'bold');
+        pdf.setFontSize(10);
+        pdf.setTextColor(this.colors.primary);
+        pdf.text('HIRING SNAPSHOT', x, yPos);
+
+        pdf.setDrawColor(this.colors.accent);
+        pdf.setLineWidth(0.3);
+        pdf.line(x, yPos + 1, x + 30, yPos + 1);
+
+        yPos += 7;
+
+        pdf.setFont('Helvetica', 'normal');
+        pdf.setFontSize(9);
+        pdf.setTextColor(this.colors.dark);
+
+        items.slice(0, 6).forEach((item) => {
+            if (yPos > pageHeight - 12) {
+                pdf.addPage();
+                yPos = 15;
+            }
+            pdf.text(`• ${item}`, x + 1, yPos);
+            yPos += 4;
+        });
+
+        return yPos;
     }
 
     /**
@@ -865,6 +1088,14 @@ class CVPDFGenerator {
      */
     capitalizeFirstLetter(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    cleanLink(link) {
+        if (!link) {
+            return '';
+        }
+        const trimmed = link.replace(/^https?:\/\//, '').replace(/\/$/, '');
+        return trimmed.length > 60 ? `${trimmed.slice(0, 57)}...` : trimmed;
     }
 
     /**

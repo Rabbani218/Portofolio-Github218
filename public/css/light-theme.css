@@ -32,14 +32,15 @@
             --display: 2.6rem;
         }
 
-        /* --- custom cursor --- */
-        * {
-          cursor: url('/images/DT1.png') 10 0, auto;
-        }
+                /* --- custom cursor --- */
+                        body,
+                        body * {
+                            cursor: url('../images/DT1.png') 12 12, auto;
+                        }
 
-        a, button, [role="button"], input[type="button"], input[type="submit"], select, textarea {
-          cursor: url('/images/DT1.png') 10 0, auto;
-        }
+                        a, button, [role="button"], input[type="button"], input[type="submit"], select, textarea {
+                            cursor: url('../images/DT1.png') 12 12, pointer;
+                }
 
         @media (prefers-reduced-motion: reduce){
             :root { --transition: 0ms; --transition-fast: 0ms; }

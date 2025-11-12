@@ -5,7 +5,6 @@
  */
 
 const CVTemplateData = {
-    // Personal Information
     personal: {
         name: 'Muhammad Abdurrahman Rabbani',
         title: 'Data Analyst · Full‑Stack Developer · AI Engineer',
@@ -19,18 +18,13 @@ const CVTemplateData = {
         languages: ['Indonesian (Native)', 'English (Professional)', 'Japanese (Beginner)']
     },
 
-    // Professional Summary - Multiple variants for different roles
     summaries: {
         general: 'Informatics undergraduate combining technical engineering skills with entrepreneurial experience. Specialized in data-driven decision making, building production-ready solutions, and delivering measurable business impact. Proven track record in leading cross-functional teams and shipping scalable projects from concept to deployment.',
-        
         data_scientist: 'Data-driven engineer with expertise in statistical analysis, machine learning, and data pipeline architecture. Skilled in Python, SQL, and cloud technologies. Demonstrated ability to translate complex data into actionable business insights and build predictive models that improve operational efficiency.',
-        
         fullstack: 'Full‑stack developer proficient in modern web technologies (React, Node.js, Express) with strong backend engineering practices. Experienced in building scalable APIs, designing optimal database schemas, and delivering high-quality user interfaces. Committed to clean code, documentation, and DevOps best practices.',
-        
         ai_engineer: 'AI/ML engineer focused on practical model development and deployment. Skilled in PyTorch, scikit-learn, and production ML systems. Experienced in building evaluation pipelines, model optimization, and integrating AI solutions into production environments for real-world impact.'
     },
 
-    // Core Competencies
     skills: {
         technical: [
             'Python (pandas, numpy, scikit-learn, PyTorch)',
@@ -60,49 +54,50 @@ const CVTemplateData = {
         ]
     },
 
-    // Professional Experience
     experience: [
         {
+            id: 'colorweave_ceo',
             role: 'CEO & Project Lead',
             company: 'Colorweave',
             dates: 'Jan 2025 – Present',
             location: 'Jakarta, Indonesia',
             description: [
-                'Led cross-functional team of 5 members through full product lifecycle from ideation to market launch',
-                'Developed and executed comprehensive business model canvas and go-to-market strategy',
-                'Architected e-commerce platform launch on Shopee with integrated payment systems',
-                'Achieved 150+ initial customer base and positive unit economics in first month',
-                'Managed resource allocation, stakeholder communication, and product roadmap prioritization'
+                'Led cross-functional team of 5 members through full product lifecycle from ideation to market launch.',
+                'Developed and executed comprehensive business model canvas and go-to-market strategy.',
+                'Architected e-commerce platform launch on Shopee with integrated payment systems.',
+                'Achieved 150+ early customers and positive unit economics in the first month.',
+                'Managed resource allocation, stakeholder communication, and product roadmap prioritization.'
             ]
         },
         {
+            id: 'db_architect',
             role: 'Database Architect & Developer',
             company: 'E-Commerce Platform Project',
             dates: 'Dec 2024 – Jan 2025',
             location: 'Universitas Bina Sarana Informatika',
             description: [
-                'Designed and implemented normalized MySQL schema supporting 10,000+ products and transactions',
-                'Optimized query performance achieving 60% reduction in average response time',
-                'Created comprehensive data dictionary and documentation for development team',
-                'Mentored junior developers on database design principles and SQL best practices',
-                'Implemented data integrity constraints and automated backup procedures'
+                'Designed and implemented normalized MySQL schema supporting 10,000+ products and transactions.',
+                'Optimized query performance achieving 60% reduction in average response time.',
+                'Created comprehensive data dictionary and documentation for development team.',
+                'Mentored junior developers on database design principles and SQL best practices.',
+                'Implemented data integrity constraints and automated backup procedures.'
             ]
         },
         {
+            id: 'data_bi_intern',
             role: 'Data Analysis & Business Intelligence Intern',
             company: 'Academic Research Project',
             dates: 'Sep 2024 – Nov 2024',
             location: 'Depok, West Java',
             description: [
-                'Analyzed 50,000+ data points to identify business trends and customer behavior patterns',
-                'Created interactive dashboards reducing manual reporting time by 40%',
-                'Developed predictive models improving forecast accuracy to 85%',
-                'Presented insights to stakeholders leading to strategic business decisions'
+                'Analyzed 50,000+ data points to identify business trends and customer behavior patterns.',
+                'Created interactive dashboards reducing manual reporting time by 40%.',
+                'Developed predictive models improving forecast accuracy to 85%.',
+                'Presented insights to stakeholders leading to strategic business decisions.'
             ]
         }
     ],
 
-    // Education
     education: [
         {
             degree: 'Bachelor of Informatics (B.Sc. Informatics)',
@@ -128,9 +123,9 @@ const CVTemplateData = {
         }
     ],
 
-    // Certifications & Achievements
     certifications: [
         {
+            id: 'data_science_foundation',
             name: 'Data Science Foundation',
             issuer: 'Jobstreet by Seek',
             date: 'Dec 2024',
@@ -138,6 +133,7 @@ const CVTemplateData = {
             credentialUrl: '#'
         },
         {
+            id: 'copilot_foundation',
             name: 'Microsoft 365 Copilot Foundation',
             issuer: 'Microsoft Learn',
             date: 'Nov 2024',
@@ -145,6 +141,7 @@ const CVTemplateData = {
             credentialUrl: '#'
         },
         {
+            id: 'google_analytics',
             name: 'Google Analytics Certification',
             issuer: 'Google (In Progress)',
             date: 'Expected Jan 2025',
@@ -153,16 +150,17 @@ const CVTemplateData = {
         }
     ],
 
-    // Key Projects & Portfolio
     projects: [
         {
+            id: 'colorweave_platform',
             title: 'Colorweave E-Commerce Platform',
-            description: 'Full-stack e-commerce solution with MySQL database, Node.js backend, and React frontend. Integrated Shopee API for multi-channel selling.',
+            description: 'Full-stack e-commerce solution with MySQL, Node.js, and React. Integrated Shopee API for multi-channel selling.',
             technologies: ['MySQL', 'Node.js', 'React', 'Express', 'Shopee API'],
             link: 'https://github.com/Rabbani218/colorweave',
             highlight: true
         },
         {
+            id: 'portfolio_dashboard',
             title: 'Portfolio Analytics Dashboard',
             description: 'Real-time analytics dashboard synced with GitHub data showing project metrics, language distribution, and contribution trends.',
             technologies: ['JavaScript', 'GitHub API', 'Chart.js', 'D3.js'],
@@ -170,22 +168,40 @@ const CVTemplateData = {
             highlight: true
         },
         {
+            id: 'smart_pipeline',
             title: 'Smart Data Pipeline',
-            description: 'Automated ETL pipeline processing 100K+ records daily with data validation, transformation, and loading into data warehouse.',
+            description: 'Automated ETL pipeline processing 100K+ records daily with data validation, transformation, and warehouse loading.',
             technologies: ['Python', 'Pandas', 'SQL', 'Apache Airflow'],
             link: 'https://github.com/Rabbani218/data-pipeline',
             highlight: false
         }
     ],
 
-    // Additional Sections
+    achievements: [
+        {
+            id: 'team_leadership',
+            text: 'Led Colorweave cross-functional squad from concept to launch, onboarding 150+ early adopters within the first month.'
+        },
+        {
+            id: 'pipeline_automation',
+            text: 'Delivered automated ETL pipeline processing 100K+ records daily with validation checks and zero failed runs during pilot.'
+        },
+        {
+            id: 'performance_optimization',
+            text: 'Reduced database query response times by 60% via schema optimisation, indexing, and caching strategies.'
+        },
+        {
+            id: 'analytics_adoption',
+            text: 'Shipped analytics dashboards that cut manual reporting by ~40% and guided marketing and product decisions.'
+        }
+    ],
+
     languages: [
         { name: 'Indonesian', level: 'Native' },
         { name: 'English', level: 'Professional Working Proficiency (B2)' },
         { name: 'Japanese', level: 'Elementary Proficiency (A2)' }
     ],
 
-    // Target Roles Information
     targetRoles: {
         data_scientist: {
             title: 'Data Scientist / ML Engineer',
@@ -209,7 +225,6 @@ const CVTemplateData = {
         }
     },
 
-    // CV Customization Options
     preferences: {
         availability: 'Immediately Available',
         workMode: 'Open to Remote, Hybrid, and On-site',
@@ -220,10 +235,130 @@ const CVTemplateData = {
         timezone: 'WIB (UTC+7)',
         experience: 'Entry-level to Mid-level (2 years equivalent)',
         salaryExpectation: 'Negotiable based on role and location'
+    },
+
+    roleVariants: {
+        general: {
+            label: 'Hybrid Software & Data',
+            headline: 'Balanced profile for fast-moving teams needing software and analytics execution.',
+            summaryKey: 'general',
+            focusAreas: ['Full-stack delivery', 'Data storytelling', 'Team leadership'],
+            skillFocus: [
+                'Python (pandas, numpy, scikit-learn)',
+                'SQL & Database Design (MySQL, PostgreSQL)',
+                'React & modern front-end engineering',
+                'Node.js & Express APIs',
+                'Docker & containerization',
+                'Product & stakeholder leadership'
+            ],
+            experienceIds: ['colorweave_ceo', 'db_architect', 'data_bi_intern'],
+            maxExperienceBullets: 4,
+            achievementIds: ['team_leadership', 'performance_optimization', 'analytics_adoption'],
+            projectIds: ['colorweave_platform', 'portfolio_dashboard'],
+            certificationIds: ['data_science_foundation', 'copilot_foundation'],
+            maxProjects: 3,
+            defaultTemplate: 'modern',
+            primaryColor: '#0b3d91',
+            accentColor: '#0ea5a4',
+            fileLabel: 'general'
+        },
+        data_scientist: {
+            label: 'Data & BI Focus',
+            headline: 'Highlights analytics, experimentation, and business insight delivery.',
+            summaryKey: 'data_scientist',
+            focusAreas: ['Analytics engineering', 'Predictive modeling', 'Decision automation'],
+            skillFocus: [
+                'Python (pandas, scikit-learn, statsmodels)',
+                'SQL optimisation & warehousing',
+                'Data visualization (Power BI, Tableau)',
+                'ETL orchestration & automation',
+                'Experiment design & A/B testing',
+                'Business storytelling & stakeholder comms'
+            ],
+            experienceIds: ['data_bi_intern', 'colorweave_ceo', 'db_architect'],
+            experienceOverrides: {
+                colorweave_ceo: {
+                    description: [
+                        'Instrumented product analytics and defined core KPIs for Colorweave launch.',
+                        'Translated customer insights into backlog priorities that unlocked 150+ paying users.',
+                        'Used data-led experiments to validate pricing and marketing promotions.'
+                    ],
+                    maxBullets: 3
+                }
+            },
+            maxExperienceBullets: 3,
+            achievementIds: ['pipeline_automation', 'analytics_adoption', 'team_leadership'],
+            projectIds: ['portfolio_dashboard', 'smart_pipeline'],
+            certificationIds: ['data_science_foundation', 'google_analytics'],
+            maxProjects: 3,
+            defaultTemplate: 'classic',
+            primaryColor: '#0b3d91',
+            accentColor: '#60a5fa',
+            fileLabel: 'data_science'
+        },
+        fullstack: {
+            label: 'Full-Stack Engineering',
+            headline: 'Centres backend architecture, APIs, and delivery velocity.',
+            summaryKey: 'fullstack',
+            focusAreas: ['Backend architecture', 'API & integration design', 'Front-end delivery'],
+            skillFocus: [
+                'Node.js, Express & REST API design',
+                'React & component-driven UI development',
+                'Database performance tuning (MySQL, PostgreSQL)',
+                'DevOps fundamentals (Docker, CI/CD)',
+                'Testing & observability practices',
+                'Documentation & team collaboration'
+            ],
+            experienceIds: ['db_architect', 'colorweave_ceo'],
+            includeExperienceIds: ['data_bi_intern'],
+            experienceOverrides: {
+                db_architect: {
+                    description: [
+                        'Designed normalized MySQL schema scaling to 10k+ products and transactions.',
+                        'Implemented query optimizations cutting response time by 60%.',
+                        'Documented data dictionary and onboarding guides for developers.',
+                        'Automated backup and monitoring scripts to harden reliability.'
+                    ]
+                }
+            },
+            maxExperienceBullets: 4,
+            achievementIds: ['performance_optimization', 'team_leadership'],
+            projectIds: ['colorweave_platform', 'smart_pipeline'],
+            certificationIds: ['copilot_foundation'],
+            maxProjects: 3,
+            defaultTemplate: 'modern',
+            primaryColor: '#0b3d91',
+            accentColor: '#60a5fa',
+            fileLabel: 'fullstack'
+        },
+        ai_engineer: {
+            label: 'AI & ML Engineering',
+            headline: 'Optimised for experimentation, evaluation, and lightweight deployment.',
+            summaryKey: 'ai_engineer',
+            focusAreas: ['Model prototyping', 'Evaluation pipelines', 'ML deployment'],
+            skillFocus: [
+                'PyTorch & scikit-learn experimentation',
+                'Model evaluation & tracking (MLflow style)',
+                'FastAPI / Flask model serving',
+                'Vector databases & embeddings',
+                'Data versioning & reproducibility',
+                'Cloud deployment basics (AWS/GCP)'
+            ],
+            experienceIds: ['data_bi_intern', 'colorweave_ceo'],
+            includeExperienceIds: ['db_architect'],
+            maxExperienceBullets: 3,
+            achievementIds: ['pipeline_automation', 'analytics_adoption'],
+            projectIds: ['smart_pipeline', 'portfolio_dashboard'],
+            certificationIds: ['data_science_foundation', 'google_analytics'],
+            maxProjects: 3,
+            defaultTemplate: 'bold',
+            primaryColor: '#0b3d91',
+            accentColor: '#f97316',
+            fileLabel: 'ai_ml'
+        }
     }
 };
 
-// Export for use in other scripts
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = CVTemplateData;
 }

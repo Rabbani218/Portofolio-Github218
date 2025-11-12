@@ -578,48 +578,189 @@
                     No projects match the selected filters. Try clearing filters or broaden your search.
                 </div>
 
-                <!-- Project card template -->
+                <style>
+                    .projects-grid {
+                        gap: clamp(18px, 2vw, 28px) !important;
+                        align-items: stretch;
+                    }
+                    .project-card {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 16px;
+                        padding: clamp(18px, 2.4vw, 24px);
+                        border-radius: 16px;
+                        background: var(--card-bg, #fff);
+                        border: 1px solid rgba(15, 23, 42, 0.08);
+                        box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+                        line-height: 1.55;
+                        transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.25s ease;
+                    }
+                    .project-card:hover {
+                        transform: translateY(-4px);
+                        border-color: rgba(37, 99, 235, 0.28);
+                        box-shadow: 0 18px 44px rgba(15, 23, 42, 0.14);
+                    }
+                    .project-card__header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        gap: 18px;
+                    }
+                    .project-title {
+                        margin: 0;
+                        font-size: 1.12rem;
+                        font-weight: 700;
+                        color: var(--text-color, #0f172a);
+                    }
+                    .project-meta {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 6px;
+                        margin-top: 6px;
+                        font-size: 0.9rem;
+                        color: var(--muted-color, #64748b);
+                        letter-spacing: 0.01em;
+                    }
+                    .project-card__metrics {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-end;
+                        gap: 6px;
+                        min-width: 72px;
+                    }
+                    .project-card__metrics span {
+                        font-size: 0.95rem;
+                        font-weight: 700;
+                        color: #f59e0b;
+                        letter-spacing: 0.02em;
+                    }
+                    .project-card__metrics span:last-child {
+                        color: #0ea5a4;
+                    }
+                    .project-description {
+                        margin: 0;
+                        color: var(--muted-color, #475569);
+                        font-size: 0.95rem;
+                        letter-spacing: 0.01em;
+                    }
+                    .project-badges {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 8px;
+                        padding: 10px 12px;
+                        border-radius: 12px;
+                        background: rgba(226, 232, 240, 0.5);
+                    }
+                    .project-badges .badge {
+                        padding: 6px 10px;
+                        border-radius: 999px;
+                        background: rgba(148, 163, 184, 0.2);
+                        color: var(--muted-color, #475569);
+                        font-size: 0.85rem;
+                        letter-spacing: 0.02em;
+                    }
+                    .project-card__footer {
+                        margin-top: auto;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        gap: 12px;
+                    }
+                    .project-card__links {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 10px;
+                    }
+                    .project-card__links a {
+                        padding: 9px 14px;
+                        border-radius: 10px;
+                        font-size: 0.92rem;
+                        font-weight: 600;
+                        letter-spacing: 0.01em;
+                        text-decoration: none;
+                    }
+                    .view-code {
+                        color: #1d4ed8;
+                        text-decoration: underline;
+                        font-weight: 600;
+                    }
+                    .btn-secondary {
+                        background: #e2e8f0;
+                        color: #0f172a;
+                    }
+                    .btn-accent {
+                        background: linear-gradient(135deg, #2563eb, #0ea5e9);
+                        color: #fff;
+                    }
+                    @media (max-width: 640px) {
+                        .project-card {
+                            padding: 16px;
+                            gap: 14px;
+                        }
+                        .project-card__header {
+                            flex-direction: column;
+                            align-items: flex-start;
+                        }
+                        .project-card__metrics {
+                            flex-direction: row;
+                            gap: 12px;
+                        }
+                        .project-card__footer {
+                            flex-direction: column;
+                            align-items: stretch;
+                        }
+                        .project-card__links {
+                            width: 100%;
+                        }
+                        .project-card__links a {
+                            flex: 1 1 auto;
+                            text-align: center;
+                        }
+                    }
+                </style>
+
                 <template id="project-card-template">
-                    <article class="project-card" role="listitem" style="display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:10px;background:var(--card-bg,#fff);box-shadow:0 6px 18px rgba(8,15,30,0.04);">
-                        <header style="display:flex;justify-content:space-between;align-items:start;gap:12px;">
-                            <div style="flex:1;">
-                                <h3 class="project-title" style="margin:0 0 6px 0;font-size:1.05rem;">Project name</h3>
-                                <div class="project-meta muted-small" style="color:var(--muted-color,#6b7280);font-size:0.9rem;">
+                    <article class="project-card" role="listitem">
+                        <header class="project-card__header">
+                            <div>
+                                <h3 class="project-title">Project name</h3>
+                                <div class="project-meta">
                                     <span class="project-lang">Language</span>
-                                    <span aria-hidden="true"> • </span>
+                                    <span aria-hidden="true">•</span>
                                     <time class="project-updated" datetime="">Updated</time>
                                 </div>
                             </div>
 
-                            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
-                                <div class="project-stars" aria-hidden="true" style="font-weight:700;color:#fbbf24;">★0</div>
-                                <a class="view-code" href="#" target="_blank" rel="noopener" style="font-size:0.9rem;color:#0f61c3;text-decoration:underline;">View code</a>
+                            <div class="project-card__metrics" aria-label="Repository statistics">
+                                <span class="project-stars" aria-label="Stars">★ 0</span>
+                                <span class="project-forks" aria-label="Forks">⑂ 0</span>
                             </div>
                         </header>
 
-                        <p class="project-description muted" style="margin:0;color:var(--muted-color,#65728a);font-size:0.95rem;">
+                        <p class="project-description">
                             Short project description — concise and recruiter-focused (1–2 lines).
                         </p>
 
-                        <footer style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;">
-                            <div class="project-badges muted-small" aria-hidden="true" style="display:flex;gap:6px;flex-wrap:wrap;">
-                                <span class="badge forks" style="background:#f1f5f9;padding:6px 8px;border-radius:999px;">Forks 0</span>
-                                <span class="badge topics" style="background:#f1f5f9;padding:6px 8px;border-radius:999px;">Topics</span>
-                            </div>
-                            <div style="display:flex;gap:8px;">
-                                <a class="btn-secondary" href="#" target="_blank" rel="noopener" style="padding:8px 10px;border-radius:8px;text-decoration:none;">Open</a>
-                                <a class="btn-accent" href="#" target="_blank" rel="noopener" style="padding:8px 10px;border-radius:8px;text-decoration:none;">Demo</a>
+                        <div class="project-badges" aria-hidden="true">
+                            <span class="badge forks">Forks 0</span>
+                            <span class="badge topics">Topics</span>
+                        </div>
+
+                        <footer class="project-card__footer">
+                            <a class="view-code" href="#" target="_blank" rel="noopener">View code</a>
+                            <div class="project-card__links">
+                                <a class="btn-secondary" href="#" target="_blank" rel="noopener">Repository</a>
+                                <a class="btn-accent" href="#" target="_blank" rel="noopener">Live demo</a>
                             </div>
                         </footer>
                     </article>
                 </template>
 
-                <!-- Optional: simple pagination / load more placeholder -->
-                <div id="projects-controls-bottom" style="margin-top:18px;display:flex;justify-content:center;gap:10px;">
+                <div id="projects-controls-bottom" style="margin-top:22px;display:flex;justify-content:center;gap:14px;">
                     <button id="projects-load-more" type="button" class="btn-secondary" style="display:none;">Load more</button>
                 </div>
             </div>
-        </section>
+        </section></div></header></article></template>
 
         <section id="skills">
             <h2 class="section-title">Skills <span class="japanese-accent" aria-hidden="true">スキル</span></h2>
@@ -633,240 +774,383 @@
             </div>
         </section>
         <section id="cv-tailor" class="cv-section" aria-labelledby="cv-title">
+            <style>
+            .cv-section .section-inner {
+                display: grid;
+                gap: clamp(20px, 3vw, 32px);
+            }
+            .cv-builder-grid {
+                display: grid;
+                gap: clamp(18px, 2.5vw, 28px);
+                align-items: start;
+                grid-template-columns: minmax(0, 1fr) minmax(320px, 380px);
+            }
+            .cv-form-card,
+            .cv-variants {
+                background: var(--card-bg, #fff);
+                padding: clamp(16px, 2vw, 20px);
+                border-radius: 12px;
+                box-shadow: 0 8px 24px rgba(8, 15, 30, 0.06);
+                display: flex;
+                flex-direction: column;
+                gap: clamp(12px, 2vw, 18px);
+            }
+            .cv-form-grid {
+                display: grid;
+                gap: clamp(10px, 2vw, 16px);
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            .cv-form label {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+            }
+            .cv-form input,
+            .cv-form textarea,
+            .cv-form select {
+                padding: 10px 12px;
+                border-radius: 8px;
+                border: 1px solid #e6e9ef;
+                font: inherit;
+            }
+            .cv-actions {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                align-items: center;
+            }
+            .cv-variant-grid {
+                display: grid;
+                gap: clamp(12px, 2vw, 18px);
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            }
+            .cv-variant-card {
+                border: 1px solid rgba(148, 163, 184, 0.25);
+                border-radius: 12px;
+                padding: clamp(14px, 2vw, 18px);
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                cursor: pointer;
+                outline: none;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+            .cv-variant-card:focus,
+            .cv-variant-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+            }
+            .cv-variant-card ul {
+                margin: 0;
+                padding-left: 18px;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+            }
+            .cv-variant-card .btn-group {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .cv-preview-pane {
+                position: sticky;
+                top: 90px;
+            }
+            .cv-preview-card {
+                background: #fff;
+                border-radius: 12px;
+                padding: clamp(18px, 2.5vw, 22px);
+                border: 1px solid #e6e9ef;
+                box-shadow: 0 12px 36px rgba(8, 15, 30, 0.08);
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                min-height: 420px;
+            }
+            .cv-preview-card header {
+                display: flex;
+                justify-content: space-between;
+                gap: clamp(12px, 2vw, 18px);
+                border-bottom: 1px solid #eef2f7;
+                padding-bottom: 12px;
+            }
+            .cv-preview-card section {
+                margin-top: 6px;
+            }
+            .cv-preview-card ul {
+                margin: 0;
+                padding-left: 18px;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+            }
+            .cv-preview-card footer {
+                border-top: 1px dashed #e2e8f0;
+                padding-top: 10px;
+                margin-top: 10px;
+                color: #94a3b8;
+                font-size: 0.85rem;
+            }
+            @media (max-width: 1024px) {
+                .cv-builder-grid {
+                grid-template-columns: minmax(0, 1fr);
+                }
+                .cv-preview-pane {
+                position: static;
+                }
+                .cv-preview-card header {
+                flex-direction: column;
+                text-align: left;
+                }
+                .cv-preview-card header > div:last-child {
+                text-align: left;
+                align-items: flex-start !important;
+                }
+            }
+            </style>
+
             <div class="section-inner">
-                <div class="cv-header">
-                    <h2 id="cv-title" class="section-title">Generate Professional CV</h2>
-                    <p class="section-description">
-                        Build a tailored, recruiter-ready CV in seconds. Select your template, customize your information, preview in real-time, then download as PDF. 
-                        <span style="display:block;margin-top:8px;color:var(--accent-color);font-weight:600;">✨ No data is uploaded to any server — everything stays private</span>
+            <div class="cv-header">
+                <h2 id="cv-title" class="section-title">Instant CV Generator</h2>
+                <p class="section-description">
+                Choose the hiring focus—Full-Stack Engineering, Data Analytics, or AI Engineering—and the generator will tailor high-impact summaries, quantified highlights, and project narratives for that track. Every export keeps the primary contact email (<a href="mailto:Rabbani.Office1806@Gmail.com">Rabbani.Office1806@Gmail.com</a>), the required GitHub link (<a href="https://github.com/Rabbani218" target="_blank" rel="noopener">https://github.com/Rabbani218</a>), and the LinkedIn profile (<a href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" target="_blank" rel="noopener">www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346</a>) front-and-center so recruiter submissions stay compliant while showcasing measurable impact and collaboration stories in a single, comprehensive document.
+                <span style="display:block;margin-top:8px;color:var(--accent-color);font-weight:600;">✨ Everything runs locally in your browser — no data is uploaded.</span>
+                </p>
+            </div>
+
+            <div class="cv-builder-grid">
+                <div class="cv-form-card">
+                <form id="cv-form" class="cv-form" aria-label="CV configuration">
+                    <div class="cv-form-grid">
+                    <label>
+                        <span class="label-text" style="font-weight:600;font-size:0.9rem;">Full name</span>
+                        <input id="cv-name" name="name" type="text" placeholder="Muhammad Abdurrahman Rabbani" required>
+                    </label>
+                    <label>
+                        <span class="label-text" style="font-weight:600;font-size:0.9rem;">Professional title</span>
+                        <input id="cv-title-input" name="title" type="text" placeholder="Data Analyst · Full‑stack · AI Engineer">
+                    </label>
+                    <label>
+                        <span class="label-text" style="font-weight:600;font-size:0.9rem;">Location</span>
+                        <input id="cv-location" name="location" type="text" placeholder="Depok, West Java (Open to remote)">
+                    </label>
+                    <label>
+                        <span class="label-text" style="font-weight:600;font-size:0.9rem;">Email</span>
+                        <input id="cv-email" name="email" type="email" value="Rabbani.Office1806@Gmail.com" placeholder="Rabbani.Office1806@Gmail.com">
+                    </label>
+                    <label>
+                        <span class="label-text" style="font-weight:600;font-size:0.9rem;">Phone</span>
+                        <input id="cv-phone" name="phone" type="text" placeholder="+62 813-8992-2040">
+                    </label>
+                    </div>
+
+                    <label>
+                    <span class="label-text" style="font-weight:600;font-size:0.9rem;">Professional links</span>
+                    <input id="cv-links" name="links" type="text" placeholder="https://github.com/Rabbani218, https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346">
+                    <small class="muted-small" style="color:var(--muted-color,#6b7280);">Separate multiple URLs with commas (GitHub and LinkedIn links are required).</small>
+                    </label>
+
+                    <label>
+                    <span class="label-text" style="font-weight:600;font-size:0.9rem;">Professional summary</span>
+                    <textarea id="cv-summary" name="summary" rows="4" placeholder="Highlight primary strengths, measurable impact, and the target role."></textarea>
+                    </label>
+
+                    <label>
+                    <span class="label-text" style="font-weight:600;font-size:0.9rem;">Key skills (comma separated)</span>
+                    <input id="cv-skills" type="text" placeholder="Python, SQL, Machine Learning, REST APIs, Docker">
+                    <small class="muted-small" style="color:var(--muted-color,#6b7280);">Displayed as badges in the preview and PDF.</small>
+                    </label>
+
+                    <label>
+                    <span class="label-text" style="font-weight:600;font-size:0.9rem;">Additional project or demo links</span>
+                    <input id="cv-demos" type="text" placeholder="Optional — https://..., separated by commas">
+                    </label>
+
+                    <div class="cv-form-grid">
+                    <label>
+                        <span class="label-text" style="font-weight:600;font-size:0.9rem;">HR focus</span>
+                        <select id="cv-target-role">
+                        <option value="fullstack">Full-Stack Engineering</option>
+                        <option value="data_scientist">Data Analytics</option>
+                        <option value="ai_engineer">AI Engineering</option>
+                        <option value="general">Hybrid Software & Data</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span class="label-text" style="font-weight:600;font-size:0.9rem;">Base template</span>
+                        <select id="cv-template">
+                        <option value="modern">Modern</option>
+                        <option value="classic">Classic</option>
+                        <option value="minimal">Minimal</option>
+                        <option value="bold">Bold</option>
+                        </select>
+                    </label>
+                    </div>
+
+                    <div class="cv-actions">
+                    <button id="cv-download-custom" type="button" class="btn-primary">Download tailored CV</button>
+                    <button id="cv-reset" type="button" class="btn-secondary">Reset fields</button>
+                    <small class="muted-small" style="color:var(--muted-color,#6b7280);">PDF output is ATS friendly and print ready.</small>
+                    </div>
+
+                    <div id="cv-status-message" role="status" aria-live="polite" class="muted-small" style="color:var(--muted-color,#64748b);"></div>
+                </form>
+
+                <section class="cv-variants" aria-label="HR hiring presets">
+                    <header>
+                    <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:6px;">HR Hiring Presets</h3>
+                    <p class="muted-small" style="color:var(--muted-color,#6b7280);">
+                        Each preset rewrites summary, experience highlights, and key metrics to match popular hiring categories while keeping Rabbani.Office1806@Gmail.com, https://github.com/Rabbani218, and www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346 front-and-center for recruiters.
                     </p>
+                    </header>
+
+                    <div class="cv-variant-grid"></div>
+                    <article class="cv-variant-card" data-variant-card data-variant="fullstack" tabindex="0" style="background:linear-gradient(135deg,rgba(96,165,250,0.1),rgba(14,165,164,0.04));">
+                        <div></div>
+                        <span class="muted-small" style="font-weight:700;letter-spacing:0.05em;color:#2563eb;text-transform:uppercase;">Engineering</span>
+                        <h3 style="margin:6px 0 4px;font-size:1.05rem;">Full-Stack Engineering</h3>
+                        <p class="muted-small" style="color:#475569;">Highlights scalable services, API integration, and product velocity for software hiring teams.</p>
+                        </div>
+                        <ul>
+                        <li>Backend architecture &amp; API metrics</li>
+                        <li>Lightweight DevOps and documentation</li>
+                        <li>Cross-functional product collaboration</li>
+                        </ul>
+                        <div class="btn-group">
+                        <button type="button" class="btn-primary cv-download-btn" data-variant="fullstack" data-template="modern">Download Modern</button>
+                        <button type="button" class="btn-secondary cv-download-btn" data-variant="fullstack" data-template="minimal">Download Minimal</button>
+                        </div>
+                    </article>
+
+                    <article class="cv-variant-card" data-variant-card data-variant="data_scientist" tabindex="0" style="background:linear-gradient(135deg,rgba(96,165,250,0.12),rgba(96,165,250,0.05));">
+                        <div>
+                        <span class="muted-small" style="font-weight:700;letter-spacing:0.05em;color:#60a5fa;text-transform:uppercase;">Analytics &amp; BI</span>
+                        <h3 style="margin:6px 0 4px;font-size:1.05rem;">Data Analytics</h3>
+                        <p class="muted-small" style="color:#475569;">Targets teams looking for instrumentation, dashboards, experimentation, and clear business impact.</p>
+                        </div>
+                        <ul>
+                        <li>End-to-end analytics pipelines</li>
+                        <li>Predictive modelling &amp; experimentation</li>
+                        <li>Stakeholder insight communication</li>
+                        </ul>
+                        <div class="btn-group">
+                        <button type="button" class="btn-primary cv-download-btn" data-variant="data_scientist" data-template="classic">Download Classic</button>
+                        <button type="button" class="btn-secondary cv-download-btn" data-variant="data_scientist" data-template="modern">Download Modern</button>
+                        </div>
+                    </article>
+
+                    <article class="cv-variant-card" data-variant-card data-variant="ai_engineer" tabindex="0" style="background:linear-gradient(135deg,rgba(249,115,22,0.12),rgba(96,165,250,0.04));">
+                        <div>
+                        <span class="muted-small" style="font-weight:700;letter-spacing:0.05em;color:#f97316;text-transform:uppercase;">AI &amp; ML</span>
+                        <h3 style="margin:6px 0 4px;font-size:1.05rem;">AI Engineering</h3>
+                        <p class="muted-small" style="color:#475569;">Emphasises model experimentation, evaluation, and lightweight deployment for AI product teams.</p>
+                        </div>
+                        <ul>
+                        <li>Model prototyping &amp; evaluation pipelines</li>
+                        <li>Reproducible experiments and tracking</li>
+                        <li>FastAPI/Flask deployment playbooks</li>
+                        </ul>
+                        <div class="btn-group">
+                        <button type="button" class="btn-primary cv-download-btn" data-variant="ai_engineer" data-template="bold">Download Bold</button>
+                        <button type="button" class="btn-secondary cv-download-btn" data-variant="ai_engineer" data-template="modern">Download Modern</button>
+                        </div>
+                    </article>
+
+                    <article class="cv-variant-card" data-variant-card data-variant="general" tabindex="0" style="background:linear-gradient(135deg,rgba(14,165,164,0.12),rgba(14,165,164,0.04));">
+                        <div>
+                        <span class="muted-small" style="font-weight:700;letter-spacing:0.05em;color:#0ea5a4;text-transform:uppercase;">Generalist</span>
+                        <h3 style="margin:6px 0 4px;font-size:1.05rem;">Hybrid Software &amp; Data</h3>
+                        <p class="muted-small" style="color:#475569;">Balanced storytelling for early-career roles that need end-to-end execution and business insight.</p>
+                        </div>
+                        <ul>
+                        <li>Full-stack delivery backed by measurable wins</li>
+                        <li>Analytics integrated into product decisions</li>
+                        <li>Hiring-manager friendly narrative</li>
+                        </ul>
+                        <div class="btn-group">
+                        <button type="button" class="btn-primary cv-download-btn" data-variant="general" data-template="modern">Download Modern</button>
+                        <button type="button" class="btn-secondary cv-download-btn" data-variant="general" data-template="classic">Download ATS</button>
+                        </div>
+                    </article>
+                    </div>
+                </section>
                 </div>
 
-                <div class="cv-layout" style="display:grid;grid-template-columns:1fr 420px;gap:18px;align-items:start;">
-                    <!-- Form column -->
-                    <form id="cv-form" class="cv-form" aria-label="CV generator form" style="background:var(--card-bg,#fff);padding:16px;border-radius:12px;box-shadow:0 8px 24px rgba(8,15,30,0.05);display:flex;flex-direction:column;gap:12px;">
-                        <!-- Basic info -->
-                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;">
-                            <label style="display:flex;flex-direction:column;">
-                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Full name</span>
-                                <input id="cv-name" name="name" type="text" placeholder="Muhammad Abdurrahman Rabbani" required style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
-                            </label>
-
-                            <label style="display:flex;flex-direction:column;"></label>
-                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Professional title</span>
-                                <input id="cv-title-input" name="title" type="text" placeholder="Data Analyst · Full‑stack · AI Engineer" style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
-                            </label>
-
-                            <label style="display:flex;flex-direction:column;">
-                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Location</span>
-                                <input id="cv-location" name="location" type="text" placeholder="Jakarta, ID (Remote available)" style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
-                            </label>
-
-                            <label style="display:flex;flex-direction:column;">
-                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Email</span>
-                                <input id="cv-email" name="email" type="email" placeholder="you@example.com" style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
-                            </label>
-
-                            <label style="display:flex;flex-direction:column;">
-                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Phone</span>
-                                <input id="cv-phone" name="phone" type="text" placeholder="+62 812 3456 7890" style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
-                            </label>
+                <aside class="cv-preview-pane" aria-label="CV preview">
+                <div id="cv-preview" class="cv-preview-card">
+                    <header>
+                    <div>
+                        <span id="preview-variant-label" class="muted-small" style="display:block;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#0ea5a4;">Hybrid Software &amp; Data</span>
+                        <h3 id="preview-name" style="margin:4px 0 0;font-size:1.1rem;font-weight:800;">Muhammad Abdurrahman Rabbani</h3>
+                        <div id="preview-title" style="color:#334155;margin-top:4px;font-weight:600;">Data Analyst · Full‑stack · AI Engineer</div>
+                        <div id="preview-variant-headline" class="muted-small" style="margin-top:6px;color:#4338ca;font-weight:600;">Balanced profile for software + data execution.</div>
+                        <div id="preview-focus-tags" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;"></div>
+                    </div>
+                    <div style="text-align:right;color:#475569;font-size:0.9rem;display:flex;flex-direction:column;gap:6px;min-width:160px;">
+                        <div id="preview-location">Depok, West Java</div>
+                        <div id="preview-contact" style="display:flex;flex-direction:column;gap:4px;align-items:flex-end;">
+                        <div id="preview-email">Rabbani.Office1806@Gmail.com</div>
+                        <div id="preview-phone">+62 813-8992-2040</div>
+                        <div id="preview-links" style="font-size:0.85rem;color:#64748b;">github.com/Rabbani218 • www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346</div>
                         </div>
+                    </div>
+                    </header>
 
-                        <!-- Links & summary -->
-                        <div style="display:grid;grid-template-columns:1fr;gap:10px;">
-                            <label style="display:flex;flex-direction:column;">
-                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Links (GitHub, LinkedIn, Portfolio)</span>
-                                <input id="cv-links" name="links" type="text" placeholder="https://github.com/..., https://linkedin.com/..." style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
-                            </label>
+                    <section id="preview-summary">
+                    <strong style="display:block;margin-bottom:6px;">Summary</strong>
+                    <div id="preview-summary-text">Two-to-three sentence summary focused on impact and strengths.</div>
+                    </section>
 
-                            <label style="display:flex;flex-direction:column;">
-                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Professional summary</span>
-                                <textarea id="cv-summary" name="summary" rows="4" placeholder="Two-to-three sentence summary focused on impact, strengths and target role." style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;resize:vertical;"></textarea>
-                            </label>
-                        </div>
+                    <section id="preview-highlights">
+                    <strong style="display:block;margin-bottom:6px;">Key Achievements</strong>
+                    <ul id="preview-highlight-list"></ul>
+                    </section>
 
-                        <!-- Skills -->
-                        <div style="display:grid;grid-template-columns:1fr;gap:8px;">
-                            <label style="display:flex;flex-direction:column;">
-                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Key skills (comma separated)</span>
-                                <input id="cv-skills" type="text" placeholder="Python, SQL, Machine Learning, REST APIs, Docker" style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
-                                <small class="muted-small" style="color:var(--muted-color,#6b7280);margin-top:6px;">Skills will be rendered as badges in the CV.</small>
-                            </label>
-                        </div>
+                    <section id="preview-skills">
+                    <strong style="display:block;margin-bottom:6px;">Core Skills</strong>
+                    <div id="preview-skills-list" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+                    </section>
 
-                        <!-- Experience (repeatable container) -->
-                        <div style="display:flex;flex-direction:column;gap:8px;">
-                            <div style="display:flex;justify-content:space-between;align-items:center;">
-                                <strong style="font-size:0.98rem;">Experience</strong>
-                                <div style="display:flex;gap:8px;">
-                                    <button id="cv-add-experience" type="button" class="btn-secondary" style="padding:8px 10px;border-radius:8px;">+ Add</button>
-                                    <button id="cv-clear-experience" type="button" class="btn-secondary" style="padding:8px 10px;border-radius:8px;">Clear</button>
-                                </div>
-                            </div>
+                    <section id="preview-experience">
+                    <strong style="display:block;margin-bottom:6px;">Experience</strong>
+                    <div id="preview-experience-list"></div>
+                    </section>
 
-                            <div id="cv-experience-list" style="display:grid;gap:8px;">
-                                <!-- Single experience item (template will be cloned by JS) -->
-                                <div class="cv-exp-item" style="display:grid;grid-template-columns:1fr 160px;gap:8px;align-items:start;padding:10px;border-radius:8px;border:1px solid #eef2f7;">
-                                    <div style="display:flex;flex-direction:column;gap:6px;">
-                                        <input name="exp-title" class="exp-title" type="text" placeholder="Role — Company (e.g. Data Analyst — XYZ Corp)" style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;">
-                                        <textarea name="exp-desc" class="exp-desc" rows="3" placeholder="Concise bullet points of outcomes and impact (one line per bullet recommended)." style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;resize:vertical;"></textarea>
-                                    </div>
-                                    <div style="display:flex;flex-direction:column;gap:6px;">
-                                        <input name="exp-dates" class="exp-dates" type="text" placeholder="Jan 2022 – Present" style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;">
-                                        <button type="button" class="cv-remove-exp btn-secondary" style="padding:8px;border-radius:6px;align-self:end;">Remove</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <section id="preview-projects">
+                    <strong style="display:block;margin-bottom:6px;">Selected Projects</strong>
+                    <div id="preview-projects-list"></div>
+                    </section>
 
-                        <!-- Education (repeatable) -->
-                        <div style="display:flex;flex-direction:column;gap:8px;">
-                            <div style="display:flex;justify-content:space-between;align-items:center;">
-                                <strong style="font-size:0.98rem;">Education</strong>
-                                <div style="display:flex;gap:8px;">
-                                    <button id="cv-add-education" type="button" class="btn-secondary" style="padding:8px 10px;border-radius:8px;">+ Add</button>
-                                    <button id="cv-clear-education" type="button" class="btn-secondary" style="padding:8px 10px;border-radius:8px;">Clear</button>
-                                </div>
-                            </div>
+                    <section id="preview-education">
+                    <strong style="display:block;margin-bottom:6px;">Education</strong>
+                    <div id="preview-education-list"></div>
+                    </section>
 
-                            <div id="cv-education-list" style="display:grid;gap:8px;">
-                                <div class="cv-edu-item" style="display:grid;grid-template-columns:1fr 160px;gap:8px;align-items:start;padding:10px;border-radius:8px;border:1px solid #eef2f7;">
-                                    <div style="display:flex;flex-direction:column;gap:6px;">
-                                        <input name="edu-title" class="edu-title" type="text" placeholder="Degree — Institution (e.g. B.Sc. Informatics — Universitas ...)" style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;">
-                                        <input name="edu-highlights" class="edu-highlights" type="text" placeholder="Short highlight / relevant coursework" style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;">
-                                    </div>
-                                    <div style="display:flex;flex-direction:column;gap:6px;">
-                                        <input name="edu-dates" class="edu-dates" type="text" placeholder="Jan 2019 – Nov 2023" style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;">
-                                        <button type="button" class="cv-remove-edu btn-secondary" style="padding:8px;border-radius:6px;align-self:end;">Remove</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <section id="preview-certifications">
+                    <strong style="display:block;margin-bottom:6px;">Certifications</strong>
+                    <ul id="preview-certification-list"></ul>
+                    </section>
 
-                        <!-- Additional preferences -->
-                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;align-items:end;">
-                            <label style="display:flex;flex-direction:column;">
-                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Target role</span>
-                                <select id="cv-target-role" aria-label="Target role" style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
-                                    <option value="general">General</option>
-                                    <option value="data_scientist">Data Scientist / ML Engineer</option>
-                                    <option value="fullstack">Full‑stack Developer</option>
-                                    <option value="ai_engineer">AI Engineer / Research</option>
-                                </select>
-                            </label>
+                    <section id="preview-languages">
+                    <strong style="display:block;margin-bottom:6px;">Languages</strong>
+                    <div id="preview-language-list" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+                    </section>
 
-                            <label style="display:flex;flex-direction:column;">
-                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Expected salary</span>
-                                <input id="cv-salary" type="text" placeholder="e.g. 6,000,000 JPY / 1,200 USD" style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
-                            </label>
+                    <section id="preview-additional">
+                    <strong style="display:block;margin-bottom:6px;">Hiring Snapshot</strong>
+                    <ul id="preview-additional-list">
+                        <li>Mandatory GitHub submission link: https://github.com/Rabbani218 (validated in every tailored CV).</li>
+                        <li>Primary contact email for recruiter follow-up: Rabbani.Office1806@Gmail.com.</li>
+                        <li>LinkedIn profile for recruiter outreach: www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346.</li>
+                    </ul>
+                    </section>
 
-                            <label style="display:flex;flex-direction:column;">
-                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Daily hours</span>
-                                <input id="cv-hours" type="number" min="1" max="12" step="1" value="8" style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
-                            </label>
-
-                            <label style="display:flex;flex-direction:column;">
-                                <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Health app experience</span>
-                                <select id="cv-health-experience" style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
-                                    <option value="no">No</option>
-                                    <option value="yes">Yes</option>
-                                </select>
-                            </label>
-                        </div>
-
-                        <label style="display:flex;flex-direction:column;">
-                            <span class="label-text" style="font-weight:600;font-size:0.9rem;margin-bottom:6px;">Project / demo links</span>
-                            <input id="cv-demos" type="text" placeholder="https://..., separate with commas" style="padding:10px;border-radius:8px;border:1px solid #e6e9ef;">
-                        </label>
-
-                        <!-- Actions -->
-                        <div style="display:flex;gap:10px;align-items:center;justify-content:flex-start;margin-top:6px;">
-                            <button id="cv-preview-btn" type="button" class="btn-primary" style="padding:10px 14px;border-radius:10px;">Preview</button>
-                            <button id="generateTailoredCv" class="btn-accent" type="button" style="padding:10px 14px;border-radius:10px;">Generate PDF</button>
-                            <button id="cv-reset" type="reset" class="btn-secondary" style="padding:10px 14px;border-radius:10px;">Reset</button>
-                            <small class="muted-small" style="margin-left:8px;color:var(--muted-color,#6b7280);">PDF created in-browser. No upload.</small>
-                        </div>
-                    </form>
-
-                    <!-- Preview column -->
-                    <aside aria-label="CV preview" style="position:relative;">
-                        <div id="cv-preview" style="background:white;border-radius:10px;padding:18px;border:1px solid #e6e9ef;box-shadow:0 8px 24px rgba(8,15,30,0.04);min-height:360px;overflow:auto;">
-                            <!-- Printable CV layout (will be populated by JS) -->
-                            <div id="cv-preview-content" style="font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#0f172a;">
-                                <header style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1px solid #eef2f7;padding-bottom:10px;margin-bottom:12px;">
-                                    <div>
-                                        <h3 id="preview-name" style="margin:0;font-size:1.05rem;font-weight:800;">Muhammad Abdurrahman Rabbani</h3>
-                                        <div id="preview-title" style="color:#334155;margin-top:4px;font-weight:600;">Data Analyst · Full‑stack · AI Engineer</div>
-                                    </div>
-                                    <div style="text-align:right;color:#475569;font-size:0.9rem;">
-                                        <div id="preview-location">Jakarta, ID</div>
-                                        <div id="preview-contact" style="margin-top:6px;">
-                                            <div id="preview-email">you@example.com</div>
-                                            <div id="preview-links" style="margin-top:4px;">github.com/username • linkedin.com/in/username</div>
-                                        </div>
-                                    </div>
-                                </header>
-
-                                <section id="preview-summary" style="margin-bottom:10px;color:#374151;font-size:0.95rem;">
-                                    <strong style="display:block;margin-bottom:6px;">Summary</strong>
-                                    <div id="preview-summary-text">Two-to-three sentence summary focused on impact and strengths.</div>
-                                </section>
-
-                                <section id="preview-skills" style="margin-bottom:10px;">
-                                    <strong style="display:block;margin-bottom:8px;">Core skills</strong>
-                                    <div id="preview-skills-list" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
-                                </section>
-
-                                <section id="preview-experience" style="margin-bottom:10px;">
-                                    <strong style="display:block;margin-bottom:8px;">Experience</strong>
-                                    <div id="preview-experience-list"></div>
-                                </section>
-
-                                <section id="preview-education" style="margin-bottom:10px;">
-                                    <strong style="display:block;margin-bottom:8px;">Education</strong>
-                                    <div id="preview-education-list"></div>
-                                </section>
-
-                                <section id="preview-projects" style="margin-bottom:6px;">
-                                    <strong style="display:block;margin-bottom:8px;">Selected projects & links</strong>
-                                    <div id="preview-projects-list" style="color:#475569;font-size:0.95rem;"></div>
-                                </section>
-
-                                <footer style="border-top:1px dashed #eef2f7;padding-top:10px;margin-top:12px;color:#6b7280;font-size:0.9rem;">
-                                    Generated with portfolio tool — tailored for recruiters.
-                                </footer>
-                            </div>
-                        </div>
-                    </aside>
+                    <footer>
+                    Generated via the portfolio CV generator — update and download anytime.
+                    </footer>
                 </div>
-
-                <!-- Templates (hidden) -->
-                <template id="cv-exp-template">
-                    <div class="cv-exp-item" style="display:grid;grid-template-columns:1fr 160px;gap:8px;align-items:start;padding:10px;border-radius:8px;border:1px solid #eef2f7;">
-                        <div style="display:flex;flex-direction:column;gap:6px;">
-                            <input name="exp-title" class="exp-title" type="text" placeholder="Role — Company" style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;">
-                            <textarea name="exp-desc" class="exp-desc" rows="3" placeholder="Concise responsibilities and outcomes." style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;resize:vertical;"></textarea>
-                        </div>
-                        <div style="display:flex;flex-direction:column;gap:6px;">
-                            <input name="exp-dates" class="exp-dates" type="text" placeholder="Dates" style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;">
-                            <button type="button" class="cv-remove-exp btn-secondary" style="padding:8px;border-radius:6px;align-self:end;">Remove</button>
-                        </div>
-                    </div>
-                </template>
-
-                <template id="cv-edu-template">
-                    <div class="cv-edu-item" style="display:grid;grid-template-columns:1fr 160px;gap:8px;align-items:start;padding:10px;border-radius:8px;border:1px solid #eef2f7;">
-                        <div style="display:flex;flex-direction:column;gap:6px;">
-                            <input name="edu-title" class="edu-title" type="text" placeholder="Degree — Institution" style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;">
-                            <input name="edu-highlights" class="edu-highlights" type="text" placeholder="Highlight / coursework" style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;">
-                        </div>
-                        <div style="display:flex;flex-direction:column;gap:6px;">
-                            <input name="edu-dates" class="edu-dates" type="text" placeholder="Dates" style="padding:8px;border-radius:6px;border:1px solid #e6e9ef;">
-                            <button type="button" class="cv-remove-edu btn-secondary" style="padding:8px;border-radius:6px;align-self:end;">Remove</button>
-                        </div>
-                    </div>
-                </template>
+                </aside>
+            </div>
             </div>
         </section></div>
 
