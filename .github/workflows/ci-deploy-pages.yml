@@ -34,7 +34,8 @@ jobs:
           ls -la public || true
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v1
+        # Use newer minor version to pick up upstream fixes (avoids deprecated internal dependencies)
+        uses: actions/upload-pages-artifact@v2
         with:
           path: public
 
@@ -43,4 +44,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2

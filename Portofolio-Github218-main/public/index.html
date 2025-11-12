@@ -13,7 +13,7 @@
     <meta property="og:url" content="https://your-portfolio-url.com">
     <link rel="icon" href="./images/icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="./public/css/style.css">
+    <!-- legacy path removed (use ./css/portfolio.css instead) -->
     <!-- Use Inter for a modern, professional UI with Segoe UI fallback -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/three-dots/dist/three-dots.css">
@@ -288,19 +288,21 @@
             <div class="cyber-card">
                 <div class="hologram-effect">
                     <h4>Summary</h4>
-            <!-- Override styles are consolidated into ./css/portfolio.css -->
-            <style>
-                /* minimal theme overrides if needed; portfolio.css is authoritative */
-                :root { --legacy-overrides: 1; }
-            </style>
-            <a href="https://id.jobstreet.com/id/profile/muhammadabdurrahman-rabbani-0VYgwp5ZY5" 
-               class="contact-btn btn-accent scroll-animate">
-                <img src="./assets/icons/icon-briefcase.svg" class="icon" alt="JobStreet" aria-hidden="true"> JobStreet
-            </a>
-            <a href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" 
-               class="contact-btn btn-primary scroll-animate">
-                <img src="./assets/icons/icon-linkedin.svg" class="icon" alt="LinkedIn" aria-hidden="true"> LinkedIn
-            </a>
+                    <!-- Override styles are consolidated into ./css/portfolio.css -->
+                    <style>
+                        /* minimal theme overrides if needed; portfolio.css is authoritative */
+                        :root { --legacy-overrides: 1; }
+                    </style>
+                    <a href="https://id.jobstreet.com/id/profile/muhammadabdurrahman-rabbani-0VYgwp5ZY5" 
+                       class="contact-btn btn-accent scroll-animate">
+                        <img src="./assets/icons/icon-briefcase.svg" class="icon" alt="JobStreet" aria-hidden="true"> JobStreet
+                    </a>
+                    <a href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" 
+                       class="contact-btn btn-primary scroll-animate">
+                        <img src="./assets/icons/icon-linkedin.svg" class="icon" alt="LinkedIn" aria-hidden="true"> LinkedIn
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -330,21 +332,24 @@
         // Initial check
         handleScrollAnimation();
 
-        // Profile image hover effect
+        // Profile image hover effect (guarded - element may be absent)
         const profileImg = document.querySelector('.profile-img');
         let isHovering = false;
-        
-        profileImg.addEventListener('mouseenter', () => {
-            if(!isHovering) {
-                profileImg.style.transform = 'scale(1.05)';
-                isHovering = true;
-            }
-        });
-        
-        profileImg.addEventListener('mouseleave', () => {
-            profileImg.style.transform = 'scale(1)';
-            isHovering = false;
-        });
+        if (profileImg) {
+            profileImg.addEventListener('mouseenter', () => {
+                if(!isHovering) {
+                    profileImg.style.transform = 'scale(1.05)';
+                    isHovering = true;
+                }
+            });
+            profileImg.addEventListener('mouseleave', () => {
+                profileImg.style.transform = 'scale(1)';
+                isHovering = false;
+            });
+            profileImg.onerror = function() {
+                this.src = 'assets/images/fallback.jpg';
+            };
+        }
 
         // Add smooth scroll behavior
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -371,24 +376,23 @@
             this.src = 'assets/images/fallback.jpg';
         };
 
-        // Testimonial slider
-        let testimonialIndex = 0;
+        // Testimonial slider (guarded if none present)
         const testimonials = document.querySelectorAll('.testimonial-card');
-        
-        function showTestimonial(index) {
-            testimonials.forEach((testimonial, i) => {
-                testimonial.style.display = i === index ? 'block' : 'none';
-            });
+        if (testimonials && testimonials.length > 0) {
+            let testimonialIndex = 0;
+            function showTestimonial(index) {
+                testimonials.forEach((testimonial, i) => {
+                    testimonial.style.display = i === index ? 'block' : 'none';
+                });
+            }
+            function nextTestimonial() {
+                testimonialIndex = (testimonialIndex + 1) % testimonials.length;
+                showTestimonial(testimonialIndex);
+            }
+            // Auto-rotate testimonials
+            setInterval(nextTestimonial, 5000);
+            showTestimonial(0);
         }
-
-        function nextTestimonial() {
-            testimonialIndex = (testimonialIndex + 1) % testimonials.length;
-            showTestimonial(testimonialIndex);
-        }
-
-        // Auto-rotate testimonials
-        setInterval(nextTestimonial, 5000);
-        showTestimonial(0);
 
         // audio removed: toggleMusic and autoplay handlers removed
 
@@ -412,11 +416,12 @@
         // Particle System Initialization
         function initParticles() {
             const container = document.querySelector('.particle-system');
+            if(!container) return; // nothing to draw in environments without this element
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
             
-            canvas.width = container.offsetWidth;
-            canvas.height = container.offsetHeight;
+            canvas.width = container.offsetWidth || 800;
+            canvas.height = container.offsetHeight || 400;
             container.appendChild(canvas);
 
             class Particle {

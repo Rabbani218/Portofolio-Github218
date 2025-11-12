@@ -85,3 +85,16 @@ a:focus{ outline: 3px solid rgba(0,208,255,0.12); outline-offset:3px; }
 .edu-logo{ height:60px; margin-right:1rem; }
 .edu-duration{ color: #b39ddb; }
 .icon.no-color{ filter:none; }
+
+/* ===== Clean-up overlays (make layout simpler / ATS-friendly) ===== */
+/* Some decorative layers were visually intrusive; hide them to avoid layout breakage */
+.animated-bg,
+.space-background,
+.retro-overlay,
+.aurora-effect,
+.particle-system {
+  display: none !important;
+}
+
+/* Ensure testimonial placeholders don't break scripts when missing */
+.testimonial-card{ display:block; }
