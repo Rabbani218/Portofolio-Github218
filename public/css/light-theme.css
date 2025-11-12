@@ -216,13 +216,17 @@
     .skill-bar__progress--ml{ background:linear-gradient(90deg,#10b981,#84cc16); }
 
         /* sections */
-        section{ padding:4rem 1.5rem; max-width:1200px; margin:0 auto; }
-        .section-title{ font-size:1.6rem; text-align:center; color:var(--primary-color); margin-bottom:0.4rem; position:relative; }
-        .section-title::after{
-            content:""; position:absolute; left:50%; transform:translateX(-50%); bottom:-14px; width:90px; height:6px; border-radius:999px;
-            background: linear-gradient(90deg,var(--accent-color), var(--accent-2));
+        section{ padding: clamp(3rem, 6vw, 5rem) 1.5rem; max-width:1200px; margin:0 auto; }
+        .section-title{ 
+            font-size: clamp(1.75rem, 4vw, 2.2rem); 
+            font-weight: 700;
+            text-align:center; 
+            color:var(--primary-color); 
+            margin-bottom:1rem; 
+            position:relative;
+            letter-spacing:-0.015em;
         }
-        .section-description{ text-align:center; max-width:800px; margin:0 auto 2.2rem; color:var(--muted); }
+        .section-description{ text-align:center; max-width:720px; margin:0 auto 2.8rem; color:var(--muted); font-size:0.98rem; line-height:1.7; }
 
         /* cards - glass + layered pseudo for depth */
         .card{
@@ -443,22 +447,53 @@
         .about-card--collaborate .about-card__actions{ margin-top: 8px; }
 
         /* education list improvements */
-        .education-list{ display: grid; gap: 14px; margin-top: 12px; }
+        .education-list{ display: grid; gap: 1.2rem; margin-top: 1.5rem; }
         .education-item{
-            display: flex; gap: 12px; align-items: flex-start;
-            background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,255,255,0.7));
-            padding: 12px; border-radius: 10px; box-shadow: 0 6px 18px rgba(8,15,30,0.04);
-            border: 1px solid rgba(11,61,145,0.04);
+            display: flex; gap: 1.2rem; align-items: flex-start;
+            background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.75));
+            padding: 1.5rem; border-radius: 12px; box-shadow: 0 6px 18px rgba(8,15,30,0.05);
+            border: 1px solid rgba(11,61,145,0.05);
             transition: transform var(--transition), box-shadow var(--transition);
         }
-        .education-item:hover{ transform: translateY(-4px); box-shadow: 0 10px 30px rgba(11,61,145,0.08); }
-        .education-item__logo{ flex: 0 0 64px; border-radius: 8px; object-fit: cover; }
-        .education-item__content{ display: flex; flex-direction: column; gap: 6px; }
-        .education-item__title{ display: block; font-size: 1.02rem; color: var(--primary-color); margin: 0; }
-        .education-item__degree{ color: var(--text-light); font-size: 0.95rem; margin: 0; }
-        .education-item__period{ color: var(--muted); font-size: 0.95rem; margin: 0; }
-        .education-item__desc{ margin: 0 0 8px 0; color: var(--text-light); font-size: 0.95rem; line-height: 1.6; }
-        .education-item__link{ color: var(--primary-color); text-decoration: underline; font-size: 0.95rem; text-underline-offset: 3px; transition: var(--transition); }
+        .education-item:hover{ transform: translateY(-4px); box-shadow: 0 12px 32px rgba(11,61,145,0.1); }
+        .education-item__logo{ flex: 0 0 72px; border-radius: 10px; object-fit: cover; box-shadow: 0 4px 12px rgba(11,61,145,0.08); }
+        .education-item__content{ display: flex; flex-direction: column; gap: 0.4rem; flex: 1; }
+        .education-item__title{ 
+            display: block; 
+            font-size: 1.12rem; 
+            font-weight: 700;
+            color: var(--primary-color); 
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+        .education-item__degree{ 
+            color: var(--accent-color); 
+            font-size: 0.93rem; 
+            margin: 0;
+            font-weight: 600;
+        }
+        .education-item__period{ 
+            color: var(--muted); 
+            font-size: 0.9rem; 
+            margin: 0;
+            font-weight: 500;
+        }
+        .education-item__desc{ 
+            margin: 0.6rem 0 0 0; 
+            color: var(--text-light); 
+            font-size: 0.94rem; 
+            line-height: 1.7;
+        }
+        .education-item__link{ 
+            color: var(--primary-color); 
+            text-decoration: none;
+            font-size: 0.9rem; 
+            font-weight: 600;
+            transition: var(--transition); 
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
         .education-item__link:hover{ color: var(--accent-color); }
         
         /* contact section improvements */
