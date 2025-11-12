@@ -17,124 +17,11 @@
     <!-- Use Inter for a modern, professional UI with Segoe UI fallback -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/three-dots/dist/three-dots.css">
-    <style>
-        /* Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-            transition: all 0.3s;
-        }
-
-        body {
-            background: #f0f4f8;
-            color: #2d3748;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Updated Base Styles - colorful Undertale-like animated gradient */
-        .animated-bg {
-            background: linear-gradient(120deg, #2b0057 0%, #ff2d95 25%, #00d4ff 60%, #ffd166 100%);
-            background-size: 300% 300%;
-            animation: gradient 12s ease infinite;
-            mix-blend-mode: screen;
-            opacity: 0.95;
-        }
-
-        /* Profile Image Square Style */
-        .profile-img {
-            width: 280px;
-            height: 280px;
-            border-radius: 15px;
-            transform: rotate(45deg);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 20px 40px rgba(58, 108, 163, 0.3);
-        }
-
-        .profile-img:hover {
-            transform: rotate(0deg) scale(1.1);
-            border-radius: 25px;
-        }
-
-        /* Enhanced Background Transition */
-        @keyframes gradient {
-        <style>
-            /* Minimal reset to avoid FOUC; full styles are in portfolio.css */
-            html,body,*{box-sizing:border-box;margin:0;padding:0}
-        </style>
-            letter-spacing: 0.4px !important;
-            text-transform: none !important;
-            background: none !important;
-            -webkit-background-clip: initial !important;
-            background-clip: initial !important;
-            -webkit-text-fill-color: initial !important;
-        }
-
-        /* Navigation header — glassy, unobtrusive */
-        header {
-            background: rgba(255,255,255,0.7) !important;
-            backdrop-filter: blur(6px) !important;
-            border-bottom: 1px solid rgba(16,24,40,0.04) !important;
-        }
-
-        /* Buttons — consistent rounded appearance and accessible contrast */
-        .contact-btn, .btn-primary, .btn-secondary, .btn-accent, .btn-green, .btn-nav {
-            border: 0 !important;
-            padding: 10px 16px !important;
-            border-radius: 10px !important;
-            font-weight: 600 !important;
-            box-shadow: 0 6px 18px rgba(2,6,23,0.08) !important;
-            transition: transform 0.18s ease, box-shadow 0.18s ease !important;
-            color: #fff !important;
-        }
-
-        .contact-btn:hover, .contact-btn:focus {
-            transform: translateY(-3px) !important;
-            box-shadow: 0 12px 30px rgba(2,6,23,0.12) !important;
-        }
-
-        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-600)) !important; color: #fff !important; }
-        .btn-secondary { background: linear-gradient(135deg, #00b7c3, #008b97) !important; color: #fff !important; }
-        .btn-accent { background: linear-gradient(135deg, #ffd166, #ffb84d) !important; color: #1a2b2b !important; }
-        .btn-green { background: linear-gradient(135deg, #34d058, #28a745) !important; color: #06210a !important; }
-        .btn-nav { background: transparent !important; color: var(--muted) !important; box-shadow:none !important; border: 1px solid rgba(16,24,40,0.04) !important; }
-
-        /* Make hero text warmer and more readable */
-        .hero-text h1, .hero-text h2 {
-            font-weight: 700 !important;
-            color: #06243b !important;
-        }
-
-        .profile-img {
-            border-radius: 14px !important;
-            border: 4px solid rgba(255,255,255,0.85) !important;
-            box-shadow: 0 18px 40px rgba(2,6,23,0.12) !important;
-        }
-
-        /* Tweak small text readability */
-        p, li, a, span {
-            color: var(--muted) !important;
-            line-height: 1.5 !important;
-        }
-
-        /* Reduce visual noise from decorative backgrounds */
-        .retro-overlay, .space-background, .particle-system, .aurora-effect {
-            opacity: 0.35 !important;
-        }
-
-        /* Make interactive elements clearly visible on light bg */
-        .contact-links .contact-btn { min-width: 160px; display: inline-flex; justify-content:center; }
-
-        /* Responsive: slightly smaller radii on mobile */
-        @media (max-width: 768px) {
-            :root{ --radius: 10px; }
-            .contact-btn { padding: 10px 14px !important; }
-        }
-    </style>
+    <!-- Base page rules consolidated into ./css/portfolio.css; legacy inline styles removed -->
     <!-- New portfolio overrides and GitHub-driven UI -->
     <link rel="stylesheet" href="./css/portfolio.css">
+    <!-- Optional light-theme file; class-based toggling handled by theme switcher -->
+    <link rel="stylesheet" href="./css/light-theme.css">
     <!-- jsPDF for optional client-side PDF generation of the TXT resume -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
     <!-- Theme presets: three friendly palettes and a small switcher UI -->
@@ -222,7 +109,7 @@
 
     <script>
         (function(){
-            const THEMES = ['theme-1','theme-2','theme-3'];
+            const THEMES = ['theme-1','theme-2','theme-3','theme-light'];
             function applyTheme(name){
                 document.documentElement.classList.remove(...THEMES);
                 document.documentElement.classList.add(name);
@@ -272,7 +159,7 @@
     <header class="site-header">
         <nav class="nav-inner">
             <a href="#home" class="brand">
-                <img src="./images/icon.png" alt="logo" style="height:34px; width:34px; object-fit:contain;">
+                <img src="./images/icon.png" alt="logo" class="brand-logo">
                 Muhammad A. Rabbani — Portfolio
             </a>
             <div id="navLinks" class="nav-links">
@@ -290,13 +177,12 @@
     <section class="hero" id="home">
         <div class="hero-text">
             <h1>こんにちは — Muhammad A. Rabbani</h1>
-            <p style="font-size:1.1rem; color:rgba(255,255,255,0.75); margin-top:0.3rem;">Informatics Student • Backend & Data</p>
-            <p style="margin-top:1rem; max-width:640px; color:rgba(255,255,255,0.72);">
+            <p class="hero-subtitle">Informatics Student • Backend & Data</p>
+            <p class="hero-intro">
                 Informatics undergraduate blending data science, backend development and product thinking. I lead
                 projects from idea to deployment and enjoy building reliable systems that scale. 以下、日本語の一部を含めて美的な表現を追加しています。
             </p>
-
-            <div style="margin-top:1.4rem; display:flex; gap:12px; flex-wrap:wrap;">
+            <div class="hero-ctas">
                 <a href="#projects" class="contact-btn btn-primary">Projects / プロジェクト</a>
                 <a href="/assets/Rabbani_CV_2025.txt" class="contact-btn btn-secondary" download id="downloadCvTxt">
                     <img src="./assets/icons/icon-download.svg" class="icon" alt="Download"> Resume
@@ -336,14 +222,14 @@
 
         <div class="about-content">
             <div class="about-text scroll-animate">
-                <h3 style="margin-bottom:0.8rem;">Summary</h3>
+                <h3>Summary</h3>
                 <p>
                     I am an Informatics student combining technical engineering skills with business experience. I focus on
                     data-driven decision making and producing deliverables that are both technical and business-ready.
                 </p>
-                <p style="margin-top:1rem;">
+                <p class="mt-1">
                     <strong>Core traits:</strong>
-                    <ul style="margin-top:0.6rem;">
+                    <ul class="mt-06">
                         <li>Project leadership and product thinking</li>
                         <li>Strong communication and technical writing</li>
                         <li>Fast learner and collaborative team player</li>
@@ -377,7 +263,7 @@
             <!-- Projects will be populated dynamically from GitHub (more professional and always up-to-date) -->
             <div id="projects-grid" class="cyber-grid">
                 <div class="stat-card">
-                    <p style="opacity:0.8">Loading projects from GitHub...</p>
+                    <p class="loading-text">Loading projects from GitHub...</p>
                 </div>
             </div>
         </div>

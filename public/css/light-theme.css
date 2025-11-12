@@ -1,0 +1,8 @@
+:root{ --bg:#f8fafc; --card:#ffffff; --muted:#475569; --accent:#2563eb; --accent-2:#06b6d4; --text:#071023 }
+body{background:var(--bg);color:var(--text)}
+.site-header{background:linear-gradient(180deg,rgba(255,255,255,0.8),transparent);border-bottom:1px solid rgba(2,6,23,0.04)}
+.nav-links a{color:var(--text)}
+.project-card{background:var(--card);border:1px solid rgba(2,6,23,0.04)}
+.project-body p{color:var(--muted)}
+.skill-badge{background:rgba(2,6,23,0.03);color:var(--text)}
+.btn-primary{color:#fff}

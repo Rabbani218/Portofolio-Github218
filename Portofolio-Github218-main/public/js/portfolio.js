@@ -176,6 +176,40 @@
     if (projectsGrid) projectsGrid.innerHTML = '<div class="stat-card">Fetching projects & languages from GitHub...</div>';
     if (skillsGrid) skillsGrid.innerHTML = '<div class="stat-card">Analyzing skills based on GitHub activity...</div>';
 
+    // --- Prefer pre-generated PDF if available ---
+    try {
+      const pdfResp = await fetch('./assets/Rabbani_CV_2025.pdf', { method: 'HEAD' });
+      const pdfExists = pdfResp && pdfResp.ok;
+      if (pdfExists) {
+        // update any download links to point to the pre-built PDF
+        const txtLink = document.getElementById('downloadCvTxt');
+        const pdfLink = document.getElementById('downloadCvBtn');
+        if (txtLink) {
+          txtLink.setAttribute('href', './assets/Rabbani_CV_2025.pdf');
+          txtLink.setAttribute('download', 'Rabbani_CV_2025.pdf');
+          txtLink.classList.remove('btn-secondary');
+          txtLink.classList.add('btn-primary');
+        }
+        if (pdfLink) {
+          pdfLink.setAttribute('href', './assets/Rabbani_CV_2025.pdf');
+          pdfLink.setAttribute('download', 'Rabbani_CV_2025.pdf');
+        }
+      }
+    } catch (e) {
+      // ignore fetch errors — we'll keep client PDF generator as fallback
+      console.debug('Pre-generated PDF check failed:', e && e.message);
+    }
+
+    // Image fallback handler (avoid inline attributes)
+    try {
+      const pImg = document.querySelector('.profile-img');
+      if (pImg) {
+        pImg.addEventListener('error', function () {
+          this.src = './assets/images/fallback.jpg';
+        });
+      }
+    } catch (e) { /* ignore */ }
+
     const repos = await fetchRepos();
     if (!repos) {
       if (projectsGrid) showError(projectsGrid, 'Could not fetch GitHub data. You may be offline or rate-limited.');

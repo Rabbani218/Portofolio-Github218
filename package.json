@@ -4,7 +4,8 @@
   "description": "Generate a PDF CV from plain text for the portfolio",
   "main": "generate_cv.js",
   "scripts": {
-    "generate-cv": "node generate_cv.js"
+    "generate-cv": "node generate_cv.js",
+    "build:resume": "node generate_cv.js"
   },
   "author": "",
   "license": "MIT",
