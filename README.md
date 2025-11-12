@@ -45,6 +45,12 @@ Using the optional GitHub token (for higher rate limits)
 
 This token is only read by client-side code to increase API rate limits; do NOT commit tokens into the repo.
 
-If you want, I can prepare a small GitHub Actions workflow that regenerates the PDF and deploys to GitHub Pages automatically — tell me if you'd like that and which branch you publish from.
-# Portofolio-Rabbani06
-Website Portofolio Pekerjaan Mahasiswa
+A GitHub Actions workflow has been added at `.github/workflows/ci-deploy-pages.yml`.
+
+Workflow summary:
+- Trigger: push to the `main` branch (change the trigger branch by editing the workflow).
+- Steps: checkout, setup Node.js, npm ci, run `node generate_cv.js` to regenerate `public/assets/Rabbani_CV_2025.pdf`, upload the `public/` directory as the Pages artifact and deploy it to GitHub Pages.
+
+You can change the branch that triggers the workflow by editing the `on.push.branches` field in the workflow file.
+
+If you'd like, I can also prepare a workflow variant that only runs on `workflow_dispatch` (manual) or creates a PR with the generated PDF instead of automatically deploying — tell me which you prefer.
