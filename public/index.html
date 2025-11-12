@@ -1,402 +1,253 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>Muhammad Abdurrahman Rabbani — Data Analyst · Full‑stack · AI Engineer</title>
-        <meta name="description" content="Portfolio — Data Analysis, Full‑stack & AI engineering projects (auto-synced from GitHub).">
-        <link rel="icon" href="/images/icon.png">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="./css/portfolio.css">
-        <link rel="stylesheet" href="./css/light-theme.css">
-        <!-- jsPDF for client-side CV generation -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
-    </head>
-    <body>
-        <header class="site-header">
-            <nav class="nav-inner">
-                <a class="brand" href="#home"><img class="brand-logo" src="/images/icon.png" alt="Rabbani"> Rabbani — Data & Software</a>
-                <div class="nav-links" id="navLinks">
-                    <a class="contact-btn btn-nav" href="#about">About</a>
-                    <a class="contact-btn btn-nav" href="#projects">Projects</a>
-                    <a class="contact-btn btn-nav" href="#skills">Skills</a>
-                    <a class="contact-btn btn-nav" href="#contact">Contact</a>
-                </div>
-                <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
-            </nav>
-        </header>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Muhammad Abdurrahman Rabbani — Data Analyst · Full‑stack · AI Engineer</title>
+    <meta name="description" content="Portfolio — Data Analysis, Full‑stack & AI engineering projects (auto-synced from GitHub).">
+    <link rel="icon" href="/images/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/portfolio.css">
+    <link rel="stylesheet" href="./css/light-theme.css">
+    <!-- jsPDF for client-side CV generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
 
-        <main>
-            <section id="home" class="hero">
-                <div class="hero-left">
-                    <h1>Muhammad Abdurrahman Rabbani</h1>
-                    <p class="lead">I build data-driven products and systems — data analyst, full‑stack developer, and AI engineer.</p>
-                    <p class="muted">I combine data analysis, web engineering and machine learning to deliver scalable solutions. Projects below are fetched live from my GitHub.</p>
-                    <div class="hero-actions">
-                        <a class="btn-primary contact-btn" href="#projects">See projects</a>
-                        <a id="downloadCv" class="btn-secondary contact-btn" href="/assets/Rabbani_CV_2025.pdf" download>Download CV (PDF)</a>
-                        <a class="btn-accent contact-btn" href="https://github.com/Rabbani218" target="_blank" rel="noopener">GitHub</a>
-                    </div>
-                </div>
-                <div class="hero-right">
-                    <img class="profile-img" src="/images/P1.png" alt="Rabbani">
-                </div>
-            </section>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-inner">
+            <a class="brand" href="#home">
+                <img class="brand-logo" src="/images/icon.png" alt="Rabbani"> 
+                <span>Rabbani — Data & Software</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a class="contact-btn btn-nav" href="#about">About</a>
+                <a class="contact-btn btn-nav" href="#projects">Projects</a>
+                <a class="contact-btn btn-nav" href="#skills">Skills</a>
+                <a class="contact-btn btn-nav" href="#cv-tailor">CV Generator</a>
+                <a class="contact-btn btn-nav" href="#contact">Contact</a>
+            </div>
+            <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+        </nav>
+    </header>
 
-            <section id="about">
-                <h2 class="section-title">About</h2>
-                <p class="section-description">I am an Informatics student focused on turning data into decisions and shipping production-ready software. My work blends data analysis, backend engineering, and practical AI model integration to solve real problems.</p>
-
-                <div class="about-grid">
-                    <div class="about-card">
-                        <h3>What I do</h3>
-                        <ul>
-                            <li>Analyze data and produce clear insights (Python, pandas, SQL)</li>
-                            <li>Design and ship backend services & APIs (Node.js, Express, Docker)</li>
-                            <li>Prototype and integrate ML models for practical tasks (scikit-learn, simple pipelines)</li>
-                            <li>Automate reporting and dashboards for decision making</li>
-                        </ul>
-                    </div>
-
-                    <div class="about-card">
-                        <h3>Impact & results</h3>
-                        <ul>
-                            <li>Led a campus e‑commerce launch (Colorweave) from planning to live sales channels</li>
-                            <li>Designed MySQL schemas and performance-focused queries</li>
-                            <li>Delivered data-driven reports used for product and marketing decisions</li>
-                        </ul>
-                    </div>
-
-                    <div class="about-card contact-card">
-                        <h3>Hire / Collaborate</h3>
-                        <p class="muted-small">Open to internships, freelance projects, and research collaborations that intersect data and software.</p>
-                        <p>
-                            <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com">Email</a>
-                            <a class="contact-btn btn-secondary" href="https://github.com/Rabbani218" target="_blank" rel="noopener">GitHub</a>
-                            <a class="contact-btn btn-accent" href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" target="_blank" rel="noopener">LinkedIn</a>
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="projects">
-                <div class="section-inner">
-                    <h2 class="section-title">Selected Projects</h2>
-                    <p class="section-description">Public repos fetched from GitHub. Use filters to tailor what recruiters see.</p>
-
-                    <div class="projects-controls">
-                        <label class="muted-small">Language</label>
-                        <select id="projects-filter" aria-label="Filter by language"><option value="all">All</option></select>
-                        <label class="muted-small">Sort</label>
-                        <select id="projects-sort" aria-label="Sort projects"><option value="updated">Recently updated</option><option value="stars">Most stars</option><option value="name">Name</option></select>
-                        <label class="muted-small">Min Stars</label>
-                        <input id="projects-minstars" type="number" min="0" value="0" />
-                    </div>
-
-                    <div id="projects-grid" class="projects-grid">
-                        <div class="stat-card">Loading projects from GitHub...</div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="skills">
-                <h2 class="section-title">Skills</h2>
-                <p class="section-description">Primary languages & tools (aggregated from GitHub repos).</p>
-                <div id="skills-grid" class="skills-grid"></div>
-            </section>
-
-            <section id="cv-tailor">
-                <h2 class="section-title">Generate a tailored CV</h2>
-                <p class="section-description">Create an HR-friendly CV for a target role. Projects and skills will be included automatically.</p>
-                <div class="cv-form">
-                    <label>Target role
-                        <select id="cv-target-role"><option value="general">General / All-round Developer</option><option value="ai_avatar">AI Avatar Developer</option><option value="data_scientist">Data Scientist / ML Engineer</option><option value="fullstack">Full‑stack Developer</option></select>
-                    </label>
-                    <label>Estimated last salary <input id="cv-salary" type="text" placeholder="e.g. IDR 6,000,000 / USD 1,200"/></label>
-                    <label>Estimated hours per day <input id="cv-hours" type="number" min="1" max="12" value="8"/></label>
-                    <label>Experience in health apps? <select id="cv-health-experience"><option value="no">No</option><option value="yes">Yes</option></select></label>
-                    <label>Links to demos / videos / repo <input id="cv-demos" type="text" placeholder="https://... , https://..."/></label>
-                    <label>Code editor <input id="cv-editor" type="text" placeholder="VSCode (free), WebStorm (paid), ..."/></label>
-                    <div><button id="generateTailoredCv" class="btn-primary">Generate tailored CV (PDF)</button><span class="muted-small">PDF generated in browser — no server upload.</span></div>
-                </div>
-            </section>
-
-            <section id="contact">
-                <h2 class="section-title">Contact</h2>
-                <p class="section-description">Interested? Email me or reach out on GitHub / LinkedIn.</p>
-                <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com">Email Me</a>
-            </section>
-        </main>
-
-        <footer class="site-footer">
-            <div class="footer-inner">© Muhammad Abdurrahman Rabbani — Projects synced from <a href="https://github.com/Rabbani218" target="_blank">GitHub</a>.</div>
-        </footer>
-
-        <script src="./js/portfolio.js" defer></script>
-    </body>
-</html>
-                <div class="interest-card">
-                    <img src="./assets/icons/icon-database.svg" class="icon" alt="Databases" aria-hidden="true">
-                    <h3>Databases</h3>
-                    <p>MySQL database design & query optimization</p>
-                </div>
-                <div class="interest-card">
-                    <img src="./assets/icons/icon-cart.svg" class="icon" alt="E-commerce" aria-hidden="true">
-                    <h3>Product & E‑commerce</h3>
-                    <p>Business planning, marketing channels (Shopee), e‑commerce development</p>
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-left">
+                <h1>Muhammad Abdurrahman Rabbani</h1>
+                <p class="lead">データ分析・フルスタック開発・AIエンジニアリング</p>
+                <p class="lead">Data Analyst · Full‑stack Developer · AI Engineer</p>
+                <p class="muted">データ駆動型の製品とシステムを構築します。データ分析、ウェブエンジニアリング、機械学習を組み合わせて、スケーラブルなソリューションを提供します。</p>
+                <p class="muted">I build data-driven products and systems. I combine data analysis, web engineering and machine learning to deliver scalable solutions.</p>
+                <div class="hero-actions">
+                    <a class="btn-primary contact-btn" href="#projects">プロジェクトを見る</a>
+                    <a id="downloadCv" class="btn-secondary contact-btn" href="/assets/Rabbani_CV_2025.pdf" download>履歴書をダウンロード</a>
+                    <a class="btn-accent contact-btn" href="https://github.com/Rabbani218" target="_blank" rel="noopener">GitHub</a>
                 </div>
             </div>
-        </div>
-    </section>
+            <div class="hero-right">
+                <div class="japanese-corner"></div>
+                <img class="profile-img" src="/images/P1.png" alt="Rabbani">
+                <div class="japanese-corner bottom-right"></div>
+            </div>
+        </section>
 
-    <!-- Projects / Highlights Section -->
-    <section id="projects">
-        <div class="section-inner">
-            <h2 class="section-title">Selected Projects</h2>
+        <section id="about">
+            <h2 class="section-title">私について</h2>
+            <h2 class="section-title">About</h2>
+            <p class="section-description">データを意思決定に変換し、本番環境で使用可能なソフトウェアを提供することに焦点を当てています。データ分析、バックエンドエンジニアリング、実用的なAIモデル統合を組み合わせて、実際の問題を解決します。</p>
+            <p class="section-description">I am focused on turning data into decisions and shipping production-ready software. My work blends data analysis, backend engineering, and practical AI model integration to solve real problems.</p>
 
-            <div class="cyber-grid">
-                <div class="cyber-card">
-                    <div class="hologram-effect">
-                        <h3>CEO & Project Lead — Colorweave</h3>
-                        <p><em>2025</em></p>
-                        <p>Led a team of 5 to design the Business Model Canvas, financials and marketing strategy for a
-                        sustainable fashion brand. Directed e-commerce platform development and managed sales channels
-                        (Shopee, offline events).</p>
-                        <p><strong>Technologies:</strong> E‑commerce platforms, product strategy, sales analytics</p>
-                    </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>私の専門分野</h3>
+                    <h3>What I do</h3>
+                    <ul>
+                        <li>データ分析と明確な洞察の提供（Python、pandas、SQL）</li>
+                        <li>バックエンドサービスとAPIの設計と実装（Node.js、Express、Docker）</li>
+                        <li>実用的なタスクのためのMLモデルのプロトタイプと統合（scikit-learn、シンプルなパイプライン）</li>
+                        <li>意思決定のためのレポートとダッシュボードの自動化</li>
+                    </ul>
                 </div>
 
-                <div class="cyber-card">
-                    <div class="hologram-effect">
-                        <h3>Database Designer — Web E‑commerce (Academic)</h3>
-                        <p><em>2025</em></p>
-                        <p>Designed and implemented a complete MySQL schema for a functioning web e‑commerce system used in
-                        academic demonstrations and assignments.</p>
-                        <p><strong>Technologies:</strong> MySQL, ER modeling, SQL queries</p>
-                    </div>
+                <div class="about-card">
+                    <h3>実績と成果</h3>
+                    <h3>Impact & Results</h3>
+                    <ul>
+                        <li>キャンパス内Eコマース「Colorweave」の立ち上げ（計画からライブ販売チャネルまで）を主導</li>
+                        <li>MySQLスキーマとパフォーマンス重視のクエリを設計</li>
+                        <li>製品とマーケティングの意思決定に使用されるデータ駆動型レポートを提供</li>
+                    </ul>
+                </div>
+
+                <div class="about-card contact-card">
+                    <h3>採用・協業</h3>
+                    <h3>Hire / Collaborate</h3>
+                    <p class="muted-small">データとソフトウェアが交差するインターンシップ、フリーランスプロジェクト、研究協力に積極的です。</p>
+                    <p>
+                        <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com">メール</a>
+                        <a class="contact-btn btn-secondary" href="https://github.com/Rabbani218" target="_blank" rel="noopener">GitHub</a>
+                        <a class="contact-btn btn-accent" href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" target="_blank" rel="noopener">LinkedIn</a>
+                    </p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Skills Section -->
-    <section id="skills">
-    <h2 class="section-title scroll-animate"><img src="./assets/icons/icon-tools.svg" class="icon" alt="Skills" aria-hidden="true"> Skills</h2>
-        <p class="section-description">Organized for readability (useful for recruiters and ATS scanners).</p>
+        <section id="projects">
+            <div class="section-inner">
+                <h2 class="section-title">プロジェクト</h2>
+                <h2 class="section-title">Projects</h2>
+                <p class="section-description">GitHubから取得した公開リポジトリ。採用担当者が見る内容を調整するにはフィルターを使用してください。</p>
 
-        <div class="cyber-grid">
-            <div class="cyber-card">
-                <div class="hologram-effect">
-                    <h4>Technical</h4>
-                    <ul class="left-list mt-08">
-                        <li>Data Science, AI (Python, pandas, scikit‑learn)</li>
-                        <li>Python — Advanced scripting and automation</li>
-                        <li>Web: HTML, CSS, JavaScript</li>
-                        <li>Database: MySQL (design, queries)</li>
-                        <li>Tools: Visual Studio Code, Microsoft 365 Copilot</li>
+                <div class="projects-controls">
+                    <label class="muted-small">言語</label>
+                    <select id="projects-filter" aria-label="Filter by language">
+                        <option value="all">すべて</option>
+                    </select>
+                    <label class="muted-small">並び替え</label>
+                    <select id="projects-sort" aria-label="Sort projects">
+                        <option value="updated">最近更新</option>
+                        <option value="stars">スター数</option>
+                        <option value="name">名前</option>
+                    </select>
+                    <label class="muted-small">最小スター数</label>
+                    <input id="projects-minstars" type="number" min="0" value="0" />
+                </div>
+
+                <div id="projects-grid" class="projects-grid">
+                    <div class="stat-card">GitHubからプロジェクトを読み込み中...</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 class="section-title">スキル</h2>
+            <h2 class="section-title">Skills</h2>
+            <p class="section-description">主要な言語とツール（GitHubリポジトリから集計）。</p>
+            <div id="skills-grid" class="skills-grid">
+                <div class="skill-category">
+                    <h3>プログラミング言語</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>JavaScript</li>
+                        <li>SQL</li>
+                        <li>HTML/CSS</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>フレームワーク & ライブラリ</h3>
+                    <ul>
+                        <li>Node.js</li>
+                        <li>Express</li>
+                        <li>pandas</li>
+                        <li>scikit-learn</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>ツール & 技術</h3>
+                    <ul>
+                        <li>Git</li>
+                        <li>Docker</li>
+                        <li>MySQL</li>
+                        <li>REST APIs</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>データ分析</h3>
+                    <ul>
+                        <li>データ可視化</li>
+                        <li>統計分析</li>
+                        <li>ETLプロセス</li>
+                        <li>ダッシュボード作成</li>
                     </ul>
                 </div>
             </div>
+        </section>
 
-            <div class="cyber-card">
-                <div class="hologram-effect">
-                    <h4>Professional & Soft Skills</h4>
-                    <ul class="left-list mt-08">
-                        <li>Project Management</li>
-                        <li>Teamwork & Leadership</li>
-                        <li>Technical Writing & Communication</li>
-                        <li>Adaptability & Time Management</li>
-                    </ul>
+        <section id="cv-tailor">
+            <h2 class="section-title">カスタム履歴書生成</h2>
+            <h2 class="section-title">Generate a Tailored CV</h2>
+            <p class="section-description">対象職種に合わせた人事向けの履歴書を作成します。プロジェクトとスキルは自動的に含まれます。</p>
+            <div class="cv-form">
+                <label>対象職種
+                    <select id="cv-target-role">
+                        <option value="general">総合 / オールラウンド開発者</option>
+                        <option value="ai_avatar">AIアバター開発者</option>
+                        <option value="data_scientist">データサイエンティスト / MLエンジニア</option>
+                        <option value="fullstack">フルスタック開発者</option>
+                    </select>
+                </label>
+                <label>前職の給与（推定）
+                    <input id="cv-salary" type="text" placeholder="例: 6,000,000円 / 1,200米ドル"/>
+                </label>
+                <label>1日の推定労働時間
+                    <input id="cv-hours" type="number" min="1" max="12" value="8"/>
+                </label>
+                <label>健康アプリの経験はありますか？
+                    <select id="cv-health-experience">
+                        <option value="no">いいえ</option>
+                        <option value="yes">はい</option>
+                    </select>
+                </label>
+                <label>デモ / ビデオ / リポジトリへのリンク
+                    <input id="cv-demos" type="text" placeholder="https://... , https://..."/>
+                </label>
+                <label>コードエディター
+                    <input id="cv-editor" type="text" placeholder="VSCode (無料), WebStorm (有料), ..."/>
+                </label>
+                <div>
+                    <button id="generateTailoredCv" class="btn-primary">カスタム履歴書を生成 (PDF)</button>
+                    <span class="muted-small">PDFはブラウザで生成されます — サーバーへのアップロードはありません。</span>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Certifications & Education -->
-    <section id="certifications">
-    <h2 class="section-title scroll-animate"><img src="./assets/icons/icon-certificate.svg" class="icon" alt="Certifications" aria-hidden="true"> Certifications</h2>
-        <div class="timeline">
-            <div class="timeline-item scroll-animate">
-                <ul>
-                    <li>Data Science Foundation — Jobstreet by Seek (2025)</li>
-                    <li>Microsoft 365 Copilot Foundation — Jobstreet & Microsoft (2025)</li>
-                    <li>AI Bootcamp: From Zero To AI Hero — HIMAIF (Oct 2024 – Nov 2025)</li>
-                    <li>Basic Digital Marketing — Digital Entrepreneurship Academy (Mar 2025)</li>
-                    <li>Advanced Python Programming Workshop — Universitas Bina Sarana Informatika (2025)</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+        <section id="contact">
+            <h2 class="section-title">連絡先</h2>
+            <h2 class="section-title">Contact</h2>
+            <p class="section-description">ご興味をお持ちですか？メールまたはGitHub / LinkedInでご連絡ください。</p>
+            <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com">メールを送信</a>
+        </section>
+    </main>
 
-    <section id="education">
-    <h2 class="section-title scroll-animate"><img src="./assets/icons/icon-graduation.svg" class="icon" alt="Education" aria-hidden="true"> Education</h2>
-        <div class="timeline">
-            <!doctype html>
-            <html lang="en">
-                <head>
-                    <meta charset="utf-8" />
-                    <meta name="viewport" content="width=device-width,initial-scale=1" />
-                    <title>Muhammad Abdurrahman Rabbani — Portfolio</title>
-                    <meta name="description" content="Portfolio — Data Analysis, Full‑stack & AI engineering. Projects auto-synced from GitHub.">
-                    <link rel="icon" href="/images/ICON.png">
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-                    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-                    <link rel="stylesheet" href="./css/portfolio.css">
-                    <link rel="stylesheet" href="./css/light-theme.css">
-                    <!-- jsPDF for client-side CV generation -->
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
-                </head>
-                <body>
-                    <header class="site-header">
-                        <nav class="nav-inner">
-                            <a class="brand" href="#home"><img class="brand-logo" src="/images/ICON.png" alt="Rabbani"> Rabbani — Data & Software</a>
-                            <div class="nav-links" id="navLinks">
-                                <a class="contact-btn btn-nav" href="#about">About</a>
-                                <a class="contact-btn btn-nav" href="#projects">Projects</a>
-                                <a class="contact-btn btn-nav" href="#skills">Skills</a>
-                                <a class="contact-btn btn-nav" href="#contact">Contact</a>
-                            </div>
-                            <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
-                        </nav>
-                    </header>
+    <footer class="site-footer">
+        <div class="footer-inner">© Muhammad Abdurrahman Rabbani — プロジェクトは <a href="https://github.com/Rabbani218" target="_blank">GitHub</a> から同期されています。</div>
+    </footer>
 
-                    <main>
-                        <section id="home" class="hero">
-                            <div class="hero-left">
-                                <h1>Muhammad Abdurrahman Rabbani</h1>
-                                <p class="lead">Data Analysis · Full‑stack · AI engineering</p>
-                                <p class="muted">I build production-ready services and data pipelines. Projects below are synced from my GitHub account.</p>
-                                <div class="hero-actions">
-                                    <a class="btn-primary contact-btn" href="#projects">See projects</a>
-                                    <a id="downloadCv" class="btn-secondary contact-btn" href="/assets/Rabbani_CV_2025.pdf" download>Download CV (PDF)</a>
-                                    <a class="btn-accent contact-btn" href="https://github.com/Rabbani218" target="_blank" rel="noopener">GitHub</a>
-                                </div>
-                            </div>
-                            <div class="hero-right">
-                                <img class="profile-img" src="/images/P1.png" alt="Rabbani">
-                            </div>
-                        </section>
+    <script>
+        // Mobile navigation toggle
+        document.getElementById('navToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
 
-                        <section id="about">
-                            <h2 class="section-title">About</h2>
-                            <p class="section-description">I combine data analysis, backend engineering and practical AI to build products that solve real problems. I focus on clarity, reproducibility and production readiness.</p>
-                            <div class="about-grid">
-                                <div class="about-card">
-                                    <h3>Core strengths</h3>
-                                    <ul>
-                                        <li>Data analysis & visualization (Python, pandas, SQL)</li>
-                                        <li>Backend & APIs (Node.js, Express, Docker)</li>
-                                        <li>ML prototyping & integration (scikit-learn, simple pipelines)</li>
-                                    </ul>
-                                </div>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
 
-                                <div class="about-card">
-                                    <h3>Results</h3>
-                                    <ul>
-                                        <li>Led an e‑commerce launch (planning → sales channels)</li>
-                                        <li>Designed production-ready MySQL schemas and ETL</li>
-                                        <li>Delivered dashboards and reports used for product decisions</li>
-                                    </ul>
-                                </div>
-
-                                <div class="about-card contact-card">
-                                    <h3>Contact</h3>
-                                    <p class="muted-small">Open to internships, freelance and remote contracts.</p>
-                                    <p>
-                                        <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com">Email</a>
-                                        <a class="contact-btn btn-secondary" href="https://github.com/Rabbani218" target="_blank" rel="noopener">GitHub</a>
-                                        <a class="contact-btn btn-accent" href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" target="_blank" rel="noopener">LinkedIn</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
-
-                        <section id="projects">
-                            <h2 class="section-title">Selected Projects</h2>
-                            <p class="section-description">Public repos fetched from GitHub. Use filters to tailor what recruiters see.</p>
-
-                            <div class="projects-controls" style="max-width:1100px;margin:8px auto 18px;padding:0 20px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-                                <label class="muted-small">Language</label>
-                                <select id="projects-filter" aria-label="Filter by language"><option value="all">All</option></select>
-                                <label class="muted-small">Sort</label>
-                                <select id="projects-sort" aria-label="Sort projects">
-                                    <option value="updated">Recently updated</option>
-                                    <option value="stars">Most stars</option>
-                                    <option value="name">Name</option>
-                                </select>
-                                <label class="muted-small">Min Stars</label>
-                                <input id="projects-minstars" type="number" min="0" value="0" style="width:80px;padding:6px;border-radius:6px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit">
-                            </div>
-
-                            <div id="projects-grid" class="projects-grid">
-                                <div class="stat-card">Loading projects from GitHub...</div>
-                            </div>
-                        </section>
-
-                        <section id="skills">
-                            <h2 class="section-title">Skills</h2>
-                            <p class="section-description">Primary languages & tools (aggregated from GitHub repos).</p>
-                            <div id="skills-grid" class="skills-grid"></div>
-                        </section>
-
-                        <!-- Tailor CV / Generate PDF -->
-                        <section id="cv-tailor" style="max-width:1100px;margin:28px auto;padding:0 20px;">
-                            <h2 class="section-title">Generate a tailored CV</h2>
-                            <p class="section-description">Create an HR-friendly CV for a target role (e.g., AI Avatar Developer). Projects and skills will be included automatically.</p>
-
-                            <div class="cv-form" style="display:flex;flex-direction:column;gap:8px;max-width:760px;">
-                                <label>Target role
-                                    <select id="cv-target-role">
-                                        <option value="general">General / All-round Developer</option>
-                                        <option value="ai_avatar">AI Avatar Developer</option>
-                                        <option value="data_scientist">Data Scientist / ML Engineer</option>
-                                        <option value="fullstack">Full‑stack Developer</option>
-                                    </select>
-                                </label>
-
-                                <label>Estimated last salary (optional)
-                                    <input id="cv-salary" type="text" placeholder="e.g. IDR 6,000,000 / USD 1,200" />
-                                </label>
-
-                                <label>Estimated hours per day
-                                    <input id="cv-hours" type="number" min="1" max="12" value="8" />
-                                </label>
-
-                                <label>Experience in health apps?
-                                    <select id="cv-health-experience"><option value="no">No</option><option value="yes">Yes</option></select>
-                                </label>
-
-                                <label>Links to demos / videos / repo (comma separated)
-                                    <input id="cv-demos" type="text" placeholder="https://... , https://..." />
-                                </label>
-
-                                <label>Code editor (name and paid/free)
-                                    <input id="cv-editor" type="text" placeholder="VSCode (free), WebStorm (paid), ..." />
-                                </label>
-
-                                <div style="display:flex;gap:8px;align-items:center">
-                                    <button id="generateTailoredCv" class="btn-primary">Generate tailored CV (PDF)</button>
-                                    <span class="muted-small">PDF generated in browser — no server upload.</span>
-                                </div>
-                            </div>
-                        </section>
-
-                        <section id="contact">
-                            <h2 class="section-title">Contact</h2>
-                            <p class="section-description">Interested? Email me or reach out on GitHub / LinkedIn.</p>
-                            <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com">Email Me</a>
-                        </section>
-                    </main>
-
-                    <footer class="site-footer">
-                        <div class="footer-inner">© Muhammad Abdurrahman Rabbani — Projects synced from <a href="https://github.com/Rabbani218" target="_blank">GitHub</a>.</div>
-                    </footer>
-
-                    <script src="./js/portfolio.js" defer></script>
-                </body>
-            </html>
-
+        // CV Generation placeholder
+        document.getElementById('generateTailoredCv').addEventListener('click', function() {
+            alert('カスタム履歴書生成機能は現在開発中です。The custom CV generation feature is currently under development.');
+        });
     </script>
 </body>
 </html>
