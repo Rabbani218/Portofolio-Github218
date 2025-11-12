@@ -1,3 +1,18 @@
+/* Custom cursor for entire website */
+* {
+  cursor: url('/images/DT1.png') 10 0, auto;
+}
+
+/* Interactive elements get pointer cursor */
+a, button, [role="button"], input[type="button"], input[type="submit"], select, textarea {
+  cursor: url('/images/DT1.png') 10 0, auto;
+}
+
+/* Hover state for interactive elements */
+a:hover, button:hover, [role="button"]:hover, input[type="button"]:hover, input[type="submit"]:hover {
+  cursor: url('/images/DT1.png') 10 0, auto;
+}
+
 /* Dark neon redesign for a more professional, modern look */
 /* Dark theme variables and scoped rules --- ONLY applied when body has .dark-theme */
 body.dark-theme {
