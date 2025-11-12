@@ -1,20 +1,22 @@
 <!doctype html>
-<html lang="id">
+<html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>Muhammad Abdurrahman Rabbani — Data Analyst • Full‑stack • AI Engineer</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Muhammad Abdurrahman Rabbani — Data Analyst · Full‑stack · AI Engineer</title>
         <meta name="description" content="Portfolio — Data Analysis, Full‑stack & AI engineering projects (auto-synced from GitHub).">
         <link rel="icon" href="/images/icon.png">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./css/portfolio.css">
         <link rel="stylesheet" href="./css/light-theme.css">
+        <!-- jsPDF for client-side CV generation -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
     </head>
     <body>
         <header class="site-header">
             <nav class="nav-inner">
-                <a class="brand" href="#home"><img class="brand-logo" src="/images/ICON.png" alt="Rabbani"> Rabbani — Data & Software</a>
+                <a class="brand" href="#home"><img class="brand-logo" src="/images/icon.png" alt="Rabbani"> Rabbani — Data & Software</a>
                 <div class="nav-links" id="navLinks">
                     <a class="contact-btn btn-nav" href="#about">About</a>
                     <a class="contact-btn btn-nav" href="#projects">Projects</a>
@@ -32,7 +34,7 @@
                     <p class="lead">I build data-driven products and systems — data analyst, full‑stack developer, and AI engineer.</p>
                     <p class="muted">I combine data analysis, web engineering and machine learning to deliver scalable solutions. Projects below are fetched live from my GitHub.</p>
                     <div class="hero-actions">
-                        <a class="btn-primary contact-btn" href="#projects">Lihat Project</a>
+                        <a class="btn-primary contact-btn" href="#projects">See projects</a>
                         <a id="downloadCv" class="btn-secondary contact-btn" href="/assets/Rabbani_CV_2025.pdf" download>Download CV (PDF)</a>
                         <a class="btn-accent contact-btn" href="https://github.com/Rabbani218" target="_blank" rel="noopener">GitHub</a>
                     </div>
@@ -40,42 +42,89 @@
                 <div class="hero-right">
                     <img class="profile-img" src="/images/P1.png" alt="Rabbani">
                 </div>
-                <!-- About Section (HR-friendly, concise, role-focused) -->
-                <section id="about">
-                    <h2 class="section-title scroll-animate"><img src="./assets/icons/icon-user.svg" class="icon" alt="About" aria-hidden="true"> About</h2>
-                    <p class="section-description">I am an Informatics student focused on turning data into decisions and shipping production-ready software. My work blends data analysis, backend engineering, and practical AI model integration to solve real problems.</p>
+            </section>
 
-                    <div class="about-grid">
-                        <div class="about-card">
-                            <h3>What I do</h3>
-                            <ul>
-                                <li>Analyze data and produce clear insights (Python, pandas, SQL)</li>
-                                <li>Design and ship backend services & APIs (Node.js, Express, Docker)</li>
-                                <li>Prototype and integrate ML models for practical tasks (scikit-learn, simple pipelines)</li>
-                                <li>Automate reporting and dashboards for decision making</li>
-                            </ul>
-                        </div>
+            <section id="about">
+                <h2 class="section-title">About</h2>
+                <p class="section-description">I am an Informatics student focused on turning data into decisions and shipping production-ready software. My work blends data analysis, backend engineering, and practical AI model integration to solve real problems.</p>
 
-                        <div class="about-card">
-                            <h3>Impact & results</h3>
-                            <ul>
-                                <li>Led a campus e‑commerce launch (Colorweave) from planning to live sales channels</li>
-                                <li>Designed MySQL schemas and performance-focused queries for academic and production demos</li>
-                                <li>Delivered data-driven reports used for product and marketing decisions</li>
-                            </ul>
-                        </div>
-
-                        <div class="about-card contact-card">
-                            <h3>Hire / Collaborate</h3>
-                            <p class="muted-small">Open to internships, freelance projects, and research collaborations that intersect data and software.</p>
-                            <p>
-                                <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com">Email</a>
-                                <a class="contact-btn btn-secondary" href="https://github.com/Rabbani218" target="_blank" rel="noopener">GitHub</a>
-                                <a class="contact-btn btn-accent" href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" target="_blank" rel="noopener">LinkedIn</a>
-                            </p>
-                        </div>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <h3>What I do</h3>
+                        <ul>
+                            <li>Analyze data and produce clear insights (Python, pandas, SQL)</li>
+                            <li>Design and ship backend services & APIs (Node.js, Express, Docker)</li>
+                            <li>Prototype and integrate ML models for practical tasks (scikit-learn, simple pipelines)</li>
+                            <li>Automate reporting and dashboards for decision making</li>
+                        </ul>
                     </div>
-                </section>
+
+                    <div class="about-card">
+                        <h3>Impact & results</h3>
+                        <ul>
+                            <li>Led a campus e‑commerce launch (Colorweave) from planning to live sales channels</li>
+                            <li>Designed MySQL schemas and performance-focused queries</li>
+                            <li>Delivered data-driven reports used for product and marketing decisions</li>
+                        </ul>
+                    </div>
+
+                    <div class="about-card contact-card">
+                        <h3>Hire / Collaborate</h3>
+                        <p class="muted-small">Open to internships, freelance projects, and research collaborations that intersect data and software.</p>
+                        <p>
+                            <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com">Email</a>
+                            <a class="contact-btn btn-secondary" href="https://github.com/Rabbani218" target="_blank" rel="noopener">GitHub</a>
+                            <a class="contact-btn btn-accent" href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" target="_blank" rel="noopener">LinkedIn</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects">
+                <div class="section-inner">
+                    <h2 class="section-title">Selected Projects</h2>
+                    <p class="section-description">Public repos fetched from GitHub. Use filters to tailor what recruiters see.</p>
+
+                    <div class="projects-controls">
+                        <label class="muted-small">Language</label>
+                        <select id="projects-filter" aria-label="Filter by language"><option value="all">All</option></select>
+                        <label class="muted-small">Sort</label>
+                        <select id="projects-sort" aria-label="Sort projects"><option value="updated">Recently updated</option><option value="stars">Most stars</option><option value="name">Name</option></select>
+                        <label class="muted-small">Min Stars</label>
+                        <input id="projects-minstars" type="number" min="0" value="0" />
+                    </div>
+
+                    <div id="projects-grid" class="projects-grid">
+                        <div class="stat-card">Loading projects from GitHub...</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="skills">
+                <h2 class="section-title">Skills</h2>
+                <p class="section-description">Primary languages & tools (aggregated from GitHub repos).</p>
+                <div id="skills-grid" class="skills-grid"></div>
+            </section>
+
+            <section id="cv-tailor">
+                <h2 class="section-title">Generate a tailored CV</h2>
+                <p class="section-description">Create an HR-friendly CV for a target role. Projects and skills will be included automatically.</p>
+                <div class="cv-form">
+                    <label>Target role
+                        <select id="cv-target-role"><option value="general">General / All-round Developer</option><option value="ai_avatar">AI Avatar Developer</option><option value="data_scientist">Data Scientist / ML Engineer</option><option value="fullstack">Full‑stack Developer</option></select>
+                    </label>
+                    <label>Estimated last salary <input id="cv-salary" type="text" placeholder="e.g. IDR 6,000,000 / USD 1,200"/></label>
+                    <label>Estimated hours per day <input id="cv-hours" type="number" min="1" max="12" value="8"/></label>
+                    <label>Experience in health apps? <select id="cv-health-experience"><option value="no">No</option><option value="yes">Yes</option></select></label>
+                    <label>Links to demos / videos / repo <input id="cv-demos" type="text" placeholder="https://... , https://..."/></label>
+                    <label>Code editor <input id="cv-editor" type="text" placeholder="VSCode (free), WebStorm (paid), ..."/></label>
+                    <div><button id="generateTailoredCv" class="btn-primary">Generate tailored CV (PDF)</button><span class="muted-small">PDF generated in browser — no server upload.</span></div>
+                </div>
+            </section>
+
+            <section id="contact">
+                <h2 class="section-title">Contact</h2>
+                <p class="section-description">Interested? Email me or reach out on GitHub / LinkedIn.</p>
                 <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com">Email Me</a>
             </section>
         </main>
@@ -348,116 +397,6 @@
                 </body>
             </html>
 
-        // audio removed: toggleMusic and autoplay handlers removed
-
-        // Background Color Transition
-        let colorState = 0;
-        setInterval(() => {
-            const colors = ['#ffffff', '#f8fbff'];
-            document.body.style.backgroundColor = colors[colorState];
-            colorState = (colorState + 1) % colors.length;
-        }, 10000);
-
-        // Layout Optimization
-        window.addEventListener('load', () => {
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                section.style.opacity = '1';
-                section.style.transform = 'translateY(0)';
-            });
-        });
-
-        // Particle System Initialization
-        function initParticles() {
-            const container = document.querySelector('.particle-system');
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            
-            canvas.width = container.offsetWidth;
-            canvas.height = container.offsetHeight;
-            container.appendChild(canvas);
-
-            class Particle {
-                constructor() {
-                    this.reset();
-                }
-
-                reset() {
-                    this.x = Math.random() * canvas.width;
-                    this.y = Math.random() * canvas.height;
-                    this.size = Math.random() * 2;
-                    this.speed = Math.random() * 0.5 + 0.2;
-                }
-
-                update() {
-                    this.y += this.speed;
-                    if(this.y > canvas.height) this.reset();
-                }
-
-                draw() {
-                    ctx.fillStyle = `rgba(65, 105, 225, ${this.size/2})`;
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-            }
-
-            const particles = Array(200).fill().map(() => new Particle());
-
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach(p => {
-                    p.update();
-                    p.draw();
-                });
-                requestAnimationFrame(animate);
-            }
-
-            animate();
-        }
-
-        // Mobile navigation toggle (shows the hamburger on small screens and toggles links)
-        const navToggle = document.getElementById('navToggle');
-        const navLinksElem = document.getElementById('navLinks');
-
-        function updateNavToggleVisibility(){
-            try{
-                if(window.innerWidth < 900){
-                    navToggle.style.display = 'block';
-                    navLinksElem.style.display = 'none';
-                } else {
-                    navToggle.style.display = 'none';
-                    navLinksElem.style.display = 'flex';
-                    navLinksElem.style.position = '';
-                    navLinksElem.style.flexDirection = '';
-                    navLinksElem.style.boxShadow = '';
-                }
-            }catch(e){ /* elements may not exist during tests */ }
-        }
-
-        if(navToggle){
-            navToggle.addEventListener('click', function(){
-                if(!navLinksElem) return;
-                if(navLinksElem.style.display === 'none' || navLinksElem.style.display === ''){
-                    navLinksElem.style.display = 'flex';
-                    navLinksElem.style.flexDirection = 'column';
-                    navLinksElem.style.position = 'absolute';
-                    navLinksElem.style.top = '64px';
-                    navLinksElem.style.right = '16px';
-                    navLinksElem.style.background = 'rgba(255,255,255,0.97)';
-                    navLinksElem.style.padding = '8px';
-                    navLinksElem.style.borderRadius = '8px';
-                    navLinksElem.style.boxShadow = '0 8px 30px rgba(0,0,0,0.12)';
-                } else {
-                    navLinksElem.style.display = 'none';
-                }
-            });
-        }
-
-        window.addEventListener('resize', updateNavToggleVisibility);
-        document.addEventListener('DOMContentLoaded', updateNavToggleVisibility);
-
-        window.addEventListener('load', initParticles);
     </script>
 </body>
 </html>
