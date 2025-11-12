@@ -42,6 +42,7 @@
             </a>
             <div class="nav-links" id="navLinks">
                 <a class="contact-btn btn-nav" href="#about">About</a>
+                <a class="contact-btn btn-nav" href="#education">Education</a>
                 <a class="contact-btn btn-nav" href="#projects">Projects</a>
                 <a class="contact-btn btn-nav" href="#skills">Skills</a>
                 <a class="contact-btn btn-nav" href="#cv-tailor">CV Generator</a>
@@ -54,50 +55,210 @@
     </header>
 
     <main id="maincontent" role="main">
-        <section id="home" class="hero" aria-labelledby="page-title">
-            <div class="hero-left">
-                <p class="eyebrow">Hi, I'm</p>
-                <h1 id="page-title">Muhammad Abdurrahman Rabbani</h1>
-                <p class="lead">Data Analyst · Full‑stack Developer · AI Engineer</p>
+        <section id="home" class="hero" aria-labelledby="page-title" style="padding:36px 18px;display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:center;max-width:1100px;margin:0 auto;">
+            <div class="hero-left" style="max-width:720px;">
+                <p class="eyebrow" style="margin:0 0 8px;color:var(--muted-color,#6b7280);font-weight:600;">Hi, I'm</p>
+                <h1 id="page-title" style="margin:0 0 10px;font-size:2.1rem;line-height:1.05;">Muhammad Abdurrahman Rabbani</h1>
+                <p class="lead" style="margin:0 0 14px;color:var(--accent-color,#0f172a);font-weight:600;">
+                    Data Analyst · Full‑stack Developer · AI Engineer
+                </p>
 
-                <p class="muted">I design and ship data-driven products that combine analysis, reliable backend services and practical ML to deliver measurable business outcomes. I focus on clean data pipelines, reproducible experiments and production-ready code.</p>
+                <p class="muted" style="margin:0 0 12px;color:var(--muted-color,#65728a);font-size:0.97rem;">
+                    Saya membangun produk berbasis data yang nyata: pipeline yang dapat diandalkan, layanan backend yang dapat diproduksi, dan integrasi ML praktis untuk meningkatkan metrik bisnis. Disajikan dengan dokumentasi yang jelas dan fokus pada keterulangan.
+                </p>
 
-                <ul class="quick-info" aria-hidden="false">
-                    <li><strong>Location:</strong> Jakarta, Indonesia (Open to remote / international)</li>
-                    <li><strong>Availability:</strong> Immediate</li>
-                    <li><strong>Languages:</strong> English, Japanese (Beginner) <span class="japanese-accent" aria-hidden="true">日本語</span></li>
+                <ul class="hero-higlights" style="display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 18px;padding:0;list-style:none;">
+                    <li style="background:linear-gradient(90deg,#eef2ff,#f0f9ff);padding:8px 12px;border-radius:999px;font-size:0.9rem;color:#0f172a;">Jakarta, ID</li>
+                    <li style="background:linear-gradient(90deg,#fff7ed,#fff3e0);padding:8px 12px;border-radius:999px;font-size:0.9rem;color:#0f172a;">Open to remote</li>
+                    <li style="background:linear-gradient(90deg,#ecfdf5,#f0fdf4);padding:8px 12px;border-radius:999px;font-size:0.9rem;color:#0f172a;">Immediate</li>
+                    <li style="background:linear-gradient(90deg,#f8fafc,#f1f5f9);padding:8px 12px;border-radius:999px;font-size:0.9rem;color:#0f172a;">English · Japanese (Beginner)</li>
                 </ul>
-                
-                <div class="hero-actions">
-                    <a class="btn-primary" href="mailto:Rabbani.office1806@gmail.com">Email</a>
-                    <a class="btn-secondary" href="https://github.com/Rabbani218" target="_blank" rel="noopener">GitHub</a>
-                    <a class="btn-accent" href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" target="_blank" rel="noopener">LinkedIn</a>
+
+                <div class="hero-actions" style="display:flex;gap:10px;flex-wrap:wrap;">
+                    <a class="btn-primary" href="mailto:Rabbani.office1806@gmail.com" aria-label="Send email" style="display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,#0ea5a4,#60a5fa);color:white;text-decoration:none;box-shadow:0 6px 18px rgba(14,165,164,0.12);">
+                        <!-- Envelope SVG -->
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 7.5L12 13L21 7.5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                            <rect x="3" y="5.5" width="18" height="13" rx="2" stroke="white" stroke-width="1.6" fill="none"/>
+                        </svg>
+                        Email
+                    </a>
+
+                    <a class="btn-secondary" href="https://github.com/Rabbani218" target="_blank" rel="noopener" aria-label="View GitHub" style="display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:#0f172a;color:white;text-decoration:none;box-shadow:0 6px 18px rgba(15,23,42,0.06);">
+                        <!-- GitHub Mark SVG -->
+                        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                            <path d="M12 .5C5.7.5.9 5.3.9 11.6c0 4.6 2.9 8.5 6.9 9.9.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.4-1-1-1.3-1-1.3-.8-.6.1-.6.1-.6.9.1 1.4.9 1.4.9.8 1.4 2.2 1 2.8.8.1-.6.3-1 .6-1.3-2.2-.3-4.6-1.1-4.6-4.8 0-1.1.4-2 1.1-2.7-.1-.3-.5-1.3.1-2.7 0 0 .9-.3 2.8 1.1.8-.2 1.7-.3 2.6-.3.9 0 1.8.1 2.6.3 1.9-1.5 2.8-1.1 2.8-1.1.6 1.4.2 2.4.1 2.7.7.7 1.1 1.6 1.1 2.7 0 3.7-2.4 4.5-4.6 4.8.4.4.7 1 .7 2v3c0 .3.2.6.7.5 4-1.4 6.9-5.3 6.9-9.9C23.1 5.3 18.3.5 12 .5z"/>
+                        </svg>
+                        GitHub
+                    </a>
+
+                    <a class="btn-accent" href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" target="_blank" rel="noopener" aria-label="View LinkedIn" style="display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,#0ea5a4,#06b6d4);color:white;text-decoration:none;">
+                        <!-- LinkedIn SVG -->
+                        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="white">
+                            <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.98H4.8V24H.22zM8.98 8.98h4.34v2.04h.06c.61-1.16 2.1-2.39 4.33-2.39 4.63 0 5.48 3.05 5.48 7.01V24h-4.58v-6.8c0-1.62-.03-3.7-2.25-3.7-2.26 0-2.61 1.77-2.61 3.59V24H8.98z"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                </div>
+
+                <p class="muted-small" style="margin:12px 0 0;color:var(--muted-color,#94a3b8);font-size:0.87rem;">
+                    CV dan portofolio sinkron dengan GitHub — lihat proyek publik yang relevan dan unduh CV yang sudah disesuaikan di bagian "Generate CV".
+                </p>
+            </div>
+
+            <div class="hero-right" aria-hidden="false" style="display:flex;justify-content:center;align-items:center;">
+                <div style="width:300px;border-radius:14px;padding:12px;background:linear-gradient(180deg,rgba(255,255,255,0.75),rgba(255,255,255,0.55));box-shadow:0 10px 30px rgba(15,23,42,0.08);backdrop-filter:blur(6px);">
+                    <figure style="margin:0;text-align:center;">
+                        <img class="profile-img" src="/images/P1.png" alt="Profile photo of Muhammad Abdurrahman Rabbani" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:10px;border:6px solid white;display:block;">
+                        <figcaption class="muted-small" style="margin-top:10px;color:var(--muted-color,#6b7280);font-size:0.95rem;">
+                            Rabbani — Data Analyst · Full‑stack · AI Engineer
+                        </figcaption>
+                    </figure>
+
+                    <div style="display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap;">
+                        <div style="font-size:0.85rem;background:#f8fafc;padding:6px 10px;border-radius:999px;color:#0f172a;">Python</div>
+                        <div style="font-size:0.85rem;background:#fff7ed;padding:6px 10px;border-radius:999px;color:#0f172a;">SQL</div>
+                        <div style="font-size:0.85rem;background:#ecfdf5;padding:6px 10px;border-radius:999px;color:#0f172a;">ML</div>
+                    </div>
                 </div>
             </div>
-            <div class="hero-right" aria-hidden="false">
-                <figure>
-                    <img class="profile-img" src="/images/P1.png" alt="Profile photo of Muhammad Abdurrahman Rabbani" loading="lazy" decoding="async">
-                    <figcaption class="muted-small">Rabbani — Data Analyst · Full‑stack · AI Engineer</figcaption>
-                </figure>
-            </div>
-        </section>
+        </section></figure></svg>
 
+        
         <section id="snapshot">
             <h2 id="snapshot-title" class="section-title">Experience Snapshot</h2>
-            <p class="section-description">A quick summary HR teams appreciate — concise, quantifiable and relevant to international roles.</p>
-            <div class="snapshot-grid">
-                <div class="snapshot-card">
-                    <h3>Data & Analytics</h3>
-                    <p>Designed ETL pipelines, automated dashboards and A/B analysis to improve conversion by measurable margins.</p>
+            <p class="section-description">A compact, recruiter-focused summary — metrics, impact and core strengths presented for quick scanning.</p>
+
+            <div class="snapshot-top" style="display:flex;gap:12px;flex-wrap:wrap;align-items:stretch;margin-top:12px;">
+            <div class="snapshot-metrics" style="flex:1;min-width:220px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+                <div class="metric-card" style="background:linear-gradient(135deg,#0ea5a4,#60a5fa);color:white;padding:12px;border-radius:8px;">
+                <div style="font-size:1.1rem;font-weight:700;">12+</div>
+                <div style="font-size:0.85rem;">Projects shipped</div>
                 </div>
-                <div class="snapshot-card">
-                    <h3>Full‑stack</h3>
-                    <p>Built APIs, services and web interfaces using Node.js, Express and React-based front-ends; deployed with Docker.</p>
+                <div class="metric-card" style="background:linear-gradient(135deg,#f97316,#f43f5e);color:white;padding:12px;border-radius:8px;">
+                <div style="font-size:1.1rem;font-weight:700;">30k+</div>
+                <div style="font-size:0.85rem;">Lines of SQL / Analysis</div>
                 </div>
-                <div class="snapshot-card">
-                    <h3>AI & Production</h3>
-                    <p>Prototyped models, validated performance, and integrated them into production using lightweight model-serving approaches.</p>
+                <div class="metric-card" style="background:linear-gradient(135deg,#10b981,#84cc16);color:white;padding:12px;border-radius:8px;">
+                <div style="font-size:1.1rem;font-weight:700;">2×</div>
+                <div style="font-size:0.85rem;">Conversion lift (A/B)</div>
                 </div>
+            </div>
+
+            <div class="snapshot-actions" style="display:flex;gap:8px;align-items:center;">
+                <a class="btn-primary" href="mailto:Rabbani.office1806@gmail.com" style="display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;">
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                Email
+                </a>
+                <a class="btn-secondary" href="https://github.com/Rabbani218" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;">
+                <i class="fa-brands fa-github" aria-hidden="true"></i>
+                View code
+                </a>
+                <a class="btn-accent" href="#cv-tailor" style="display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;">
+                <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+                Tailor CV (PDF)
+                </a>
+            </div>
+            </div>
+
+            <div class="snapshot-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:16px;">
+            <div class="snapshot-card" style="background:var(--card-bg,#fff);padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(8,15,30,0.06);">
+                <h3 style="display:flex;align-items:center;gap:8px;margin:0 0 8px 0;">
+                <i class="fa-solid fa-database" aria-hidden="true" style="color:#0ea5a4;"></i>
+                Data & Analytics
+                </h3>
+                <p class="muted" style="margin:0 0 10px 0;">Built production ETL flows, automated dashboards and statistical experiments that surfaced decisions used by product and marketing teams.</p>
+                <ul style="margin:0;padding-left:18px;font-size:0.95rem;">
+                <li>Automated daily pipeline (pandas, Airflow style scheduling)</li>
+                <li>Reports reduced manual analysis time by ~40%</li>
+                <li>SQL query tuning & schema design</li>
+                </ul>
+            </div>
+
+            <div class="snapshot-card" style="background:var(--card-bg,#fff);padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(8,15,30,0.06);">
+                <h3 style="display:flex;align-items:center;gap:8px;margin:0 0 8px 0;">
+                <i class="fa-solid fa-code-branch" aria-hidden="true" style="color:#60a5fa;"></i>
+                Full‑stack & APIs
+                </h3>
+                <p class="muted" style="margin:0 0 10px 0;">Design and ship services and interfaces with maintainability and observability in mind.</p>
+                <ul style="margin:0;padding-left:18px;font-size:0.95rem;">
+                <li>REST APIs (Node.js / Express) and containerized deployments</li>
+                <li>React front-ends with clear UX handoffs</li>
+                <li>CI-friendly workflows and lightweight monitoring</li>
+                </ul>
+            </div>
+
+            <div class="snapshot-card" style="background:var(--card-bg,#fff);padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(8,15,30,0.06);">
+                <h3 style="display:flex;align-items:center;gap:8px;margin:0 0 8px 0;">
+                <i class="fa-solid fa-robot" aria-hidden="true" style="color:#f97316;"></i>
+                AI & Production
+                </h3>
+                <p class="muted" style="margin:0 0 10px 0;">Prototype to deploy: lightweight models, evaluation pipelines and simple serving suitable for fast iteration.</p>
+                <ul style="margin:0;padding-left:18px;font-size:0.95rem;">
+                <li>Model prototyping (scikit-learn, PyTorch experiments)</li>
+                <li>Practical evaluation metrics and reproducible runs</li>
+                <li>Serving prototypes with minimal overhead</li>
+                </ul>
+            </div>
+            </div>
+
+            <div class="snapshot-skillstrip" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;align-items:center;">
+            <div style="flex:1;min-width:260px;background:linear-gradient(180deg,#0f172a00,#0f172a05);padding:12px;border-radius:10px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                <strong>Skill focus</strong>
+                <span class="muted-small">Confidence</span>
+                </div>
+                <div style="display:grid;gap:8px;">
+                <div>
+                    <div style="font-size:0.9rem;margin-bottom:4px;">Python <span class="muted-small" style="float:right">95%</span></div>
+                    <div style="background:#e6eef8;border-radius:999px;height:8px;overflow:hidden;">
+                    <div style="width:95%;height:100%;background:linear-gradient(90deg,#60a5fa,#0ea5a4);"></div>
+                    </div>
+                </div>
+                <div>
+                    <div style="font-size:0.9rem;margin-bottom:4px;">SQL <span class="muted-small" style="float:right">88%</span></div>
+                    <div style="background:#e6eef8;border-radius:999px;height:8px;overflow:hidden;">
+                    <div style="width:88%;height:100%;background:linear-gradient(90deg,#f97316,#f43f5e);"></div>
+                    </div>
+                </div>
+                <div>
+                    <div style="font-size:0.9rem;margin-bottom:4px;">ML & Prototyping <span class="muted-small" style="float:right">78%</span></div>
+                    <div style="background:#e6eef8;border-radius:999px;height:8px;overflow:hidden;">
+                    <div style="width:78%;height:100%;background:linear-gradient(90deg,#10b981,#84cc16);"></div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div style="min-width:220px;display:flex;flex-direction:column;gap:8px;">
+                <div style="background:var(--card-bg,#fff);padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(8,15,30,0.04);">
+                <strong style="display:block;margin-bottom:6px;">Languages & Availability</strong>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <span class="badge" style="background:#eef2ff;padding:6px 8px;border-radius:999px;font-size:0.85rem;">English</span>
+                    <span class="badge" style="background:#f0fdf4;padding:6px 8px;border-radius:999px;font-size:0.85rem;">Japanese (Beginner)</span>
+                    <span class="badge" style="background:#fff7ed;padding:6px 8px;border-radius:999px;font-size:0.85rem;">Remote OK</span>
+                    <span class="badge" style="background:#fef3c7;padding:6px 8px;border-radius:999px;font-size:0.85rem;">Immediate</span>
+                </div>
+                </div>
+
+                <div style="background:var(--card-bg,#fff);padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(8,15,30,0.04);">
+                <strong style="display:block;margin-bottom:6px;">Quick contacts</strong>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com" style="display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;">
+                    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                    Email
+                    </a>
+                    <a class="contact-btn btn-secondary" href="https://github.com/Rabbani218" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;">
+                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                    GitHub
+                    </a>
+                    <a class="contact-btn btn-accent" href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;">
+                    <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+                    LinkedIn
+                    </a>
+                </div>
+                </div>
+            </div>
             </div>
         </section>
 
@@ -105,68 +266,183 @@
             <h2 class="section-title">About <span class="japanese-accent" aria-hidden="true">私について</span></h2>
             <p class="section-description">I focus on turning data into decisions and shipping production-ready software. My work blends data analysis, backend engineering, and practical AI model integration to solve real problems. <span class="japanese-accent" aria-hidden="true">データを意思決定に変え、実運用可能なソフトウェアを提供します。</span></p>
 
-            <div class="about-grid">
-            <div class="about-card">
-                <h3>What I do <span class="japanese-accent" aria-hidden="true">私の専門分野</span></h3>
-                <ul>
-                <li>Data analysis and clear insight delivery (Python, pandas, SQL) <span class="japanese-accent" aria-hidden="true">データ分析と明確な洞察の提供</span></li>
-                <li>Design and implement backend services and APIs (Node.js, Express, Docker) <span class="japanese-accent" aria-hidden="true">バックエンドサービスとAPIの設計と実装</span></li>
-                <li>Prototype and integrate ML models for practical tasks (scikit-learn, simple pipelines) <span class="japanese-accent" aria-hidden="true">実用的なMLモデルのプロトタイプと統合</span></li>
-                <li>Automate reports and dashboards for decision making <span class="japanese-accent" aria-hidden="true">レポートとダッシュボードの自動化</span></li>
-                </ul>
+            <div class="about-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px;align-items:start;">
+            <div class="about-card" style="background:var(--card-bg,#fff);padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(8,15,30,0.04);">
+            <h3 style="display:flex;align-items:center;gap:8px;margin:0 0 10px 0;">
+                <i class="fa-solid fa-lightbulb" aria-hidden="true" style="color:#f59e0b;"></i>
+                What I do <span class="japanese-accent" aria-hidden="true">私の専門分野</span>
+            </h3>
+            <ul style="margin:0;padding-left:18px;font-size:0.95rem;">
+            <li>Data analysis and clear insight delivery (Python, pandas, SQL) <span class="japanese-accent" aria-hidden="true">データ分析と明確な洞察の提供</span></li>
+            <li>Design and implement backend services and APIs (Node.js, Express, Docker) <span class="japanese-accent" aria-hidden="true">バックエンドサービスとAPIの設計と実装</span></li>
+            <li>Prototype and integrate ML models for practical tasks (scikit-learn, simple pipelines) <span class="japanese-accent" aria-hidden="true">実用的なMLモデルのプロトタイプと統合</span></li>
+            <li>Automate reports and dashboards for decision making <span class="japanese-accent" aria-hidden="true">レポートとダッシュボードの自動化</span></li>
+            </ul>
             </div>
 
-            <div class="about-card">
-                <h3>Impact & Results <span class="japanese-accent" aria-hidden="true">実績と成果</span></h3>
-                <ul>
+            <div class="about-card" style="display:flex;flex-direction:column;gap:12px;">
+            <div style="background:linear-gradient(90deg,#06b6d4,#3b82f6);color:white;padding:14px;border-radius:10px;">
+                <strong style="display:block;font-size:1.05rem;">Impact & Results <span class="japanese-accent" aria-hidden="true">実績と成果</span></strong>
+                <p style="margin:8px 0 0 0;font-size:0.95rem;">Practical outcomes focused on measurable improvements — faster pipelines, higher conversion, and production-ready features.</p>
+            </div>
+
+            <div style="background:var(--card-bg,#fff);padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(8,15,30,0.04);">
+                <ul style="margin:0;padding-left:18px;font-size:0.95rem;">
                 <li>Led the campus e‑commerce "Colorweave" from planning to live sales channel <span class="japanese-accent" aria-hidden="true">キャンパス内Eコマース「Colorweave」の立ち上げ</span></li>
                 <li>Designed MySQL schemas and performance-focused queries <span class="japanese-accent" aria-hidden="true">MySQLスキーマとパフォーマンス重視のクエリの設計</span></li>
                 <li>Delivered data-driven reports used for product and marketing decisions <span class="japanese-accent" aria-hidden="true">製品とマーケティングの意思決定に使われるデータ駆動型レポート</span></li>
                 </ul>
             </div>
 
-            <div class="about-card contact-card">
-                <h3>Hire / Collaborate <span class="japanese-accent" aria-hidden="true">採用・協業</span></h3>
-                <p class="muted-small">Open to internships, freelance projects, and research collaborations at the intersection of data and software. <span class="japanese-accent" aria-hidden="true">データとソフトウェアの交差点でのインターン・フリーランス・研究協力を歓迎します。</span></p>
-                <p>
-                <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com">Email <span class="japanese-accent" aria-hidden="true">メール</span></a>
-                <a class="contact-btn btn-secondary" href="https://github.com/Rabbani218" target="_blank" rel="noopener">GitHub <span class="japanese-accent" aria-hidden="true">ギットハブ</span></a>
-                <a class="contact-btn btn-accent" href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" target="_blank" rel="noopener">LinkedIn <span class="japanese-accent" aria-hidden="true">リンクトイン</span></a>
+            <div class="about-card contact-card" style="background:var(--card-bg,#fff);padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(8,15,30,0.04);">
+                <h3 style="margin:0 0 8px 0;display:flex;align-items:center;gap:8px;">
+                <i class="fa-solid fa-handshake" aria-hidden="true" style="color:#34d399;"></i>
+                Collaborate <span class="japanese-accent" aria-hidden="true">採用・協業</span>
+                </h3>
+                <p class="muted-small" style="margin:0 0 10px 0;">Open to internships, freelance projects, and research collaborations at the intersection of data and software. <span class="japanese-accent" aria-hidden="true">データとソフトウェアの交差点でのインターン・フリーランス・研究協力を歓迎します。</span></p>
+                <p style="display:flex;gap:8px;flex-wrap:wrap;margin:0;">
+                <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com" style="display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;">
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                Email
+                </a>
+                <a class="contact-btn btn-secondary" href="https://github.com/Rabbani218" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;">
+                <i class="fa-brands fa-github" aria-hidden="true"></i>
+                GitHub
+                </a>
+                <a class="contact-btn btn-accent" href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;">
+                <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+                LinkedIn
+                </a>
                 </p>
             </div>
             </div>
+            </div>
         </section>
-        <section id="projects">
+
+        <section id="education">
+            <h2 class="section-title">Education <span class="japanese-accent" aria-hidden="true">教育</span></h2>
+            <p class="section-description">
+                Formal education and selected academic achievements. Presented with degree/title, institution, attendance dates and concise highlights relevant to hiring decisions.
+            </p>
+
+            <div class="education-list" style="display:grid;gap:14px;margin-top:12px;">
+                <!-- University -->
+                <div class="education-item" style="display:flex;gap:12px;align-items:flex-start;background:var(--card-bg,#fff);padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(8,15,30,0.04);">
+                    <img src="/images/ubsi.png" alt="Universitas Bina Sarana Informatika logo" width="64" height="64" style="flex:0 0 64px;border-radius:8px;object-fit:cover;">
+                    <div>
+                        <strong style="display:block;font-size:1.02rem;">Universitas Bina Sarana Informatika</strong>
+                        <div class="muted-small" style="margin:4px 0;color:var(--muted-color,#6b7280);">Bachelor of Informatics</div>
+                        <div class="muted-small" style="margin-bottom:8px;color:var(--muted-color,#94a3b8);font-size:0.95rem;">Jan 2019 – Nov 2035</div>
+                        <p class="muted" style="margin:0 0 8px 0;">
+                            Concentrated on software development, data analysis and practical machine learning. Participated in the AI Development Bootcamp (Himakom) and completed projects involving data pipelines and prototype models.
+                        </p>
+                        <a href="#" class="education-links" style="color:#0f61c3;text-decoration:underline;font-size:0.95rem;">Relevant coursework & skills: Project Management, Visual Studio, Python, SQL</a>
+                    </div>
+                </div>
+
+                <!-- High School -->
+                <div class="education-item" style="display:flex;gap:12px;align-items:flex-start;background:var(--card-bg,#fff);padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(8,15,30,0.04);">
+                    <img src="/images/sma.png" alt="SMAS Yapemri Depok logo" width="64" height="64" style="flex:0 0 64px;border-radius:8px;object-fit:cover;">
+                    <div>
+                        <strong style="display:block;font-size:1.02rem;">SMAS Yapemri Depok</strong>
+                        <div class="muted-small" style="margin:4px 0;color:var(--muted-color,#6b7280);">Major: Mathematics and Natural Sciences</div>
+                        <div class="muted-small" style="margin-bottom:8px;color:var(--muted-color,#94a3b8);font-size:0.95rem;">Jun 2021 – May 2024</div>
+                        <p class="muted" style="margin:0 0 8px 0;">
+                            Engaged in computer extracurricular activities and foundational programming courses. Developed practical skills in HTML and Python through school projects and competitions.
+                        </p>
+                        <a href="#" class="education-links" style="color:#0f61c3;text-decoration:underline;font-size:0.95rem;">Relevant: HTML, Python, Computer Club activities</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="projects" class="projects-section"></section>
             <div class="section-inner">
-                <h2 class="section-title">Projects <span class="japanese-accent" aria-hidden="true">プロジェクト</span></h2>
-                <p class="section-description">Public repositories fetched from GitHub. Use filters to tailor what recruiters see. <span class="japanese-accent" aria-hidden="true">採用担当者が見る内容を調整するにはフィルターを使用してください。</span></p>
-
-                <div class="projects-controls">
-                    <label class="muted-small">Language <span class="japanese-accent" aria-hidden="true">言語</span></label>
-                    <select id="projects-filter" aria-label="Filter by language">
-                        <option value="all">All <span class="japanese-accent" aria-hidden="true">すべて</span></option>
-                    </select>
-
-                    <label class="muted-small">Sort <span class="japanese-accent" aria-hidden="true">並び替え</span></label>
-                    <select id="projects-sort" aria-label="Sort projects">
-                        <option value="updated">Recently updated <span class="japanese-accent" aria-hidden="true">最近更新</span></option>
-                        <option value="stars">Stars <span class="japanese-accent" aria-hidden="true">スター数</span></option>
-                        <option value="name">Name <span class="japanese-accent" aria-hidden="true">名前</span></option>
-                    </select>
-
-                    <label class="muted-small" for="projects-minstars">Min stars <span class="japanese-accent" aria-hidden="true">最小スター数</span></label>
-                    <input id="projects-minstars" type="number" min="0" value="0" />
+                <div class="projects-header">
+                    <h2 class="section-title">Projects <span class="japanese-accent" aria-hidden="true">プロジェクト</span></h2>
+                    <p class="section-description">
+                        Public repositories fetched from GitHub. Use filters to tailor what recruiters see.
+                        <span class="japanese-accent" aria-hidden="true">採用担当者が見る内容を調整するにはフィルターを使用してください。</span>
+                    </p>
                 </div>
 
+                <!-- Filters grouped in a compact, accessible form -->
+                <form id="projects-controls" class="projects-controls" aria-label="Project filters">
+                    <div class="controls-grid">
+                        <label>
+                            <span class="muted-small">Language <span class="japanese-accent" aria-hidden="true">言語</span></span>
+                            <select id="projects-filter" aria-label="Filter by language">
+                                <option value="all">All <span class="japanese-accent" aria-hidden="true">すべて</span></option>
+                            </select>
+                        </label>
+
+                        <label>
+                            <span class="muted-small">Sort <span class="japanese-accent" aria-hidden="true">並び替え</span></span>
+                            <select id="projects-sort" aria-label="Sort projects">
+                                <option value="updated">Recently updated <span class="japanese-accent" aria-hidden="true">最近更新</span></option>
+                                <option value="stars">Stars <span class="japanese-accent" aria-hidden="true">スター数</span></option>
+                                <option value="name">Name <span class="japanese-accent" aria-hidden="true">名前</span></option>
+                            </select>
+                        </label>
+
+                        <label>
+                            <span class="muted-small">Min stars <span class="japanese-accent" aria-hidden="true">最小スター数</span></span>
+                            <input id="projects-minstars" type="number" min="0" value="0" aria-label="Minimum stars" />
+                        </label>
+
+                        <label>
+                            <span class="muted-small">Search</span>
+                            <input id="projects-search" type="search" placeholder="Search project name or description" aria-label="Search projects" />
+                        </label>
+
+                        <div class="controls-actions">
+                            <button type="button" id="projects-apply" class="btn-primary">Apply</button>
+                            <button type="button" id="projects-reset" class="btn-secondary">Reset</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Live region with loading / empty states -->
                 <h3 id="projects-heading" class="visually-hidden">Project Listings</h3>
-                <div id="projects-grid" class="projects-grid" role="list" aria-labelledby="projects-heading" aria-live="polite">
-                    <div class="stat-card">Loading projects from GitHub... <span class="japanese-accent" aria-hidden="true">GitHubからプロジェクトを読み込み中...</span></div>
+                <div id="projects-grid" class="projects-grid" role="list" aria-labelledby="projects-heading" aria-live="polite" aria-busy="true">
+                    <div class="projects-loading stat-card" role="status">
+                        <span class="spinner" aria-hidden="true">⏳</span>
+                        Loading projects from GitHub... <span class="japanese-accent" aria-hidden="true">GitHubからプロジェクトを読み込み中...</span>
+                    </div>
                 </div>
+
+                <div id="projects-empty" class="stat-card visually-hidden" role="status">
+                    No projects match the selected filters. Try clearing filters or broaden your search.
+                    <span class="japanese-accent" aria-hidden="true">選択したフィルターに一致するプロジェクトはありません。フィルターをクリアするか検索を広げてください。</span>
+                </div>
+
+                <!-- Template used by JS to render each project card consistently -->
+                <template id="project-card-template">
+                    <article class="project-card" role="listitem">
+                        <header class="project-card-header">
+                            <h4 class="project-title">Project name</h4>
+                            <div class="project-meta muted-small">
+                                <span class="project-lang">Language</span> •
+                                <time class="project-updated" datetime="">Updated</time> •
+                                <span class="project-stars" aria-hidden="true">★0</span>
+                            </div>
+                        </header>
+
+                        <p class="project-description muted">Short project description — concise and recruiter-focused. This should be trimmed to one or two sentences.</p>
+
+                        <footer class="project-card-footer">
+                            <a class="view-code" href="#" target="_blank" rel="noopener">View Code</a>
+                            <div class="project-badges muted-small" aria-hidden="true">
+                                <span class="badge forks">Forks 0</span>
+                                <span class="badge topics">Topics</span>
+                            </div>
+                        </footer>
+                    </article>
+                </template>
             </div>
         </section>
 
         <section id="skills">
-            <h2 class="section-title">Tech Stack</h2>
+            <h2 class="section-title">Skills <span class="japanese-accent" aria-hidden="true">スキル</span></h2>
             <div class="stack-strip">
                 <div class="stack-card">
                     <img src="https://skillicons.dev/icons?i=python,pytorch,tensorflow,scikitlearn,fastapi,flask,go,nodejs,express,nestjs&theme=dark" alt="AI & Back-end Stack" loading="lazy" decoding="async"/>
@@ -176,60 +452,104 @@
                 </div>
             </div>
         </section>
+        <section id="cv-tailor" class="cv-tailor section">
+            <div class="section-inner">
+                <h2 class="section-title">Generate CV <span class="japanese-accent" aria-hidden="true">カスタム履歴書生成</span></h2>
+                <p class="section-description">
+                    Create a recruiter-focused CV tailored to the target role. Projects and skills will be included automatically.
+                    <span class="japanese-accent" aria-hidden="true">対象職種に合わせた人事向けの履歴書を作成します。プロジェクトとスキルは自動的に含まれます。</span>
+                </p>
 
-        <section id="cv-tailor">
-            <h2 class="section-title">Generate a Tailored CV <span class="japanese-accent" aria-hidden="true">カスタム履歴書生成</span></h2>
-            <p class="section-description">Create a recruiter-focused CV tailored to the target role. Projects and skills will be included automatically. <span class="japanese-accent" aria-hidden="true">対象職種に合わせた人事向けの履歴書を作成します。プロジェクトとスキルは自動的に含まれます。</span></p>
+                <form id="cv-form" class="cv-form" aria-label="CV generator">
+                    <div class="cv-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;">
+                        <label class="input-group">
+                            <span class="label-text">Target role</span>
+                            <select id="cv-target-role" aria-label="Target role">
+                                <option value="general">General / Full‑stack</option>
+                                <option value="ai_avatar">AI Avatar Developer</option>
+                                <option value="data_scientist">Data Scientist / ML Engineer</option>
+                                <option value="fullstack">Full‑stack Developer</option>
+                            </select>
+                        </label>
 
-            <div class="cv-form">
-            <label>Target role
-                <select id="cv-target-role">
-                <option value="general">General / Full‑stack</option>
-                <option value="ai_avatar">AI Avatar Developer</option>
-                <option value="data_scientist">Data Scientist / ML Engineer</option>
-                <option value="fullstack">Full‑stack Developer</option>
-                </select>
-            </label>
+                        <label class="input-group">
+                            <span class="label-text">Previous salary (estimate)</span>
+                            <input id="cv-salary" type="text" placeholder="e.g. 6,000,000 JPY / 1,200 USD" aria-label="Previous salary (estimate)" />
+                        </label>
 
-            <label>Previous salary (estimate)
-                <input id="cv-salary" type="text" placeholder="e.g. 6,000,000 JPY / 1,200 USD"/>
-            </label>
+                        <label class="input-group">
+                            <span class="label-text">Estimated daily working hours</span>
+                            <input id="cv-hours" type="number" min="1" max="12" step="1" value="8" aria-label="Estimated daily working hours" />
+                        </label>
 
-            <label>Estimated daily working hours
-                <input id="cv-hours" type="number" min="1" max="12" value="8"/>
-            </label>
+                        <label class="input-group">
+                            <span class="label-text">Experience with health apps?</span>
+                            <select id="cv-health-experience" aria-label="Experience with health apps">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </label>
 
-            <label>Experience with health apps?
-                <select id="cv-health-experience">
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
-                </select>
-            </label>
+                        <label class="input-group full-width" style="grid-column:1/-1;">
+                            <span class="label-text">Demos / video / repository links</span>
+                            <input id="cv-demos" type="text" placeholder="https://... , https://..." aria-label="Demos or repository links" />
+                        </label>
 
-            <label>Demos / video / repository links
-                <input id="cv-demos" type="text" placeholder="https://... , https://..."/>
-            </label>
+                        <label class="input-group">
+                            <span class="label-text">Code editor</span>
+                            <input id="cv-editor" type="text" placeholder="VSCode, WebStorm, ..." aria-label="Preferred code editor" />
+                        </label>
+                    </div>
 
-            <label>Code editor
-                <input id="cv-editor" type="text" placeholder="VSCode, WebStorm, ..."/>
-            </label>
-
-            <div>
-                <button id="generateTailoredCv" class="btn-primary">Generate tailored CV (PDF)</button>
-                <span class="muted-small">PDF is generated in the browser — nothing is uploaded to a server. <span class="japanese-accent" aria-hidden="true">PDFはブラウザで生成されます — サーバーへのアップロードはありません。</span></span>
-            </div>
+                    <div class="cv-actions" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:12px;">
+                        <button id="generateTailoredCv" class="btn-primary" type="button">Generate CV (PDF)</button>
+                        <p class="muted-small" style="margin:0;">
+                            PDF is generated in the browser — nothing is uploaded to a server.
+                            <span class="japanese-accent" aria-hidden="true">PDFはブラウザで生成されます — サーバーへのアップロードはありません。</span>
+                        </p>
+                    </div>
+                </form>
             </div>
         </section>
 
         <section id="contact">
             <h2 class="section-title">Contact <span class="japanese-accent" aria-hidden="true">連絡先</span></h2>
             <p class="section-description">Interested? Reach out by email or via GitHub / LinkedIn. <span class="japanese-accent" aria-hidden="true">ご興味をお持ちですか？メールまたはGitHub / LinkedInでご連絡ください。</span></p>
-            <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com">Send an email</a>
+
+            <div class="contact-actions" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;">
+                <a class="contact-btn btn-primary" href="mailto:Rabbani.office1806@gmail.com" aria-label="Send email to Rabbani">
+                    <i class="fa-solid fa-envelope" aria-hidden="true" style="margin-right:8px;"></i>
+                    Email
+                </a>
+
+                <a class="contact-btn btn-secondary" href="https://github.com/Rabbani218" target="_blank" rel="noopener" aria-label="View Rabbani on GitHub">
+                    <i class="fa-brands fa-github" aria-hidden="true" style="margin-right:8px;"></i>
+                    GitHub
+                </a>
+
+                <a class="contact-btn btn-accent" href="https://www.linkedin.com/in/muhammad-abdurrahman-rabbani-78b208346" target="_blank" rel="noopener" aria-label="View Rabbani on LinkedIn">
+                    <i class="fa-brands fa-linkedin" aria-hidden="true" style="margin-right:8px;"></i>
+                    LinkedIn
+                </a>
+            </div>
         </section>
     </main>
 
     <footer class="site-footer" role="contentinfo">
-        <div class="footer-inner">© Muhammad Abdurrahman Rabbani — プロジェクトは <a href="https://github.com/Rabbani218" target="_blank">GitHub</a> から同期されています。</div>
+        <div class="footer-inner"></div>
+            <a class="footer-github" href="https://github.com/Rabbani218" target="_blank" rel="noopener" aria-label="Rabbani on GitHub">
+                <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub logo" width="28" height="28" style="vertical-align:middle;">
+                <span class="muted-small" style="margin-left:8px;vertical-align:middle;">Rabbani218</span>
+            </a>
+            <span class="muted-small" style="margin:0 12px;">— © Muhammad Abdurrahman Rabbani</span>
+            <div class="footer-images" aria-hidden="true" style="display:inline-flex;gap:8px;align-items:center;">
+                <img src="/images/sans.png" alt="Sans image" width="40" height="40" style="display:block;">
+                <img src="/images/sprite1.gif" alt="Animated sprite" width="40" height="40" style="display:block;">
+            </div>
+            <div style="display:block;margin-top:6px;color:var(--muted-color,#666);font-size:0.9rem;">
+                Proyek disinkronkan dari <a href="https://github.com/Rabbani218" target="_blank" rel="noopener">GitHub</a>.
+            </div>
+        </div>
     </footer>
 
     <script src="./js/portfolio.js" defer></script>
