@@ -1,6 +1,6 @@
 {
-  "url": "http://localhost:3001",
-  "generatedAt": "2025-11-12T15:27:32.636Z",
+  "url": "http://localhost:50626/index.html?force_theme=light",
+  "generatedAt": "2025-11-14T00:29:24.321Z",
   "results": [
     {
       "viewport": {
@@ -32,28 +32,28 @@
   ],
   "logs": [
     {
-      "type": "console",
-      "text": "If you hit GitHub rate limits, you can set a personal access token in the browser:"
+      "type": "info",
+      "text": "GitHub API calls are unauthenticated by default. Set a personal access token to raise the rate limit:"
     },
     {
-      "type": "console",
-      "text": "localStorage.setItem('github_token','YOUR_TOKEN') ; then reload the page."
+      "type": "info",
+      "text": "localStorage.setItem('github_token', 'ghp_yourTokenHere');"
     },
     {
-      "type": "console",
-      "text": "If you hit GitHub rate limits, you can set a personal access token in the browser:"
+      "type": "info",
+      "text": "GitHub API calls are unauthenticated by default. Set a personal access token to raise the rate limit:"
     },
     {
-      "type": "console",
-      "text": "localStorage.setItem('github_token','YOUR_TOKEN') ; then reload the page."
+      "type": "info",
+      "text": "localStorage.setItem('github_token', 'ghp_yourTokenHere');"
     },
     {
-      "type": "console",
-      "text": "If you hit GitHub rate limits, you can set a personal access token in the browser:"
+      "type": "info",
+      "text": "GitHub API calls are unauthenticated by default. Set a personal access token to raise the rate limit:"
     },
     {
-      "type": "console",
-      "text": "localStorage.setItem('github_token','YOUR_TOKEN') ; then reload the page."
+      "type": "info",
+      "text": "localStorage.setItem('github_token', 'ghp_yourTokenHere');"
     }
   ]
 }

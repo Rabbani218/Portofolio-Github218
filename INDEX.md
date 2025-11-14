@@ -42,34 +42,12 @@ Start here if you want to understand the code:
 
 #### JavaScript Modules (public/js/)
 ```
-cv-data.js (10.42 KB)
-├── CVTemplateData object
-├── Personal information
-├── Experience entries
-├── Education entries
-├── Skills & certifications
-├── Projects & languages
-└── 4 role-specific summaries
-
-cv-pdf-generator.js (27.4 KB)
-├── CVPDFGenerator class
-├── 4 Template rendering methods:
-│   ├── renderModernTemplate()
-│   ├── renderClassicTemplate()
-│   ├── renderMinimalTemplate()
-│   └── renderBoldTemplate()
-├── Section renderers (10+ methods)
-├── jsPDF integration
-└── PDF download functionality
-
-cv-handler.js (16.88 KB)
-├── CVGeneratorHandler class
-├── Form event listeners
-├── Real-time preview updates
-├── Data gathering
-├── Experience/Education management
-├── PDF generation trigger
-└── Form reset functionality
+cv-generator.js (~2,000 lines)
+├── CVTemplateData dataset (personal info, experience, education, projects, skills)
+├── CVPDFGenerator class with 4 templates (Modern, Classic, Minimal, Bold)
+├── CVGeneratorHandler class for form orchestration and live preview
+├── Node-only utilities (generateDocumentsFromText, PDF/RTF builders)
+└── Browser bootstrap that auto-mounts the handler when the DOM is ready
 ```
 
 #### CSS Styling (public/css/)
@@ -119,7 +97,7 @@ CV_GENERATOR_SUMMARY.txt (5.2 KB)
 ```
 index.html (Updated)
 ├── Added cv-generator.css link
-├── Added 3 script imports
+├── Loads consolidated cv-generator.js bundle
 └── Updated CV section header
 ```
 
@@ -195,9 +173,7 @@ index.html (Updated)
 **Step 1**: Read [CV_GENERATOR_IMPLEMENTATION_COMPLETE.md](CV_GENERATOR_IMPLEMENTATION_COMPLETE.md)  
 **Step 2**: Review [CV_GENERATOR_GUIDE.md](CV_GENERATOR_GUIDE.md)  
 **Step 3**: Study the JavaScript modules:
-- cv-data.js (understand data structure)
-- cv-pdf-generator.js (understand PDF generation)
-- cv-handler.js (understand form management)  
+- cv-generator.js (data, PDF logic, UI handler, Node CLI)  
 **Step 4**: Examine CSS in cv-generator.css  
 **Step 5**: Test in browser with dev tools  
 
@@ -209,8 +185,8 @@ index.html (Updated)
 
 ### Code Metrics
 ```
-Total Lines: 2,500+
-JavaScript: 1,800+ lines (3 modules)
+Total Lines: 2,200+
+JavaScript: 2,000+ lines (single bundle)
 CSS: 800+ lines (1 file)
 Documentation: 1,500+ lines (4 files)
 Total Size: ~106 KB
@@ -315,14 +291,14 @@ Entry Point
 
 ### Intermediate (30 minutes)
 1. Read CV_GENERATOR_IMPLEMENTATION_COMPLETE.md
-2. Browse through cv-data.js
+2. Browse the data and browser sections inside cv-generator.js
 3. Look at cv-generator.css
 4. Understand the overall architecture
 
 ### Advanced (1-2 hours)
 1. Study CV_GENERATOR_GUIDE.md thoroughly
-2. Analyze cv-pdf-generator.js in detail
-3. Trace through cv-handler.js event flow
+2. Analyze cv-generator.js Node utilities and template renderer internals
+3. Trace through the CVGeneratorHandler event flow in cv-generator.js
 4. Modify code for custom templates
 5. Test in browser developer tools
 

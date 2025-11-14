@@ -2,14 +2,20 @@
   "name": "rabbani-cv-gen",
   "version": "1.0.0",
   "description": "Generate a PDF CV from plain text for the portfolio",
-  "main": "generate_cv.js",
+  "main": "public/js/cv-generator.js",
   "scripts": {
-    "generate-cv": "node generate_cv.js",
-    "generate-docx": "node generate_cv_docx.js",
-    "build:resume": "node generate_cv.js",
+    "generate-cv": "node public/js/cv-generator.js",
+    "generate-docx": "node public/js/cv-generator.js",
+    "build:resume": "node public/js/cv-generator.js",
     "lint": "eslint . --ext .js,public/js --max-warnings=0",
-    "visual-qa": "node run-visual-qa.js",
-    "lighthouse": "node run-lighthouse.js"
+    "qa:smoke": "node qa-runner.js smoke",
+    "qa:axe": "node qa-runner.js axe",
+    "qa:axe:targeted": "node qa-runner.js axe --targeted",
+    "qa:visual": "node qa-runner.js visual",
+    "qa:lighthouse": "node qa-runner.js lighthouse",
+    "qa:all": "node qa-runner.js all",
+    "visual-qa": "node qa-runner.js visual",
+    "lighthouse": "node qa-runner.js lighthouse"
   },
   "author": "",
   "license": "MIT",
@@ -21,6 +27,8 @@
     "mime": "^4.1.0",
     "puppeteer": "^24.29.1",
     "eslint": "^8.50.0",
-    "axe-core": "^4.6.3"
+    "axe-core": "^4.6.3",
+    "chrome-launcher": "^1.2.1",
+    "lighthouse": "^13.0.1"
   }
 }

@@ -223,12 +223,11 @@ Khusus contact section:
    - Cleaner structure
    - Better HTML organization
 
-2. **`public/css/light-theme.css`**
-   - Added comprehensive CSS variables
-   - Enhanced dark theme overrides
-   - Added form styling
-   - Added new component classes
-   - Improved accessibility
+2. **`public/css/site.css`**
+    - Consolidated light & dark theme variables in a single file
+    - Retained comprehensive overrides and component styling
+    - Centralized form styling and utility classes
+    - Improved accessibility details
 
 ---
 

@@ -4,9 +4,9 @@ This repository contains a static portfolio website for Muhammad Abdurrahman Rab
 
 What changed and what's included
 - Modern homepage focused on Data Analysis, Full‑stack and AI engineering.
-- Client-side GitHub sync: `public/js/portfolio.js` fetches public repos, caches them (1 hour) and extracts an image from the README when available.
-- Centralized styles in `public/css/portfolio.css` and a light theme `public/css/light-theme.css`.
-- Resume: `public/assets/Rabbani_CV_2025.txt` plus included PDF `public/assets/Rabbani_CV_2025.pdf`. A Node script `generate_cv.js` can (re)generate the PDF using `pdfkit`.
+- Client-side GitHub sync & UI orchestration live in `public/js/main.js`, which fetches public repos, caches them (1 hour) and powers the dashboard widgets.
+- Consolidated light/dark styling in `public/css/site.css`.
+- Resume: `public/assets/Rabbani_CV_2025.txt` plus included PDF `public/assets/Rabbani_CV_2025.pdf`. The unified Node entry point `public/js/cv-generator.js` can (re)generate the PDF/RTF pair using `pdfkit`.
 
 Local development / verify
 1. Install dependencies (needed only to generate PDF server-side):
@@ -17,12 +17,12 @@ Local development / verify
 
    npm run build:resume
 
-   This runs `generate_cv.js` and outputs `public/assets/Rabbani_CV_2025.pdf`.
+   This runs `public/js/cv-generator.js` and outputs `public/assets/Rabbani_CV_2025.pdf` (and the matching RTF).
 
    Alternatively, on Windows PowerShell you can run the script directly:
 
 ```powershell
-node "c:\Users\DELL\OneDrive\Documents\Project Github\Portofolio-Github218\generate_cv.js"
+node "c:\Users\DELL\OneDrive\Documents\Project Github\Portofolio-Github218\public\js\cv-generator.js"
 ```
 
 3. Client-side (in-browser) CV generation:
@@ -61,7 +61,7 @@ A GitHub Actions workflow has been added at `.github/workflows/ci-deploy-pages.y
 
 Workflow summary:
 - Trigger: push to the `main` branch (change the trigger branch by editing the workflow).
-- Steps: checkout, setup Node.js, npm ci, run `node generate_cv.js` to regenerate `public/assets/Rabbani_CV_2025.pdf`, upload the `public/` directory as the Pages artifact and deploy it to GitHub Pages.
+- Steps: checkout, setup Node.js, npm ci, run `node public/js/cv-generator.js` to regenerate `public/assets/Rabbani_CV_2025.pdf`, upload the `public/` directory as the Pages artifact and deploy it to GitHub Pages.
 
 You can change the branch that triggers the workflow by editing the `on.push.branches` field in the workflow file.
 
@@ -70,20 +70,22 @@ If you'd like, I can also prepare a workflow variant that only runs on `workflow
 Automated QA & accessibility note
 ---------------------------------
 
-To keep automated accessibility and visual checks deterministic, the QA scripts in this repo force the light theme when they run. This avoids gradient-based "bgGradient" inconclusive results during contrast computations and yields consistent screenshots for reviewers.
+To keep automated accessibility and visual checks deterministic, the consolidated QA runner forces the light theme when appropriate. This avoids gradient-based "bgGradient" inconclusive results during contrast computations and yields consistent screenshots for reviewers.
 
 - To run the targeted axe accessibility check (forces light theme):
 
 ```powershell
-node run-axe-targeted.js
+node qa-runner.js axe --targeted
 ```
 
 - To run the visual QA runner (captures screenshots in light theme):
 
 ```powershell
-node run-visual-qa.js
+node qa-runner.js visual
 ```
 
-Both scripts set `localStorage.theme = 'light'` before the page loads and/or use `?force_theme=light` in the URL to ensure the page loads in light mode. If you want to test dark mode instead, pass `?force_theme=dark` to the page URL or remove the forced setting in the scripts.
+The same runner also supports `smoke`, `axe`, `lighthouse`, and `all` commands. Use `node qa-runner.js --help` to see the full list, or rely on the npm scripts (`npm run qa:axe`, `npm run qa:visual`, etc.).
 
-Reports are written under `tmp/axe` and `tmp/screenshots` respectively (e.g. `tmp/axe/axe-results-targeted.json`).
+All commands set `localStorage.theme = 'light'` before the page loads and/or use `?force_theme=light` in the URL to ensure the page loads in light mode. If you want to test dark mode instead, pass `--force-theme=dark` to the runner.
+
+Reports are written under `tmp/axe`, `tmp/screenshots`, and `tmp/lighthouse` depending on the command (e.g. `tmp/axe/axe-results-targeted.json`).
