@@ -10,6 +10,7 @@
     let PDFDocument;
     let fs;
     let path;
+    let browserPdfLoader = null;
 
     function ensureNodeDeps(){
         if(!isNode){
@@ -21,6 +22,41 @@
             fs = req('fs');
             path = req('path');
         }
+    }
+
+    function ensureBrowserPdfLib(){
+        if(isNode){
+            return Promise.resolve();
+        }
+        if(globalScope.jspdf && globalScope.jspdf.jsPDF){
+            return Promise.resolve(globalScope.jspdf);
+        }
+        if(browserPdfLoader){
+            return browserPdfLoader;
+        }
+        if(typeof document === 'undefined'){
+            return Promise.reject(new Error('Document context unavailable for jsPDF initialisation.'));
+        }
+        browserPdfLoader = new Promise((resolve,reject)=>{
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js';
+            script.async = true;
+            script.crossOrigin = 'anonymous';
+            script.onload = ()=>{
+                if(globalScope.jspdf && globalScope.jspdf.jsPDF){
+                    resolve(globalScope.jspdf);
+                }else{
+                    browserPdfLoader = null;
+                    reject(new Error('jsPDF loaded but no constructor found.'));
+                }
+            };
+            script.onerror = ()=>{
+                browserPdfLoader = null;
+                reject(new Error('Failed to load jsPDF library.'));
+            };
+            document.head.appendChild(script);
+        });
+        return browserPdfLoader;
     }
 
     const KNOWN_SECTION_HEADERS = ['Contact','Summary','Skills','Experience & Projects','Experience','Projects','Education','Certifications','Note'];
@@ -586,6 +622,9 @@
         }
 
         async generatePDF(){
+            if(!isNode){
+                await ensureBrowserPdfLib();
+            }
             const jspdfLib = globalScope.jspdf;
             if(!jspdfLib || !jspdfLib.jsPDF){
                 throw new Error('jsPDF library not found. Include jsPDF before using CVPDFGenerator.');
